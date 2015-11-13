@@ -1,0 +1,20 @@
+{
+  "name": "Xueer_Moblie",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie",
+  "authors": [
+    "zxc0328 <120797887@qq.com>"
+  ],
+  "description": "the Web App of Xueer",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3"
+  }
+}
