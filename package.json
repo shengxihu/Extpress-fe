@@ -1,0 +1,26 @@
+{
+  "name": "xueer_moblie",
+  "version": "0.0.1",
+  "description": "the Web App of Xueer",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muxi-Studio/Xueer_Moblie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muxi-Studio/Xueer_Moblie/issues"
+  },
+  "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie#readme",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "exports-loader": "^0.6.2",
+    "imports-loader": "^0.6.5",
+    "webpack": "^1.12.6"
+  }
+}
