@@ -3,8 +3,15 @@
  *
  * the entry of the whole app
  */
+
+//load css
+
+require("./assets/main.css");
+
+
 var Backbone = require("Backbone");
 
+var main_view = require("./app/views/main_view");
 
 var SiteRouter = Backbone.Router.extend({
     routes: {

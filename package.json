@@ -5,7 +5,12 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch"
+    "prebuild": "npm run scss",
+    "build": "webpack",
+    "scss": "node-sass app/css/common/smain.scss --output assets/",
+    "watch:webpack": "webpack --watch",
+    "watch:css": "watch 'npm run scss' ./app/css/*",
+    "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'"
   },
   "repository": {
     "type": "git",
@@ -19,8 +24,14 @@
   "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie#readme",
   "dependencies": {
     "backbone": "^1.2.3",
+    "css-loader": "^0.23.0",
     "exports-loader": "^0.6.2",
     "imports-loader": "^0.6.5",
-    "webpack": "^1.12.6"
+    "node-sass": "^3.4.2",
+    "parallelshell": "^2.0.0",
+    "style-loader": "^0.13.0",
+    "watch": "^0.16.0",
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.12.1"
   }
 }

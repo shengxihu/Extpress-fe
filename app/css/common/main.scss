@@ -1,0 +1,32 @@
+@import "../pages/index.scss";
+@import "./common.scss";
+@import "../components/header.scss";
+@import "../components/footer.scss";
+/** css reset **/
+body{
+	height:100%;
+	font-family: "Helvetica","PingFang SC","STHeiti","sans-serif";
+	line-height: 1;
+}
+html,body,button,form,textarea,input,p,h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;  
+} 
+h1,h2,h3,h4,h5,h6{
+	font-size: 1rem;
+}
+input,button,textarea{
+	border: 0;
+	outline: 0;
+	box-sizing:content-box;
+}
+html{
+	height:100%;
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
+textarea{
+	display:block;
+}
