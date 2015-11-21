@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run scss",
     "build": "webpack",
-    "scss": "node-sass app/css/common/smain.scss --output assets/",
+    "scss": "node-sass app/css/common/main.scss --output assets/",
     "watch:webpack": "webpack --watch",
     "watch:css": "watch 'npm run scss' ./app/css/*",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'"
@@ -30,6 +30,7 @@
     "node-sass": "^3.4.2",
     "parallelshell": "^2.0.0",
     "style-loader": "^0.13.0",
+    "underscore": "^1.8.3",
     "watch": "^0.16.0",
     "webpack": "^1.12.6",
     "webpack-dev-server": "^1.12.1"

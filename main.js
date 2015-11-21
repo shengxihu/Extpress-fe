@@ -59,10 +59,10 @@ var IndexRouter = Backbone.Router.extend({
 var siteRouter = new SiteRouter();
 var indexRouter = new IndexRouter();
 
-$('#target').click(function(e) {
-    siteRouter.navigate($(e.target).attr('href'), true);
-    return false;
-});
+//initialize the main view
+var mainView = new main_view({el:$("#pageview")});
+mainView.render();
+
 
 Backbone.history.start({
     pushState: !0
