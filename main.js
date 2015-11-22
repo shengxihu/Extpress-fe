@@ -8,62 +8,23 @@
 
 require("./assets/main.css");
 
-
+//load deps
 var Backbone = require("Backbone");
 
+//load view
 var main_view = require("./app/views/main_view");
 
-var SiteRouter = Backbone.Router.extend({
-    routes: {
-        '': 'home',
-        'login': 'login',
-        'search':'search',
-        'search_result':'search_result',
-        'course/:id(/)':'course'
-    },
-    home: function() {
-        console.log('you have reached home')
-    },
-    login: function() {
-        console.log('you have reached login')
-    },
-    search:function(){
-        console.log('you have reached search');
-    },
-    search_result:function(){
-        console.log('you have reached search result');
-    },
-    course:function(id){
-        console.log('you have reached course'+id);
-    }
-});
-
-var IndexRouter = Backbone.Router.extend({
-    routes: {
-        'choice/:id(/)': 'choice',
-        'recommend':'recommend',
-        'all':'all'
-    },
-    choice: function(id) {
-        console.log('you have reached choice'+id)
-    },
-    recommend: function() {
-        console.log('you have reached recommend')
-    },
-    all:function(){
-        console.log('you have reached all')
-    }
-});
+//load routers
+var SiteRouter = require("./app/routers/site_router");
 
 //initialize the app
+
+//initialize router
 var siteRouter = new SiteRouter();
-var indexRouter = new IndexRouter();
 
-//initialize the main view
-var mainView = new main_view({el:$("#pageview")});
-mainView.render();
+//initialize main view
 
-
+//initialize history pushstate
 Backbone.history.start({
     pushState: !0
 });

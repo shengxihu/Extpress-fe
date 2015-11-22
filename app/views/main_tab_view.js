@@ -1,5 +1,5 @@
 var Backbone = require("Backbone");
-
+var _ = require('underscore');
 
 var main_tab_view = Backbone.View.extend({
     template: _.template($("#main_tab_template").html()),
