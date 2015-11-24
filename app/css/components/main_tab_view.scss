@@ -5,12 +5,12 @@
 .main_tab{
 	width: 100%;
 	height:48px;
-	background-color: #ECECEC;
+	background-color: $bg_ec;
 	line-height: 48px;
 	text-align: center;
 	.tab{
 		width:33.333%;
 		height:100%;
-		font-size: 14px;
+		font-size: 14px;/*px*/
 	} 
 }

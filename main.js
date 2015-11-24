@@ -4,9 +4,10 @@
  * the entry of the whole app
  */
 
+
 //load css
 
-require("./assets/main.css");
+require("./assets/main.min.css");
 
 //load deps
 var Backbone = require("Backbone");
