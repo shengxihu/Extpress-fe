@@ -1,9 +1,43 @@
+@import "../common/common.scss";
+
 /**
  * page index
  */
-.viewport{
-	width: 100%;
-	min-height:100%;
-	position:relative;
+
+.viewport {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 124px;
 }
 
+.tip {
+    width: 328px;
+    height: auto;
+    margin: 16px auto 0px;
+    .item {
+        width: 100%;
+        height: 266px;
+        margin-bottom: 16px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, .25);
+        .img {
+            width: 100%;
+            height: 140px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .title {
+            box-sizing: border-box;
+            width: 100%;
+            font-size: 20px;
+            /*px*/
+            padding: 16px 16px 18px;
+            line-height: 28px;
+            a {
+                color: $font_333;
+            }
+        }
+    }
+}

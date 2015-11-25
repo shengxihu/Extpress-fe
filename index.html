@@ -25,9 +25,6 @@
 		<div class="main_tab space"></div>
 		<div class="main_view"></div>
 	</script>
-	<script type="text/template" id="main_tip_template">
-		
-	</script>
 	<script type="text/template" id="main_recommend_template">
 		recommend
 	</script>
@@ -35,15 +32,17 @@
 		all
 	</script>
 	<script type="text/template" id="main_tip_item_template">
-		<div class="img"></div>
+		<div class="img">
+			<img src="<%= img_url %>" />
+		</div>
 		<div class="info">
-			<div class="title"></div>
+			<div class="title"><a href="#" data-link="<%= url %>"><%= title %></a></div>
 			<div class="bottom">
 				<div class="btns">
-					<span class="btn views"></span>
-					<span class="btn likes"></span>
+					<span class="btn views"><%= views %></span>
+					<span class="btn likes"><%= likes %></span>
 				</div>
-				<div class="data"></div>
+				<div class="data"><%= date %></div>
 			</div>
 		</div>
 	</script>

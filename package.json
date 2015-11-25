@@ -8,7 +8,7 @@
     "prebuild": "npm run scss",
     "build": "webpack",
     "scss": "node-sass app/css/common/main.scss --output assets/",
-    "postscss":"postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < assets/main.css | cssmin > assets/main.min.css",
+    "postscss": "postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < assets/main.css | cssmin > assets/main.min.css",
     "watch:webpack": "webpack --watch",
     "watch:css": "watch 'npm run scss' ./app/css/*",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'"
@@ -29,6 +29,7 @@
     "cssmin": "^0.4.3",
     "exports-loader": "^0.6.2",
     "imports-loader": "^0.6.5",
+    "mockjs": "^0.1.10",
     "node-sass": "^3.4.2",
     "parallelshell": "^2.0.0",
     "postcss-px2rem": "^0.2.0",
