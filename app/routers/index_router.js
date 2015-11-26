@@ -12,20 +12,16 @@ var IndexRouter = Backbone.Router.extend({
         'all': 'all'
     },
     initialize : function($container,defaultView){
-        console.log($container, defaultView)
         this.$container = $container;
         this.currentView = defaultView;
     },
     switchView: function(view) {
         if (this.currentView) {
-            // Detach the old view
             this.currentView.remove();
         }
-        // Render view after it is in the DOM (styles are applied)
-        //view.render();
+        console.log(view.render().el)
         this.$container.append( view.render().el )
         this.currentView = view;
-        //console.log(view);
     },
     choice: function(id) {
         console.log('you have reached choice' + id)

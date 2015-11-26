@@ -1,5 +1,5 @@
 bow_components
 node_modules
-*.log
+*.log.*
 public/*.js
 assets

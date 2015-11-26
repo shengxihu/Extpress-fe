@@ -11,14 +11,22 @@ var SiteRouter = Backbone.Router.extend({
         'search_result': 'search_result',
         'course/:id(/)': 'course'
     },
+    initialize : function($container){
+        //console.log($container, defaultView)
+        this.$container = $container;
+    },
+    switchView: function(view) {
+        if (this.currentView) {
+            this.currentView.remove();
+        }
+        this.$container.append( view.render().el )
+        this.currentView = view;
+    },
     main: function() {
-        //initialize the main view
         console.log('you have reached home');
-        var mainView = new main_view({
-            el: $("#pageview")
-        });
-        mainView.render();
-        util.bind_navigate(mainView.$(".tab"), this);
+        var view = new main_view();
+        this.switchView(view);
+        util.bind_navigate(view.$(".tab"), this);
     },
     login: function() {
         console.log('you have reached login');
