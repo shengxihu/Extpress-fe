@@ -1,7 +1,10 @@
 var Backbone = require("Backbone");
-var main_view = require("../views/main_view");
 var util = require("../util/util");
-var IndexRouter = require("./index_router");
+
+//load views
+var main_view = require("../views/main_view");
+var search_view = require("../views/search_view");
+
 
 var SiteRouter = Backbone.Router.extend({
     routes: {
@@ -26,13 +29,14 @@ var SiteRouter = Backbone.Router.extend({
         console.log('you have reached home');
         var view = new main_view();
         this.switchView(view);
-        util.bind_navigate(view.$(".tab"), this);
     },
     login: function() {
         console.log('you have reached login');
     },
     search: function() {
         console.log('you have reached search');
+        var view = new search_view();
+        this.switchView(view);
     },
     search_result: function() {
         console.log('you have reached search result');
