@@ -1,0 +1,65 @@
+@import "../common/common.scss";
+
+/**
+ * /search
+ *
+ * by zindex
+ */
+
+.search_view{
+	.container{
+		width: 328px;
+		margin:0 auto;
+	}
+	.search_box{
+		width: 100%;
+		padding-top: 16px;
+	}
+	.search_input{
+		display:inline-block;
+		height:40px;
+		width:228px;
+		vertical-align: top;
+		border:2px solid $main_orange;
+		border-right: 0px;
+		box-sizing:border-box;
+		font-size: 16px;/*px*/
+		padding-left: 10px;
+		color:$font_333;
+	}
+	.search_btn{
+		display:inline-block;
+		height:40px;
+		background-color: $main_orange;
+		width:100px;
+		font-size: 16px;/*px*/
+		line-height: 40px;
+		vertical-align: top;
+		color:#fff;
+		border-radius: 0px 2px 2px 0px;/*px*/
+	}
+	.hot{
+		width:100%;
+		.title{
+			padding:14px 0px;
+			color:$font_999;
+			font-size: 16px;/*px*/
+		}
+		.items{
+			width:100%;
+		}
+		.item{
+			font-size: 14px;/*px*/
+			display:inline-block;
+			height:20px;
+			line-height: 20px;
+			background-color: $bg_cd;
+			padding:0px 3px;
+			color:#fff;
+			margin-bottom: 16px;
+			margin-right: 6px;
+			border-radius:2px;/*px*/
+		}
+	}
+	background-color: rgba(255,255,255,.8);
+}

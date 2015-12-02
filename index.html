@@ -17,6 +17,7 @@
 	</div>
 	<script type="text/template" id="nav_template">
 		<a href="#" data-link="/search" class="link">搜索</a>
+		<a href="#" data-link="/course/course.json" class="link">课程</a>
 	</script>
 	<script type="text/template" id="main_tab_template">
 		<a data-link="tips" href="#" class="tab tab_index va_item">选课贴士</a>
@@ -39,18 +40,48 @@
 			<div class="title"><a href="#" data-link="<%= url %>"><%= title %></a></div>
 			<div class="bottom">
 				<div class="btns">
-					<span class="btn views"><%= views %></span>
-					<span class="btn likes"><%= likes %></span>
+				<div>
+						<span class="btn views"><%= views %></span>
+						<span class="btn likes"><%= likes %></span>
+				</div>
 				</div>
 				<div class="data"><%= date %></div>
 			</div>
 		</div>
 	</script>
 	<script type="text/template" id="search_template">
-		search
+		<div class="container">
+			<div class="search_box space">
+				<input type="text" class="search_input"/>
+				<button class="search_btn">搜索</button>
+			</div>
+			<div class="hot">
+				<p class="title">大家都在搜</p>
+				<div class="items space"> 
+					<% _.each(["任选课","毛概","跟着电影学传媒","任选课","毛概","思修","近代史","毛概","跟着电影学传媒"], function(i) { %>  
+						<span data-link="/search_result/<%= i %>" class="item"><%= i %></span> 
+					<% }); %>
+				</div>
+			</div>
+		</div>
 	</script>
 	<script type="text/template" id="course_template">
-		all
+		<div className="info">
+			<div className="basic">
+				<div className="title"> <%= title %></div>
+				<div className="others">
+					<p><%= teacher %></p>
+					<p></p>
+				</div>
+				<div className="btns space">
+					<div className="btn like"></div>
+					<div className="btn w_comment"></div>
+				</div>
+			</div>
+		</div>
+		<div className="comments">
+
+		</div>
 	</script>
 	<script src="assets/bundle.js"></script>
 </body>

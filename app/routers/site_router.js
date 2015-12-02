@@ -4,18 +4,17 @@ var util = require("../util/util");
 //load views
 var main_view = require("../views/main_view");
 var search_view = require("../views/search_view");
-
+var course_view = require("../views/course_view");
 
 var SiteRouter = Backbone.Router.extend({
     routes: {
         '': 'main',
         'login': 'login',
         'search': 'search',
-        'search_result': 'search_result',
+        'search_result/:keyword(/)': 'search_result',
         'course/:id(/)': 'course'
     },
     initialize : function($container){
-        //console.log($container, defaultView)
         this.$container = $container;
     },
     switchView: function(view) {
@@ -34,15 +33,15 @@ var SiteRouter = Backbone.Router.extend({
         console.log('you have reached login');
     },
     search: function() {
-        console.log('you have reached search');
-        var view = new search_view();
+        var view = new search_view({router:this});
         this.switchView(view);
     },
-    search_result: function() {
-        console.log('you have reached search result');
+    search_result: function(keyword) {
+        console.log('you have searched '+keyword);
     },
     course: function(id) {
-        console.log('you have reached course' + id);
+        var view = new course_view({router:this,id:id});
+        this.switchView(view);
     }
 });
 
