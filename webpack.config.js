@@ -21,8 +21,10 @@ module.exports = {
         root: path.resolve('./lib'),
         alias: {
             jquery: "zepto",
-            zepto: "zepto.min.js"
-        }
+            zepto: "zepto.min.js",
+            Backbone: path.resolve('./node_modules/backbone'),
+            backbone: path.resolve('./node_modules/backbone')
+            },
     },
     plugins: [
         new webpack.ProvidePlugin({

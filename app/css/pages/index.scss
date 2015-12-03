@@ -6,9 +6,10 @@
 
 .viewport {
     width: 100%;
+    box-sizing:border-box;
     min-height: 100%;
     position: relative;
-    padding-bottom: 124px;
+    padding:56px 0px 124px 0px;
 }
 
 .tip {

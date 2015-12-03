@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run scss",
-    "build": "webpack",
+    "build": "webpack --display-modules --optimize-minimize",
     "scss": "node-sass app/css/common/main.scss --output assets/",
     "postscss": "postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < assets/main.css | cssmin > assets/main.min.css",
     "watch:webpack": "webpack --watch",
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Muxi-Studio/Xueer_Moblie#readme",
   "dependencies": {
     "backbone": "^1.2.3",
+    "backbone.paginator": "^2.0.2",
     "css-loader": "^0.23.0",
     "cssmin": "^0.4.3",
     "exports-loader": "^0.6.2",

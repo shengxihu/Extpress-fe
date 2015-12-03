@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
-	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+	<script src="assets/flexible.js"></script>
 	<title>学而</title>
 </head>
 <body>
@@ -66,22 +66,28 @@
 		</div>
 	</script>
 	<script type="text/template" id="course_template">
-		<div className="info">
-			<div className="basic">
-				<div className="title"> <%= title %></div>
-				<div className="others">
+		<div class="info" style="background-image:url('/assets/course_bg.png')">
+			<div class="mask"></div>
+			<div class="basic">
+				<div class="title"> <%= title %></div>
+				<div class="others">
 					<p><%= teacher %></p>
-					<p></p>
-				</div>
-				<div className="btns space">
-					<div className="btn like"></div>
-					<div className="btn w_comment"></div>
+					<p><%= hot_tags %></p>
 				</div>
 			</div>
+			<div class="btns space">
+				<div class="btn like"><%= likes %></div>
+				<div class="btn w_comment">写评价</div>
+			</div>
 		</div>
-		<div className="comments">
+	</script>
+	<script type="text/template" id="comments_template">
 
-		</div>
+	</script>
+	<script type="text/template" id="comment_item_template">
+		<li>
+			<%= title %>
+		</li>
 	</script>
 	<script src="assets/bundle.js"></script>
 </body>

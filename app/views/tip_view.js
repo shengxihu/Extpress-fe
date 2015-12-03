@@ -2,7 +2,6 @@ var Backbone = require("Backbone");
 var _ = require('underscore');
 
 //load model
-var Tip = require('../models/tip.js');
 var TipsCollection = require('../collections/tips.js');
 
 //load view
