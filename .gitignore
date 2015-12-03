@@ -2,4 +2,3 @@ bow_components
 node_modules
 *.log.*
 public/*.js
-assets

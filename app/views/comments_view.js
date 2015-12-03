@@ -12,7 +12,7 @@ var comments_view = Backbone.View.extend({
     },
     render: function() {
         var that = this;
-        this.options.collection.forEach(function(comment){
+        this.options.collection.fullCollection.forEach(function(comment){
                 var commentItemView = new comment_item_view({model:comment});
                 this.$el.append( commentItemView.render().el );
         },that)

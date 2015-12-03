@@ -18,13 +18,18 @@ var nav_view = require("./app/views/nav_view");
 //load routers
 var SiteRouter = require("./app/routers/site_router");
 
-//initialize nav view
-var navView = new nav_view();
-$("#nav").append( navView.render().el );
+//load model
+var nav_model = require("./app/models/nav");
+
+//initialize nav model
+var navModel = new nav_model({currentPage:" ",hasPrev:false});
 
 //initialize router
-var siteRouter = new SiteRouter($("#pageview"));
-util.bind_navigate(navView.$(".link"), siteRouter);
+var siteRouter = new SiteRouter({container:$("#pageview"),nav_model:navModel});
+
+//initialize nav view
+var navView = new nav_view({model:navModel,router:siteRouter,});
+$("#nav").append( navView.render().el );
 
 //initialize history pushstate
 Backbone.history.start({

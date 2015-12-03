@@ -56,9 +56,36 @@
         	margin-right: 19.5px;
         }
     }
-     .comments {
-    	width:100%;
-        background-color: #fff;
-		height:700px;
+    .comments_title{
+        width:331px;
+        margin:0 auto;
+        font-size: 16px;/*px*/
+        padding:12px 0px 16px 0px;
+        color:$font_666;
+        border-bottom: 1px solid $bg_ec;/*px*/
+    }
+    .comments {
+        width:331px;
+        margin:0 auto;
+        .no_comments{
+            width:256px;
+            margin:0 auto;
+            text-align: left;
+            font-size: 14px;/*px*/
+            color:$font_999;
+            padding-top:15px;
+        }
+    }
+
+    .more_comments{
+        margin: 0 auto;
+        width:154px;
+        height:38px;
+        line-height: 38px;
+        border:1px solid $main_orange;/*px*/
+        border-radius: 2px;/*px*/
+        text-align:center;
+        font-size: 16px;
+        color:$main_orange;
     }
 }

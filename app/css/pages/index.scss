@@ -11,7 +11,6 @@
     position: relative;
     padding:56px 0px 124px 0px;
 }
-
 .tip {
     width: 328px;
     height: auto;
@@ -40,5 +39,63 @@
                 color: $font_333;
             }
         }
+        .bottom{
+            width:296px;
+            margin:0 auto;
+            .btns{
+                display:inline-block;
+                width:70%;
+                text-align: left;
+                vertical-align: top;
+            }
+            .date{
+                display:inline-block;
+                width:30%;
+                text-align: right;
+                font-size: 12px;
+                color:$font_999;
+                vertical-align: top;
+                height:20px;
+                line-height: 20px;
+            }
+            .btn{
+                display:inline-block;
+                width:64px;
+                height:20px;
+                background-color: $main_orange;
+                vertical-align: top;
+                text-align: center;
+                font-size: 12px;
+                color:#fff;
+                line-height: 20px;
+            }
+            .views{
+                margin-right:11px;
+            }
+        }
+        .icon{
+             display:inline-block;
+             vertical-align: middle;
+             margin-right: 7px;
+        }
+        .views_icon{
+            width:20px;/*px*/
+            height:10px;/*px*/
+        }
+        .likes_icon{
+            width:15px;/*px*/
+            height:13px;/*px*/
+        }
+        .icon use{
+            fill:#fff;
+        }
+        .data{
+            height:100%;
+            display:inline-block;
+            vertical-align: middle;
+        }
     }
+}
+svg g{
+    fill:inherit;
 }

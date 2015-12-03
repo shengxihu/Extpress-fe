@@ -33,8 +33,8 @@ var course_view = Backbone.View.extend({
     },
     onMoreCommentsClick:function(e){
         var that = this;
-        this.comments.getNextPage().done(function(data){
-            console.log(that.comments.fullCollection);
+        this.comments.getNextPage().done(function(){
+            that.subview.render();
         })
     },
     render: function() {
@@ -42,11 +42,21 @@ var course_view = Backbone.View.extend({
     	this.course.fetch().done(function(){
     		that.$el.html(that.template(that.course.toJSON()));
             var comments = new Comments();
+            that.comments = comments;
             var commentsView = new comments_view({collection:comments});
-            comments.getFirstPage().done(function(){
-                console.log('done');
-                that.$el.append( commentsView.render().el );
-            });
+            that.subview = commentsView;
+            comments.getFirstPage()
+                .done(function(){
+                    that.$(".comments").append( commentsView.render().el );
+                    if(comments.hasNextPage()){
+                        that.$el.append("<div class='more_comments'>展开更多评价</div>")
+                    }
+                })
+                .fail(function(){
+                    that.$(".comments").html(
+                        "<div class='no_comments'>∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div>"
+                        );
+                })
     	});
         
         return this;

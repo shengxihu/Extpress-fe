@@ -14,7 +14,10 @@ var main_view = Backbone.View.extend({
         var that = this;
         ele.on("click",function(e){
             e.preventDefault();
-            var link = $(e.target).data("link");
+            var $t = $(e.target)
+            var link = $t.data("link");
+            ele.removeClass("current");
+            $t.addClass("current");
             switch(link){
                 case "tips":
                     var view = new main_tip_view();
@@ -38,7 +41,7 @@ var main_view = Backbone.View.extend({
         this.currentView = tipView;
         this.$el.append(tabView.render().el)
         this.$el.append(tipView.render().el)
-        this.bindNav(this.$(".tab"));
+        this.bindNav(this.$(".tab_text"));
         return this;
     },
     switchView: function(view) {
