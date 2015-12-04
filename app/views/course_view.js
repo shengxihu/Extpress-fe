@@ -19,7 +19,7 @@ var course_view = Backbone.View.extend({
     },
     events:{
         "click .w_comment":"onWCommentClick",
-        "click .like":"onLikeCourseClick",
+        "click #course_like":"onLikeCourseClick",
         "click .more_comments":"onMoreCommentsClick"
     },
     onWCommentClick:function(e){

@@ -9,10 +9,14 @@ var nav_view = Backbone.View.extend({
 		this.router = options.router;
     },
     events:{
-		"click .link":"onClick"
+		"click .link":"onLinkClicked",
+		"click .back":"onBackClicked"
     },
-    onClick:function(e){
+    onLinkClicked:function(e){
 		this.router.navigate($(e.target).data("link"),{trigger: true});
+    },
+    onBackClicked:function(){
+		window.history.back();
     },
     render: function() {
         this.$el.html(this.template( this.model.toJSON() ));

@@ -34,6 +34,7 @@
 		line-height: 20px;/*px*/
 		font-size: 20px;/*px*/
 		padding-left: 16px;
+		vertical-align: middle;
 	}
 	.title_s{
 		padding-left: 7px;
@@ -41,14 +42,11 @@
 		border-left: 1px solid #30B38A;/*px*/
 		line-height: 16px;/*px*/
 		font-size: 16px;/*px*/
+		vertical-align: -7px;
 	}
 	.title{
-		
 		display:inline-block;
-		vertical-align: -6px;
-		
 		color:#30B38A;
-		
 	}
 	.logo use{
 		fill:#30B38A;

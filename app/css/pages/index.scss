@@ -31,12 +31,11 @@
         .title {
             box-sizing: border-box;
             width: 100%;
-            font-size: 20px;
-            /*px*/
+            font-size: 20px;/*px*/
             padding: 16px 16px 18px;
             line-height: 28px;
-            a {
-                color: $font_333;
+            .tip_link{
+                color:$font_333;
             }
         }
         .bottom{

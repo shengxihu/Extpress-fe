@@ -1,26 +1,20 @@
 var Backbone = require("Backbone");
 var _ = require('underscore');
 
-//load model
-var TipsCollection = require('../collections/tips.js');
-
-//load view
-var tip_item_view = require('./tip_item_view.js');
-
-var main_tip_view = Backbone.View.extend({
+var tip_view = Backbone.View.extend({
 	className : 'tip',
+	template: _.template($("#tip_view_template").html()),
+	initialize:function(options){
+		this.options = options;
+	},
 	render: function(){
-		var tips = new TipsCollection;
 		var that = this;
-		tips.fetch().done(function(){
-			tips.forEach(function(tip){
-				var tipItemView = new tip_item_view({model:tip});
-				this.$el.append( tipItemView.render().el );
-			},that)
+		this.model.fetch().done(function(){
+			that.$el.html(that.template(that.model.toJSON()));
 		});
 		return this; 
 	}
 })
 
-module.exports = main_tip_view;
+module.exports = tip_view;
 

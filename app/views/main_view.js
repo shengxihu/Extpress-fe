@@ -3,13 +3,16 @@ var _ = require('underscore');
 
 //load view
 var main_tab_view = require("./main_tab_view");
-var main_tip_view = require("./tip_view");
+var main_tip_view = require("./tip_list_view");
 var main_recommend_view = require("./recommend_view");
 var main_all_view = require("./all_view");
 
 var main_view = Backbone.View.extend({
     className:"main_view",
     template: _.template($("#main_template").html()),
+    initialize:function(options){
+        this.options = options;
+    },
     bindNav : function(ele){
         var that = this;
         ele.on("click",function(e){
@@ -37,7 +40,7 @@ var main_view = Backbone.View.extend({
     render: function() {
         this.$el.html(this.template());
         var tabView = new main_tab_view();
-        var tipView = new main_tip_view();
+        var tipView = new main_tip_view({router:this.options.router});
         this.currentView = tipView;
         this.$el.append(tabView.render().el)
         this.$el.append(tipView.render().el)
