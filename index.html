@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="assets/flexible.js"></script>
+    <script src="/static/assets/flexible.js"></script>
     <title>学而</title>
 </head>
 
@@ -203,15 +203,16 @@
                     </svg>
                     <% if (currentPage) { %>
                           <span class="title_l title"><%= currentPage %></span>
-                     <%}%>
-                 <%}else{%>
+                    <%}%>
+                <%}%>
+                <% else {%>
                         <svg data-link="" class="logo nav_icon link">
                             <use xlink:href="#logo"></use>
                         </svg>
                         <% if (currentPage) { %>
                             <span class="title_s title"><%= currentPage %></span>
-                          <%}%>
-                    <%}%>
+                        <% } %>
+                <% } %>
             </div>
             <div class="icon_set">
                 <div data-link="/search" class="nav_icon search link">
@@ -335,7 +336,7 @@
     <script type="text/template" id="comment_item_template">
         <li class="space">
             <div class="avatar">
-				<img src="/assets/avatar.png"></img>
+				<img src="/static/assets/avatar.png"></img>
             </div>
             <div class="content">
                 <div class="name">王大锤</div>
@@ -357,7 +358,7 @@
 		<div><%= body %></div>
 		<div><%= likes %></div>
     </script>
-    <script src="assets/bundle.js"></script>
+    <script src="/static/assets/bundle.js"></script>
 </body>
 
 </html>
