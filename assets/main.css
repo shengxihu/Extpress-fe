@@ -323,6 +323,92 @@ svg g {
   vertical-align: middle; }
 
 /**
+ * course_list.scss
+ *
+ * by zindex
+ */
+.menu {
+  width: 100%;
+  height: 48px;
+  background-color: #ECECEC;
+  line-height: 48px;
+  color: #666666; }
+  .menu .sort, .menu .filter {
+    height: 100%;
+    font-size: 14px;
+    /*px*/
+    display: inline-block;
+    vertical-align: top; }
+  .menu .sort {
+    padding-left: 19px;
+    width: 72.3%;
+    box-sizing: border-box;
+    text-align: left; }
+    .menu .sort .active {
+      color: #EEAB5D; }
+    .menu .sort .comments {
+      border-right: 1px solid #666666; }
+  .menu .filter {
+    width: 27.7%;
+    text-align: center; }
+
+.list {
+  width: 100%; }
+  .list .course {
+    width: 333px;
+    margin: 0 auto;
+    border-bottom: 2px solid #ECECEC;
+    /*px*/
+    padding: 20px 0px 16px 0px; }
+  .list .avatar, .list .content {
+    display: inline-block;
+    vertical-align: top; }
+  .list .avatar {
+    margin-right: 16px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    /*px*/
+    color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #EEAB5D;
+    text-align: center; }
+  .list .content {
+    width: 277px; }
+    .list .content .title {
+      width: 100%;
+      font-size: 16px;
+      /*px*/
+      color: #333333;
+      padding-bottom: 12px; }
+    .list .content .info {
+      width: 100%;
+      font-size: 12px;
+      /*px*/
+      color: #999999; }
+      .list .content .info .teacher {
+        margin-right: 93px; }
+      .list .content .info .likes svg {
+        margin-left: 16px; }
+      .list .content .info .likes svg, .list .content .info .comments svg {
+        display: inline-block;
+        width: 13px;
+        height: 12px;
+        vertical-align: -2px;
+        margin-right: 6px; }
+      .list .content .info .likes use, .list .content .info .comments use {
+        fill: #999999; }
+
+.space {
+  font-size: 0; }
+
+.va_item {
+  display: inline-block;
+  vertical-align: middle; }
+
+/**
  * component header
  */
 #nav {
@@ -388,6 +474,13 @@ svg g {
     display: inline-block;
     vertical-align: middle; }
 
+.space {
+  font-size: 0; }
+
+.va_item {
+  display: inline-block;
+  vertical-align: middle; }
+
 /**
  * component footer
  */
@@ -398,7 +491,27 @@ svg g {
   position: absolute;
   bottom: 0;
   left: 0;
-  text-align: center; }
+  text-align: center;
+  color: #999999; }
+  #footer .title {
+    padding: 16px 0px 18px 0px;
+    font-size: 16px;
+    /*px*/ }
+  #footer .row {
+    width: 100%; }
+    #footer .row a {
+      color: #999999; }
+  #footer .item {
+    display: inline-block;
+    width: 33.3%;
+    font-size: 12px;
+    /*px*/
+    border-right: 1px solid #999999;
+    box-sizing: border-box; }
+  #footer .last {
+    border-right: none; }
+  #footer .copyright {
+    padding-top: 16px; }
 
 .space {
   font-size: 0; }

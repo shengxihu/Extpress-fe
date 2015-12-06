@@ -40,9 +40,12 @@ var course_view = Backbone.View.extend({
     render: function() {
     	var that = this;
     	this.course.fetch().done(function(){
+            //var url = "http://115.28.152.113:5000/api/v1.0/courses/"+that.options.id+"/comments/"
+            //console.log(url);
     		that.$el.html(that.template(that.course.toJSON()));
-            var comments = new Comments();
+            var comments = new Comments([],{course_id:that.options.id});
             that.comments = comments;
+            console.log(comments);
             var commentsView = new comments_view({collection:comments});
             that.subview = commentsView;
             comments.getFirstPage()

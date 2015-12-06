@@ -4,8 +4,6 @@ var _ = require('underscore');
 //load view
 var main_tab_view = require("./main_tab_view");
 var main_tip_view = require("./tip_list_view");
-var main_recommend_view = require("./recommend_view");
-var main_all_view = require("./all_view");
 
 var main_view = Backbone.View.extend({
     className:"main_view",
@@ -17,24 +15,7 @@ var main_view = Backbone.View.extend({
         var that = this;
         ele.on("click",function(e){
             e.preventDefault();
-            var $t = $(e.target)
-            var link = $t.data("link");
-            ele.removeClass("current");
-            $t.addClass("current");
-            switch(link){
-                case "tips":
-                    var view = new main_tip_view();
-                    that.switchView(view);
-                    break;
-                case "recommend":
-                    var view = new main_recommend_view();
-                    that.switchView(view);
-                    break;
-                case "all":
-                    var view = new main_all_view();
-                    that.switchView(view);
-                    break;
-            }
+            that.options.router.navigate($(e.target).data("link"),{trigger: true});
         })
     },
     render: function() {

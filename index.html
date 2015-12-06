@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="/static/assets/flexible.js"></script>
+    <script src="/assets/flexible.js"></script>
     <title>学而</title>
 </head>
 
@@ -184,14 +184,31 @@
         </g>
     </g>
         </symbol>
+        <symbol id="comments_fill" viewBox="0 0 13 12">
+             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="搜索结果-上滑" transform="translate(-201.000000, -158.000000)" fill="#999999">
+            <g id="2" transform="translate(15.000000, 127.000000)">
+                <g id="Group" transform="translate(57.000000, 31.000000)">
+                    <path d="M141.59375,0 L129.40625,0 C129.182,0 129,0.18537931 129,0.413793103 L129,9.10344828 C129,9.33186207 129.182,9.51724138 129.40625,9.51724138 L132.25,9.51724138 L132.25,11.5862069 C132.25,11.7477931 132.342422,11.8946897 132.486437,11.9621379 C132.540875,11.9875862 132.598766,12 132.65625,12 C132.751516,12 132.845562,11.9658621 132.920719,11.9004828 L135.650313,9.51724138 L141.59375,9.51724138 C141.818,9.51724138 142,9.33186207 142,9.10344828 L142,0.413793103 C142,0.18537931 141.818,0 141.59375,0 L141.59375,0 Z" id="Shape-Copy"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+        </symbol>
     </svg>
     <div class="viewport">
         <div id="nav"></div>
         <div id="pageview"></div>
         <div id="footer">
-            <div class="title">华中师范大学|木犀团队</div>
-            <div class="links"></div>
-            <div class="copyright">Hello from Wuhan 2015 Muxistudio</div>
+            <div class="title">华中师范大学&nbsp;|&nbsp;木犀团队</div>
+            <div class="links">
+                <div class="row space">
+                    <a href="#" class="item">关于木犀</a>
+                    <a href="#" class="item">意见反馈</a>
+                    <a href="#" class="item last">加入我们</a>
+                </div>
+            </div>
+            <div class="copyright">Proudly Prowered by Backbone & Flask</div>
         </div>
     </div>
     <script type="text/template" id="nav_template">
@@ -204,8 +221,7 @@
                     <% if (currentPage) { %>
                           <span class="title_l title"><%= currentPage %></span>
                     <%}%>
-                <%}%>
-                <% else {%>
+                <% }else { %>
                         <svg data-link="" class="logo nav_icon link">
                             <use xlink:href="#logo"></use>
                         </svg>
@@ -220,7 +236,7 @@
                         <use xlink:href="#search"></use>
                     </svg>
                 </div>
-                <div data-link="/course/course.json" class="nav_icon user link">
+                <div data-link="/course/1" class="nav_icon user link">
                     <svg viewBox="0 0 34 34">
                         <use xlink:href="#user"></use>
                     </svg>
@@ -236,16 +252,13 @@
             <span data-link="recommend" class="tab_text">推荐课程</span>
         </div>
         <div class="tab tab_all va_item">
-            <span data-link="all" class="tab_text">所有课程</span>
+            <span data-link="courses" class="tab_text">所有课程</span>
         </div>
     </script>
     <script type="text/template" id="main_template">
     </script>
     <script type="text/template" id="main_recommend_template">
         recommend
-    </script>
-    <script type="text/template" id="main_all_template">
-        all
     </script>
     <script type="text/template" id="main_tip_item_template">
         <div class="img">
@@ -307,7 +320,7 @@
                         <%= teacher %>
                     </p>
                     <p>
-                        <%= hot_tags %>
+                        
                     </p>
                 </div>
             </div>
@@ -340,13 +353,12 @@
             </div>
             <div class="content">
                 <div class="name">王大锤</div>
-                <div class="time">1小时前</div>
-                <div class="body">作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少作业很少</div>
+                <div class="time"></div>
+                <div class="body"><%= body %></div>
                 <div class="like">
            			<svg class="like_icon">
   						<use xlink:href="#heart_f"></use>
 					</svg>
-					32
 				</div>
             </div>
         </li>
@@ -358,7 +370,39 @@
 		<div><%= body %></div>
 		<div><%= likes %></div>
     </script>
-    <script src="/static/assets/bundle.js"></script>
+    <script type="text/template" id="courses_list_template">
+        <div class="menu space">
+            <div class="sort">
+                <span>排序方式：</span>
+                <span class="s_item comments active">评论最多&nbsp;&nbsp;</span>
+                <span class="s_item likes">&nbsp;&nbsp;点赞最多</span>
+            </div>
+            <div class="filter">筛选</div>
+        </div>
+        <div class="list"></div>
+    </script>
+     <script type="text/template" id="courses_list_item_template">
+        <div class="course space">
+            <div class="avatar">专</div>
+            <div class="content">
+                <div class="title">色彩</div>
+                <div class="info">
+                    <span class="teacher">王大锤</span>
+                    <span class="comments">
+                        <svg>
+                            <use xlink:href="#comments_fill"></use>
+                        </svg>70
+                    </span>
+                    <span class="likes">
+                        <svg>
+                            <use xlink:href="#heart_f"></use>
+                        </svg>32
+                    </span>
+                </div>
+            </div>
+        </div>
+     </script>
+    <script src="/assets/bundle.js"></script>
 </body>
 
 </html>

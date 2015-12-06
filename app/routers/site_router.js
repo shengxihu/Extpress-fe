@@ -6,6 +6,7 @@ var main_view = require("../views/main_view");
 var search_view = require("../views/search_view");
 var course_view = require("../views/course_view");
 var tip_view = require("../views/tip_view");
+var courses_view = require("../views/courses_view");
 
 //load model
 var Tip = require('../models/tip.js');
@@ -17,7 +18,8 @@ var SiteRouter = Backbone.Router.extend({
         'search': 'search',
         'search_result/:keyword(/)': 'search_result',
         'course/:id(/)': 'course',
-        'tip/:id(/)':'tip'
+        'tip/:id(/)':'tip',
+        'courses':'courses'
     },
     initialize : function(options){
         console.log(options)
@@ -57,6 +59,11 @@ var SiteRouter = Backbone.Router.extend({
         var view = new tip_view({router:this,model:tip});
         this.switchView(view);
         this.navModel.set({currentPage:"专题",hasPrev:true});
+    },
+    courses:function(){
+        var view = new courses_view({router:this});
+        this.switchView(view);
+        this.navModel.set({currentPage:"所有课程",hasPrev:true});
     }
 });
 
