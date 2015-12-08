@@ -1,0 +1,23 @@
+@import "../common/common.scss";
+
+/**
+ * /register
+ *
+ * register.scss
+ *
+ * by zindex
+ */
+
+.l_r_view{
+	.container{
+		.cancel{
+			background:none;
+			margin-right:20px;
+			color:$main_orange;
+			border: 1px solid $main_orange;
+		}
+		.btns{
+			margin-bottom: 76px;
+		}
+	}
+}

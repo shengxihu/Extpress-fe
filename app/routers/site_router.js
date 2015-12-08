@@ -7,6 +7,9 @@ var search_view = require("../views/search_view");
 var course_view = require("../views/course_view");
 var tip_view = require("../views/tip_view");
 var courses_view = require("../views/courses_view");
+var user_view = require("../views/user_view");
+var login_view = require("../views/login_view");
+var register_view = require("../views/register_view");
 
 //load model
 var Tip = require('../models/tip.js');
@@ -19,12 +22,15 @@ var SiteRouter = Backbone.Router.extend({
         'search_result/:keyword(/)': 'search_result',
         'course/:id(/)': 'course',
         'tip/:id(/)':'tip',
-        'courses':'courses'
+        'courses':'courses',
+        'user(/:username)':'user',
+        'login':'login',
+        'register':'register'
     },
     initialize : function(options){
-        console.log(options)
         this.$container = options.container;
         this.navModel = options.nav_model;
+        this.userModel = options.user_model;
     },
     switchView: function(view) {
         if (this.currentView) {
@@ -64,6 +70,21 @@ var SiteRouter = Backbone.Router.extend({
         var view = new courses_view({router:this});
         this.switchView(view);
         this.navModel.set({currentPage:"所有课程",hasPrev:true});
+    },
+    user:function(){
+        var view = new user_view({router:this,model:this.userModel});
+        this.switchView(view);
+        this.navModel.set({currentPage:"我的学而",hasPrev:true});
+    },
+    login:function(){
+        var view = new login_view({router:this});
+        this.switchView(view);
+        this.navModel.set({currentPage:"登录",hasPrev:false});
+    },
+    register:function(){
+        var view = new register_view({router:this});
+        this.switchView(view);
+        this.navModel.set({currentPage:"注册",hasPrev:false});
     }
 });
 

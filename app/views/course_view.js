@@ -9,6 +9,7 @@ var Comments = require('../collections/comments.js');
 
 //load views
 var comments_view = require('./comments_view.js');
+var loading_view = require('./loading_view.js');
 
 var course_view = Backbone.View.extend({
 	className:"course_view",
@@ -39,21 +40,28 @@ var course_view = Backbone.View.extend({
     },
     render: function() {
     	var that = this;
+        //add loading view
+        this.loading_view = new loading_view();
+        that.$el.html( this.loading_view.render().el );
+        //fetch course data
     	this.course.fetch().done(function(){
-            //var url = "http://115.28.152.113:5000/api/v1.0/courses/"+that.options.id+"/comments/"
-            //console.log(url);
-    		that.$el.html(that.template(that.course.toJSON()));
+            //add course view
+    		that.$el.append(that.template(that.course.toJSON()));
+            //load comments data
             var comments = new Comments([],{course_id:that.options.id});
+            //save ref for comments view and collections
             that.comments = comments;
-            console.log(comments);
             var commentsView = new comments_view({collection:comments});
             that.subview = commentsView;
             comments.getFirstPage()
                 .done(function(){
+                    console.log(this);
                     that.$(".comments").append( commentsView.render().el );
                     if(comments.hasNextPage()){
                         that.$el.append("<div class='more_comments'>展开更多评价</div>")
                     }
+                    //remove loading view
+                    that.loading_view.remove();
                 })
                 .fail(function(){
                     that.$(".comments").html(

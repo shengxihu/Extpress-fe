@@ -236,7 +236,7 @@
                         <use xlink:href="#search"></use>
                     </svg>
                 </div>
-                <div data-link="/course/1" class="nav_icon user link">
+                <div data-link="/register" class="nav_icon user link">
                     <svg viewBox="0 0 34 34">
                         <use xlink:href="#user"></use>
                     </svg>
@@ -249,7 +249,7 @@
             <span data-link="tips" class="tab_text current">首页</span>
         </div>
         <div class="tab tab_recommend va_item">
-            <span data-link="recommend" class="tab_text">推荐课程</span>
+            <span data-link="course/1" class="tab_text">推荐课程</span>
         </div>
         <div class="tab tab_all va_item">
             <span data-link="courses" class="tab_text">所有课程</span>
@@ -349,7 +349,7 @@
     <script type="text/template" id="comment_item_template">
         <li class="space">
             <div class="avatar">
-				<img src="/static/assets/avatar.png"></img>
+				<img src="/assets/avatar.png"></img>
             </div>
             <div class="content">
                 <div class="name">王大锤</div>
@@ -402,6 +402,89 @@
             </div>
         </div>
      </script>
+     <script type="text/template" id="loading_view_template">
+        <div class="boxes space">
+            <div class="box left"></div>
+            <div class="box middle"></div>
+            <div class="box right"></div>
+        </div>
+     </script>
+      <script type="text/template" id="user_view_template">
+            <% if (!isLogin){%>
+            <div class="btns space">
+                <div data-link="register" class="btn register">注册</div>
+                <div data-link="login" class="btn login">登录</div>
+            </div>
+            <div class="hint_text">
+            ヾ (o ° ω ° O ) ノ゙  <br>
+            </br>
+            登录之后</br>
+            我们会根据您的浏览记录给出更优的推荐</br>
+            </br>
+            我们的程序猿正在努力开发个人主页的更多内容…</div>
+            <% }%>
+      </script>
+      <script type="text/template" id="login_view_template">
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="label">用户名:</div>
+                        <input type="text"class="input username" id="username"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">密码:</div>
+                        <input type="password" class="input password" id="password"/>
+                    </div>
+                     <div class="btns space login_btns">
+                        <div class="forget va_item">忘记密码？&nbsp;</div>
+                        <div class="btn login va_item">登录</div>
+                     </div>
+                </form>
+            </div>
+            <div class="circle"></div>
+      </script>
+      <script type="text/template" id="register_view_template">
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="label">用户名:</div>
+                        <input type="text"class="input username padd3" id="username" placeholder="挑一个8个字符以内的用户名"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">密码:</div>
+                        <input type="password" class="input password padd2" id="password"placeholder="挑一个不少于6位的密码"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">确认密码:</div>
+                        <input type="password" class="input password padd4" 
+                        id="password_c" placeholder="请再输入一次密码"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">邮箱:</div>
+                        <input type="email" class="input email padd2" id="email" placeholder="用于找回密码"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">QQ:</div>
+                        <input type="text" class="input qq padd2" id="qq" placeholder="选填"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">联系电话:</div>
+                        <input type="tel" class="input phone padd4" id="phone"placeholder="选填"/>
+                    </div>
+                    <div class="row">
+                        <div class="label">专业:</div>
+                        <input type="text" class="input major padd2" id="major" placeholder="选填"/>
+                    </div>
+                    <div class="hint_text">
+                        ∑(っ °Д °;)っ</br>请放心评价课程时不会显示你的私人信息</br>填写选填信息我们可以给你更加精确的推荐</br>并且可以参与评课活动，获得评课奖励
+                    </div>
+                     <div class="btns space">
+                        <div class="btn cancel va_item ">取消</div>
+                        <div class="btn va_item">确认</div>
+                     </div>
+                </form>
+            </div>
+      </script>
     <script src="/assets/bundle.js"></script>
 </body>
 

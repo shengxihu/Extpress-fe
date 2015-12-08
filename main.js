@@ -20,12 +20,14 @@ var SiteRouter = require("./app/routers/site_router");
 
 //load model
 var nav_model = require("./app/models/nav");
+var user_model = require('./app/models/user.js');
 
 //initialize nav model
 var navModel = new nav_model({currentPage:" ",hasPrev:false});
+var userModel = new user_model({isLogin:false});
 
 //initialize router
-var siteRouter = new SiteRouter({container:$("#pageview"),nav_model:navModel});
+var siteRouter = new SiteRouter({container:$("#pageview"),nav_model:navModel,user_model:userModel});
 
 //initialize nav view
 var navView = new nav_view({model:navModel,router:siteRouter,});

@@ -2,10 +2,15 @@
 @import "../pages/search.scss";
 @import "../pages/course.scss";
 @import "../pages/course_list.scss";
+@import "../pages/user.scss";
+@import "../pages/login.scss";
+@import "../pages/register.scss";
 @import "./common.scss";
+@import "./class.scss";
 @import "../components/header.scss";
 @import "../components/footer.scss";
 @import "../components/main_tab_view.scss";
+@import "../components/loading_view.scss";
 /** css reset **/
 body{
 	height:100%;
