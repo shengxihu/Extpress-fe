@@ -359,11 +359,17 @@ svg g {
       padding-bottom: 12px; }
     .list .content .info {
       width: 100%;
-      font-size: 12px;
-      /*px*/
       color: #999999; }
+      .list .content .info .va_item {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 12px;
+        /*px*/ }
       .list .content .info .teacher {
-        margin-right: 93px; }
+        width: 72px;
+        height: 12px;
+        overflow: hidden;
+        margin-right: 57px; }
       .list .content .info .likes svg {
         margin-left: 16px; }
       .list .content .info .likes svg, .list .content .info .comments svg {
@@ -374,6 +380,12 @@ svg g {
         margin-right: 6px; }
       .list .content .info .likes use, .list .content .info .comments use {
         fill: #999999; }
+
+.paginator .p_item {
+  display: none; }
+
+.paginator .active {
+  display: block; }
 
 /**
  * /user
@@ -683,9 +695,10 @@ svg g {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding-top: 56px;
+  top: 56px;
+  left: 0;
   text-align: center;
-  z-index: 10;
+  z-index: 9;
   background-color: #fff; }
   .loading .boxes {
     width: 98px;

@@ -236,7 +236,7 @@
                         <use xlink:href="#search"></use>
                     </svg>
                 </div>
-                <div data-link="/register" class="nav_icon user link">
+                <div data-link="/user" class="nav_icon user link">
                     <svg viewBox="0 0 34 34">
                         <use xlink:href="#user"></use>
                     </svg>
@@ -374,29 +374,33 @@
         <div class="menu space">
             <div class="sort">
                 <span>排序方式：</span>
-                <span class="s_item comments active">评论最多&nbsp;&nbsp;</span>
-                <span class="s_item likes">&nbsp;&nbsp;点赞最多</span>
+                <span data-sort="view"class="s_item comments active">评论最多&nbsp;&nbsp;</span>
+                <span data-sort="like" class="s_item likes">&nbsp;&nbsp;点赞最多</span>
             </div>
             <div class="filter">筛选</div>
         </div>
         <div class="list"></div>
+        <div class="paginator">
+            <span data-dir=-1 class="p_item prev">上一页</span>
+            <span data-dir=1 class="p_item next">下一页</span>
+        </div>
     </script>
      <script type="text/template" id="courses_list_item_template">
         <div class="course space">
-            <div class="avatar">专</div>
+            <div class="avatar"><%= main_cat.slice(0,1) %></div>
             <div class="content">
-                <div class="title">色彩</div>
-                <div class="info">
-                    <span class="teacher">王大锤</span>
-                    <span class="comments">
+                <div data-id=<%= id %> class="title c_link"><%= title %></div>
+                <div class="info space">
+                    <span class="va_item teacher"><%= teacher %></span>
+                    <span class="va_item comments">
                         <svg>
                             <use xlink:href="#comments_fill"></use>
-                        </svg>70
+                        </svg><%= views %>
                     </span>
-                    <span class="likes">
+                    <span class="va_item likes">
                         <svg>
                             <use xlink:href="#heart_f"></use>
-                        </svg>32
+                        </svg><%= likes %>
                     </span>
                 </div>
             </div>

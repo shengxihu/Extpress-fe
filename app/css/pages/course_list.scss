@@ -69,10 +69,17 @@
 		}
 		.info{
 			width:100%;
-			font-size: 12px;/*px*/
 			color:$font_999;
+			.va_item{
+				display:inline-block;
+				vertical-align: top;
+				font-size: 12px;/*px*/
+			}
 			.teacher{
-				margin-right: 93px;
+				width:72px;
+				height:12px;
+				overflow:hidden;
+				margin-right: 57px;
 			}
 			.likes svg{
 				margin-left: 16px;
@@ -88,5 +95,13 @@
 				fill:$font_999;
 			}
 		}
+	}
+}
+.paginator{
+	.p_item{
+		display:none;
+	}
+	.active{
+		display:block;
 	}
 }

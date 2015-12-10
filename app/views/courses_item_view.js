@@ -6,7 +6,7 @@ var courses_item_view = Backbone.View.extend({
 	className:"courses_list_item",
     template: _.template($("#courses_list_item_template").html()),
     render: function() {
-    	this.$el.html(this.template());
+    	this.$el.html(this.template( this.model.toJSON() ));
         return this;
     }
 })
