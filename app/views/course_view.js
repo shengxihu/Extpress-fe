@@ -24,10 +24,13 @@ var course_view = Backbone.View.extend({
         "click .more_comments":"onMoreCommentsClick"
     },
     onWCommentClick:function(e){
-        console.log(e.target);
+        
     },
     onLikeCourseClick:function(e){
-        console.log(e.target);
+       this.course.set("liked",true);
+        Backbone.sync("update",this.course).done(function(res){
+            console.log("res");
+        })
     },
     onAddComments:function(){
         console.log("on add!!");
@@ -55,7 +58,6 @@ var course_view = Backbone.View.extend({
             that.subview = commentsView;
             comments.getFirstPage()
                 .done(function(){
-                    console.log(this);
                     that.$(".comments").append( commentsView.render().el );
                     if(comments.hasNextPage()){
                         that.$el.append("<div class='more_comments'>展开更多评价</div>")

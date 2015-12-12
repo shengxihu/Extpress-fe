@@ -59,7 +59,6 @@ var courses_view = Backbone.View.extend({
 		this.addLoading();
 		this.collection.getFirstPage().done(function(){
 			that.refresh();
-			console.log(that.collection,that.collection.hasNextPage)
 		})
 	},
 	onSortClick:function(e){

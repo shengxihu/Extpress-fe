@@ -44,9 +44,6 @@ var SiteRouter = Backbone.Router.extend({
         this.switchView(view);
         this.navModel.set({currentPage:null,hasPrev:false});
     },
-    login: function() {
-        console.log('you have reached login');
-    },
     search: function() {
         var view = new search_view({router:this});
         this.switchView(view);
@@ -56,7 +53,7 @@ var SiteRouter = Backbone.Router.extend({
         console.log('you have searched '+keyword);
     },
     course: function(id) {
-        var view = new course_view({router:this,id:id});
+        var view = new course_view({router:this,id:id,userModel:this.userModel});
         this.switchView(view);
         this.navModel.set({currentPage:"课程详情",hasPrev:true});
     },
@@ -77,7 +74,7 @@ var SiteRouter = Backbone.Router.extend({
         this.navModel.set({currentPage:"我的学而",hasPrev:true});
     },
     login:function(){
-        var view = new login_view({router:this});
+        var view = new login_view({router:this,userModel:this.userModel});
         this.switchView(view);
         this.navModel.set({currentPage:"登录",hasPrev:false});
     },

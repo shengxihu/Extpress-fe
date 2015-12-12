@@ -6,11 +6,9 @@ var Comment = require('../models/comment.js');
 var Comments = Backbone.PageableCollection.extend({
   initialize:function(models,options){
         this.course_id = options.course_id;
-        console.log(this.course_id);
   },
   url: function() {
     return "http://115.28.152.113:5000/api/v1.0/courses/" + this.course_id + "/comments";
-    //return "https://api.github.com/repos/jashkenas/backbone/issues?state=closed"
   },
   mode: "infinite",
 	

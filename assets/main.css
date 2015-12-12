@@ -455,7 +455,8 @@ svg g {
     /*px*/
     margin-bottom: 1px;
     /*px*/
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    padding-left: 70px; }
   .l_r_view .row .padd2 {
     padding-left: 50px; }
   .l_r_view .row .padd3 {

@@ -11,6 +11,7 @@ require("./assets/main.min.css");
 //load deps
 var Backbone = require("Backbone");
 var util = require("./app/util/util");
+var cookie = require("./app/util/cookie");
 
 //load view
 var nav_view = require("./app/views/nav_view");
@@ -25,6 +26,12 @@ var user_model = require('./app/models/user.js');
 //initialize nav model
 var navModel = new nav_model({currentPage:" ",hasPrev:false});
 var userModel = new user_model({isLogin:false});
+
+//check login
+var token = cookie.checkCookie("token");
+if(token){
+	userModel.set({isLogin:true,token:token});
+}
 
 //initialize router
 var siteRouter = new SiteRouter({container:$("#pageview"),nav_model:navModel,user_model:userModel});

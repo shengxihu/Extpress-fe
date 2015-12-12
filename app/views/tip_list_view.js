@@ -20,6 +20,7 @@ var main_tip_view = Backbone.View.extend({
 				var tipItemView = new tip_item_view({model:tip,router:this.options.router});
 				this.$el.append( tipItemView.render().el );
 			},that)
+			that.options.loadingView.remove()
 		});
 		return this; 
 	}
