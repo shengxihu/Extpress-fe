@@ -11,7 +11,8 @@
     "postscss": "postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < assets/main.css | cssmin > assets/main.min.css",
     "watch:webpack": "webpack --watch",
     "watch:css": "watch 'npm run scss' ./app/css/*",
-    "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'"
+    "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'",
+    "clean":"rm -rf **/*.log.*"
   },
   "repository": {
     "type": "git",

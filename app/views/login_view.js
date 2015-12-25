@@ -16,7 +16,6 @@ var login_view = Backbone.View.extend({
 	onBtnClick:function(){
 		var that = this;
 		var auth = btoa($(".username").val()+":"+$(".password").val());
-		console.log(auth);
 		this.options.userModel.fetch({
 			headers:{
 				"Authorization":"Basic "+ auth

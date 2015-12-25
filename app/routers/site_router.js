@@ -33,11 +33,21 @@ var SiteRouter = Backbone.Router.extend({
         this.userModel = options.user_model;
     },
     switchView: function(view) {
-        if (this.currentView) {
-            this.currentView.remove();
+        if(!this.s_view){
+            if (this.currentView) {
+                this.currentView.remove();
+            }
+            this.$container.append( view.render().el )
+            this.currentView = view;
+        }else{
+            this.removeSearchView();
         }
-        this.$container.append( view.render().el )
-        this.currentView = view;
+    },
+    removeSearchView:function(){
+        if (this.s_view) {
+            this.s_view.remove();
+            this.s_view = null;
+        }
     },
     main: function() {
         var view = new main_view({router:this});
@@ -46,7 +56,8 @@ var SiteRouter = Backbone.Router.extend({
     },
     search: function() {
         var view = new search_view({router:this});
-        this.switchView(view);
+        this.s_view = view;
+        this.$container.append( view.render().el )
         this.navModel.set({currentPage:"搜索",hasPrev:false});
     },
     search_result: function(keyword) {

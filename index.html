@@ -210,7 +210,7 @@
     </svg>
     <div class="viewport">
         <div id="nav"></div>
-        <div id="pageview"></div>
+        <div id="pageview" class="pageview"></div>
         <div id="footer">
             <div class="title">华中师范大学&nbsp;|&nbsp;木犀团队</div>
             <div class="links">
@@ -304,19 +304,21 @@
         </div>
     </script>
     <script type="text/template" id="search_template">
-        <div class="container">
-            <div class="search_box space">
-                <input type="text" class="search_input" />
-                <button class="search_btn">搜索</button>
-            </div>
-            <div class="hot">
-                <p class="title">大家都在搜</p>
-                <div class="items space">
-                    <% _.each(["任选课","毛概","跟着电影学传媒","任选课","毛概","思修","近代史","毛概","跟着电影学传媒"], function(i) { %>
-                        <span data-link="/search_result/<%= i %>" class="item"><%= i %></span>
-                        <% }); %>
+        <div class="warpper">
+            <div class="container">
+                <div class="search_box space">
+                    <input type="text" class="search_input" />
+                    <button class="search_btn">搜索</button>
                 </div>
-            </div>
+                <div class="hot">
+                    <p class="title">大家都在搜</p>
+                    <div class="items space">
+                        <% _.each(["任选课","毛概","跟着电影学传媒","任选课","毛概","思修","近代史","毛概","跟着电影学传媒"], function(i) { %>
+                            <span data-link="/search_result/<%= i %>" class="item"><%= i %></span>
+                        <% }); %>
+                    </div>
+                </div>
+        </div>
         </div>
         <div class="circle"></div>
     </script>

@@ -93,7 +93,22 @@ svg g {
  * by zindex
  */
 .search_view {
-  background-color: rgba(255, 255, 255, 0.8); }
+  position: fixed;
+  top: 56px;
+  left: 0px;
+  width: 100%;
+  z-index: 2; }
+  .search_view .warpper {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    transition: 1s all;
+    transition-delay: .5s; }
+  .search_view .done {
+    opacity: 1; }
   .search_view .container {
     width: 328px;
     margin: 0 auto; }
@@ -146,6 +161,24 @@ svg g {
       margin-right: 6px;
       border-radius: 2px;
       /*px*/ }
+
+.circle {
+  opacity: .8;
+  margin-left: 264px;
+  transform: translate(-50%, -50%);
+  width: 1400px;
+  height: 1400px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: search_ripple_ani .7s linear; }
+
+@keyframes search_ripple_ani {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0; }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .8; } }
 
 /**
  * /course
@@ -510,29 +543,6 @@ svg g {
     display: inline-block;
     vertical-align: top; }
 
-.circle {
-  opacity: 1;
-  position: absolute;
-  top: -20%;
-  right: -50%;
-  width: 700px;
-  border-radius: 50%;
-  background-color: #fff;
-  z-index: 5;
-  height: 500px;
-  animation: circle_ani .7s linear; }
-
-@keyframes circle_ani {
-  0% {
-    transform: scale(0);
-    opacity: 0; }
-  80% {
-    transform: scale(1);
-    opacity: 1; }
-  100% {
-    transform: scale(1);
-    display: none; } }
-
 /**
  * /register
  *
@@ -580,7 +590,7 @@ svg g {
     display: inline-block;
     height: 56px;
     text-align: left;
-    width: 241px; }
+    width: 240px; }
   #nav .icon_set {
     display: inline-block;
     height: 56px;
@@ -755,3 +765,9 @@ a {
 
 textarea {
   display: block; }
+
+/**
+ *  page basic style
+ */
+.pageview {
+  position: relative; }
