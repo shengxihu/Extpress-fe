@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-<link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/static/x_m/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/static/x_m/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/static/x_m/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/static/x_m/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/static/x_m/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/static/x_m/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/static/x_m/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/static/x_m/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/static/x_m/favicon/apple-icon-180x180.png">
 
-<link rel="manifest" href="/assets/favicon/manifest.json">
-<meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-144x144.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+<link rel="manifest" href="/static/x_m/favicon/manifest.json">
+<meta name="msapplication-TileImage" content="/static/x_m/favicon/ms-icon-144x144.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/static/x_m/favicon/favicon-96x96.png">
     <meta charset="UTF-8">
-    <script src="/assets/flexible.js"></script>
+    <script src="/static/x_m/flexible.js"></script>
     <title>学而</title>
 </head>
 
@@ -323,7 +323,7 @@
         <div class="circle"></div>
     </script>
     <script type="text/template" id="course_template">
-        <div class="info" style="background-image:url('/assets/course_bg.png')">
+        <div class="info" style="background-image:url('/static/x_m/course_bg.png')">
             <div class="overlay mask"></div>
             <div class="overlay top">
             <div class="basic">
@@ -358,16 +358,21 @@
         <div class="comments_title">热门评论</div>
         <div class="comments">
         </div>
+        <div class="comment_box_pop">
+            <h5>我是弹出层啦啦啦</h5>
+            <div class="comment_box" id="comment_box">
+            </div>
+        </div>
     </script>
     <script type="text/template" id="comments_template">
     </script>
     <script type="text/template" id="comment_item_template">
         <li class="space">
             <div class="avatar">
-				<img src="/assets/avatar.png"></img>
+				<img src="/static/x_m/avatar.png"></img>
             </div>
             <div class="content">
-                <div class="name">王大锤</div>
+                <div class="name"><%= user_name %></div>
                 <div class="time"></div>
                 <div class="body"><%= body %></div>
                 <div class="like">
@@ -429,7 +434,7 @@
         </div>
      </script>
       <script type="text/template" id="user_view_template">
-            <% if (!isLogin){%>
+            <% if (!isLogin){ %>
             <div class="btns space">
                 <div data-link="register" class="btn register">注册</div>
                 <div data-link="login" class="btn login">登录</div>
@@ -505,7 +510,7 @@
                 </form>
             </div>
       </script>
-    <script src="/assets/bundle.js"></script>
+    <script src="/static/x_m/bundle.js"></script>
 </body>
 
 </html>

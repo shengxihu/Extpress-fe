@@ -8,7 +8,7 @@ var Courses = Backbone.PageableCollection.extend({
         //this.course_id = options.course_id;
         //console.log(this.course_id);
   },
-  url: "http://115.28.152.113:5000/api/v1.0/courses/",
+  url: "http://xueer.ccnuer.cn/api/v1.0/courses/",
   mode: "server",
 	
   model:Course,

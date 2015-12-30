@@ -8,7 +8,7 @@ var Comments = Backbone.PageableCollection.extend({
         this.course_id = options.course_id;
   },
   url: function() {
-    return "http://115.28.152.113:5000/api/v1.0/courses/" + this.course_id + "/comments";
+    return "http://xueer.ccnuer.cn/api/v1.0/courses/" + this.course_id + "/comments";
   },
   mode: "infinite",
 	

@@ -1,6 +1,6 @@
 var Backbone = require("Backbone");
 var _ = require('underscore');
-
+var foo;
 
 var courses_item_view = Backbone.View.extend({
 	className:"courses_list_item",

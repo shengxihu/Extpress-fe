@@ -5,6 +5,10 @@
  *
  * by zindex
  */
+.foo{
+    background:#fff;
+};
+.bar{};
 
 .course_view {
     .info {
@@ -150,7 +154,6 @@
             fill:$font_999;
         }
     }
-
     .more_comments{
         margin: 17px auto;
         width:154px;
@@ -161,5 +164,20 @@
         text-align:center;
         font-size: 16px;
         color:$main_orange;
+    }
+    .comment_box .container{
+        font-size: 14px;/*px*/
+    }
+    .comment_box_pop{
+        position:fixed;
+        top:0;
+        left:0;
+        height:100%;
+        width:100%;  
+        padding-top: 56px;
+        display:none;
+        box-sizing:border-box;
+        z-index: 5;
+        background-color: #fff;
     }
 }

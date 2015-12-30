@@ -1,6 +1,7 @@
 var Backbone = require("Backbone");
 var _ = require('underscore');
-
+var foo;
+var bar;
 var loading_view = Backbone.View.extend({
 	className:"loading",
     template: _.template($("#loading_view_template").html()),

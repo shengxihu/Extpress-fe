@@ -6,8 +6,7 @@
 
 
 //load css
-require("./assets/main.min.css");
-
+require("./static/x_m/main.min.css");
 //load deps
 var Backbone = require("Backbone");
 var util = require("./app/util/util");

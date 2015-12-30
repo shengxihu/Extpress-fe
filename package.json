@@ -7,12 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "npm run scss",
     "build": "webpack --display-modules --optimize-minimize",
-    "scss": "node-sass app/css/common/main.scss --output assets/",
-    "postscss": "postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < assets/main.css | cssmin > assets/main.min.css",
+    "scss": "node-sass app/css/common/main.scss --output static/x_m/",
+    "postscss": "postcss --use postcss-px2rem --postcss-px2rem.remUnit '36' --postcss-px2rem.baseDpr '1' --use autoprefixer --autoprefixer.browsers '> 5%' < static/x_m/main.css | cssmin > static/x_m/main.min.css",
     "watch:webpack": "webpack --watch",
     "watch:css": "watch 'npm run scss' ./app/css/*",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:webpack'",
-    "clean":"rm -rf **/*.log.*"
+    "clean": "rm -rf **/*.log.*"
   },
   "repository": {
     "type": "git",
@@ -36,10 +36,18 @@
     "parallelshell": "^2.0.0",
     "postcss-px2rem": "^0.2.0",
     "px2rem": "^0.4.2",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5",
     "style-loader": "^0.13.0",
     "underscore": "^1.8.3",
     "watch": "^0.16.0",
     "webpack": "^1.12.6",
     "webpack-dev-server": "^1.12.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13"
   }
 }

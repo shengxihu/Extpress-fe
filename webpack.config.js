@@ -2,11 +2,17 @@ var webpack = require("webpack");
 var path = require('path');
 var underscore = require('underscore');
 
+const PATHS = {
+  entry: path.join(__dirname, 'main.js'),
+  dest: path.join(__dirname, 'static/x_m')
+};
+
 module.exports = {
     entry: ['./main.js'],
     output: {
-        path: './assets',
-        filename: 'bundle.js'
+        path: PATHS.dest,
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:8080/static/x_m/'
     },
     module: {
         loaders: [{
@@ -15,6 +21,14 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: "style!css"
+        }, {
+            test: /\.jsx$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+            query: {
+                cacheDirectory: true,
+                presets: ['es2015', 'react']
+            }
         }]
     },
     resolve: {
@@ -24,7 +38,7 @@ module.exports = {
             zepto: "zepto.min.js",
             Backbone: path.resolve('./node_modules/backbone'),
             backbone: path.resolve('./node_modules/backbone')
-            },
+        },
     },
     plugins: [
         new webpack.ProvidePlugin({
