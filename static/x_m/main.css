@@ -333,6 +333,66 @@ svg g {
   color: #EEAB5D; }
 
 .course_view .comment_box .container {
+  width: 332px;
+  margin: 0 auto;
+  font-size: 14px;
+  /*px*/ }
+
+.course_view .comment_box .main {
+  width: 325px;
+  margin: 0 auto;
+  padding-top: 17px; }
+
+.course_view .comment_box .textarea {
+  height: 91px;
+  width: 100%;
+  border-top: 1px solid #ECECEC;
+  /*px*/
+  border-bottom: 1px solid #ECECEC;
+  /*px*/
+  box-sizing: border-box;
+  padding: 11px 13px;
+  resize: none; }
+
+.course_view .comment_box .hot_title {
+  font-size: 12px;
+  /*px*/
+  color: #ECECEC;
+  /*px*/
+  padding: 5px 13px; }
+
+.course_view .comment_box .hot_tags {
+  padding: 0px 13px; }
+
+.course_view .comment_box .tag {
+  display: inline-block;
+  height: 20px;
+  padding: 0px 3px;
+  line-height: 20px;
+  color: #fff;
+  font-size: 14px;
+  /*px*/
+  border-radius: 2px;
+  /*px*/
+  margin-right: 6px;
+  background-color: #CDCDCD;
+  margin-bottom: 5px;
+  text-align: center; }
+
+.course_view .comment_box .current_tag {
+  height: 35px;
+  padding: 0px 13px;
+  line-height: 35px; }
+
+.course_view .comment_box .current_tags {
+  display: inline-block;
+  color: #999999;
+  font-size: 14px;
+  /*px*/ }
+
+.course_view .comment_box .tag_input {
+  display: inline-block;
+  color: #000;
   font-size: 14px;
   /*px*/ }
 

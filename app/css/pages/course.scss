@@ -165,8 +165,62 @@
         font-size: 16px;
         color:$main_orange;
     }
-    .comment_box .container{
-        font-size: 14px;/*px*/
+    .comment_box{
+        .container{
+            width:332px;
+            margin: 0 auto;
+            font-size: 14px;/*px*/
+        }
+        .main{
+            width:325px;
+            margin:0 auto;
+            padding-top: 17px;
+        }
+        .textarea{
+            height:91px;
+            width:100%;
+            border-top:1px solid $bg_ec;/*px*/
+            border-bottom:1px solid $bg_ec;/*px*/
+            box-sizing:border-box;
+            padding:11px 13px;
+            resize: none;
+        }
+        .hot_title{
+            font-size: 12px;/*px*/
+            color:$bg_ec;/*px*/
+            padding:5px 13px;
+        }
+        .hot_tags{
+            padding:0px 13px;
+        }
+        .tag{
+            display:inline-block;
+            height:20px;
+            padding:0px 3px;
+            line-height:20px;
+            color:#fff;
+            font-size: 14px;/*px*/
+            border-radius: 2px;/*px*/
+            margin-right: 6px;
+            background-color:$bg_cd;
+            margin-bottom: 5px;
+            text-align:center;
+        }   
+        .current_tag{
+            height:35px;
+            padding:0px 13px;
+            line-height: 35px;
+        }
+        .current_tags{
+            display:inline-block;
+            color:$font_999;
+            font-size: 14px;/*px*/
+        }
+        .tag_input{
+             display:inline-block;
+             color:#000;
+             font-size: 14px;/*px*/
+        }
     }
     .comment_box_pop{
         position:fixed;
