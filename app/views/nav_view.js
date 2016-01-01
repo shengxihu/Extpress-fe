@@ -10,10 +10,24 @@ var nav_view = Backbone.View.extend({
     },
     events:{
 		"click .link":"onLinkClicked",
-		"click .back":"onBackClicked"
+		"click .back":"onBackClicked",
+        "click .search":"onSearchClicked",
     },
     onLinkClicked:function(e){
 		this.router.navigate($(e.target).data("link"),{trigger: true});
+    },
+    onSearchClicked:function(e){
+        var view = this.router.s_view, model = this.router.navModel;
+        if(view){
+             view.remove();
+             view = null;
+             model.set({
+                currentPage:model.get("prevSet").currentPage,
+                hasPrev:model.get("prevSet").hasPrev
+             })
+        }else{
+            this.router.navigate("/search",{trigger: true});
+        }
     },
     onBackClicked:function(){
 		window.history.back();

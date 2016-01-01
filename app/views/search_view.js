@@ -29,9 +29,7 @@ var search_view = Backbone.View.extend({
     render: function(){
         var that = this;
         this.$el.html(this.template());
-        console.log("render");
         this.model.fetch().done(function(){
-            console.log("done");
             that.$(".warpper").addClass("done");
         })
         return this;

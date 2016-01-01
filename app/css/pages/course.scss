@@ -214,18 +214,22 @@
             text-align: left;
         }
         .c_tag{
+            height:35px;
             color:$font_999;
             font-size: 14px;/*px*/
             display:inline-block;
             vertical-align: middle;
             padding-right: 10px;
+            line-height: 35px;
         }
         .tag_input{
+             height:35px;
              display:inline-block;
              color:#000;
              font-size: 14px;/*px*/
              vertical-align: middle;
-             width: 50px
+             line-height: 35px;
+             width: 80px
         }
         .tag_icon{
             display:inline-block;

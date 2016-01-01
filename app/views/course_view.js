@@ -3,6 +3,7 @@ var _ = require('underscore');
 
 //load model
 var Course = require('../models/course.js');
+var CommentSend = require('../models/comment_send.js');
 
 //load collection
 var Comments = require('../collections/comments.js');
@@ -10,6 +11,9 @@ var Comments = require('../collections/comments.js');
 //load views
 var comments_view = require('./comments_view.js');
 var loading_view = require('./loading_view.js');
+
+//load cookie
+var cookie = require("../util/cookie.js");
 
 var course_view = Backbone.View.extend({
     className: "course_view",
@@ -24,7 +28,8 @@ var course_view = Backbone.View.extend({
         "click .w_comment": "onWCommentClick",
         "click #course_like": "onLikeCourseClick",
         "click .more_comments": "onMoreCommentsClick",
-        "click .comment_close": "onCommentCloseClick"
+        "click .comment_close": "onCommentCloseClick",
+        "click .comment_submit": "onAddComments"
     },
     onWCommentClick: function(e) {
         var that = this;
@@ -49,19 +54,34 @@ var course_view = Backbone.View.extend({
             console.log("res");
         })
     },
-    onAddComments: function() {
-
+    onAddComments: function(e) {
+        var that = this;
+        e.preventDefault();
+        this.$(".comment_submit").html("发送中");
+        var send = new CommentSend({id:this.course.get("id")})
+        var token = btoa(cookie.getCookie("token")+":")
+        send.set({body:this.$("#body").val(),tags:this.$("#tags").val()})
+        Backbone.sync("create", send,{
+                headers:{
+                     "Authorization":"Basic "+ token
+                }
+            }).done(function() {
+                that.render();
+        })
     },
     onCommentCloseClick: function(){
          this.$(".comment_box_pop").hide();
     },  
     onMoreCommentsClick: function(e) {
         var that = this;
+        this.$(".more_comments").html("载入中···");
         this.comments.getNextPage().done(function() {
             that.subview.render();
             if(!(that.comments.hasNextPage())){
                 that.$(".more_comments").remove();
                 that.$el.append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>")
+            }else{
+                that.$(".more_comments").html("展开更多评价");
             }
         })
     },

@@ -58,7 +58,9 @@
         text-align: center;
         font-size: 12px;
         color: #fff;
-        line-height: 20px; }
+        line-height: 20px;
+        border-radius: 2px;
+        /*px*/ }
       .tip .item .bottom .views {
         margin-right: 11px; }
     .tip .item .icon {
@@ -97,7 +99,7 @@ svg g {
   top: 56px;
   left: 0px;
   width: 100%;
-  z-index: 2; }
+  z-index: 9; }
   .search_view .warpper {
     opacity: 0;
     width: 100%;
@@ -388,20 +390,24 @@ svg g {
   text-align: left; }
 
 .course_view .comment_box .c_tag {
+  height: 35px;
   color: #999999;
   font-size: 14px;
   /*px*/
   display: inline-block;
   vertical-align: middle;
-  padding-right: 10px; }
+  padding-right: 10px;
+  line-height: 35px; }
 
 .course_view .comment_box .tag_input {
+  height: 35px;
   display: inline-block;
   color: #000;
   font-size: 14px;
   /*px*/
   vertical-align: middle;
-  width: 50px; }
+  line-height: 35px;
+  width: 80px; }
 
 .course_view .comment_box .tag_icon {
   display: inline-block;
@@ -569,7 +575,9 @@ svg g {
     /*px*/
     font-size: 14px;
     /*px*/
-    color: #EEAB5D; }
+    color: #EEAB5D;
+    border-radius: 2px;
+    /*px*/ }
   .user_view .register {
     margin-right: 13px; }
   .user_view .hint_text {

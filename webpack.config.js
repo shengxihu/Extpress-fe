@@ -12,7 +12,7 @@ module.exports = {
     output: {
         path: PATHS.dest,
         filename: 'bundle.js',
-        publicPath: 'http://localhost:8080/static/x_m/'
+        publicPath: '/static/x_m/'
     },
     module: {
         loaders: [{
