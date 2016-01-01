@@ -193,34 +193,77 @@
         .hot_tags{
             padding:0px 13px;
         }
-        .tag{
-            display:inline-block;
-            height:20px;
-            padding:0px 3px;
-            line-height:20px;
-            color:#fff;
-            font-size: 14px;/*px*/
-            border-radius: 2px;/*px*/
-            margin-right: 6px;
-            background-color:$bg_cd;
-            margin-bottom: 5px;
-            text-align:center;
-        }   
+        .h_tag{
+                margin-bottom: 5px;
+                display:inline-block;
+                height:20px;
+                padding:0px 3px;
+                line-height:20px;
+                color:#fff;
+                font-size: 14px;/*px*/
+                border-radius: 2px;/*px*/
+                margin-right: 6px;
+                background-color:$bg_cd;
+                text-align:center;
+            }
         .current_tag{
-            height:35px;
+            min-height:35px;
             padding:0px 13px;
             line-height: 35px;
+            border-bottom:1px solid $bg_ec;/*px*/
+            text-align: left;
         }
-        .current_tags{
-            display:inline-block;
+        .c_tag{
             color:$font_999;
             font-size: 14px;/*px*/
+            display:inline-block;
+            vertical-align: middle;
+            padding-right: 10px;
         }
         .tag_input{
              display:inline-block;
              color:#000;
              font-size: 14px;/*px*/
+             vertical-align: middle;
+             width: 50px
         }
+        .tag_icon{
+            display:inline-block;
+            width:14px;
+            height:14px;
+            vertical-align: middle;
+            padding-right: 5px;
+        }
+        .btns{
+            padding-top: 47px;
+            width:100%;
+            .btn{  
+                display:inline-block;
+                width:156px;
+                box-sizing:border-box;
+                border-radius: 2px;/*px*/
+                text-align: center;
+                line-height: 36px;
+                height:36px;
+                font-size: 14px;/*px*/
+            }
+            .comment_close{
+                margin-right: 20px;
+                border:1px solid $main_orange;
+                color:$main_orange;
+            }
+            .comment_submit{
+                background-color: $main_orange;
+                color:#fff;
+            }
+        }
+    }
+    .no_more_comments{
+        font-size: 14px;/*px*/
+        color:$font_999;
+        width:120px;
+        margin:0 auto;
+        padding:15px 0px;
     }
     .comment_box_pop{
         position:fixed;

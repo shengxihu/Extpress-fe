@@ -12,12 +12,10 @@ var comments_view = Backbone.View.extend({
     },
     render: function() {
         var that = this;
+        console.log(this.options.collection)
         this.options.collection.forEach(function(comment){
                 var commentItemView = new comment_item_view({model:comment});
                 this.$el.append( commentItemView.render().el );
-                if(!(this.options.collection.hasNextPage())){
-                    this.$el.remove(this.$('more_comments'));
-                }
         },that)
         return this;
     }
