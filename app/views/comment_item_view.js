@@ -8,22 +8,31 @@ var CommentLike = require('../models/comment_like.js');
 var cookie = require("../util/cookie.js");
 
 var comment_item_view = Backbone.View.extend({
+    initialize:function(){
+         this.model.on('change', this.render, this);
+    },
 	className:"comment_item",
     template: _.template($("#comment_item_template").html()),
     events:{
-		'click .like_icon':'onLikeClick'
+		'click .touch_area':'onLikeClick'
     },
     onLikeClick:function(){
-		console.log("clicked!")
-		this.like_model = new CommentLike({id:this.model.id});
-        var token = btoa(cookie.getCookie("token")+":")
-        this.like_model.save(
-            {},
-            {
-                headers:{
-                     "Authorization":"Basic "+ token
-                }
-            })
+        var that = this;
+		if (!cookie.getCookie("token")){
+            alert("请登录！")
+        }else{
+            this.like_model = new CommentLike({c_id:this.model.id});
+            var token = btoa(cookie.getCookie("token")+":")
+            this.like_model.save(
+                {},
+                {
+                    headers:{
+                        "Authorization":"Basic "+ token
+                    }
+                }).done(function(data){
+                    that.model.set({likes:data.likes,liked:data.liked})
+                })
+        }
     },
     render: function() {
     	this.$el.html(this.template(this.model.toJSON()));

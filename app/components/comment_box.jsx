@@ -4,7 +4,7 @@
  * comment box compoent in course view
  * by zindex
  */
-import React from "react";
+var React = require("react");
 
 class HotTag extends React.Component{
 	constructor(){
@@ -52,14 +52,13 @@ class CurrentTags extends React.Component{
 
 class CommentBox extends React.Component{
 	constructor(){
-		var tha
 		super(); 
 		this.state = {val:'',tags:[],hot_tags:[]};
 		this._onAddDataHandler = this._onAddDataHandler.bind(this);
+		this._onRemoveDataHandler = this._onRemoveDataHandler.bind(this);
 		this._onChangeHandler = this._onChangeHandler.bind(this);
 		this._onKeyDownHandler = this._onKeyDownHandler.bind(this);
 		this._onHotClickedHandler = this._onHotClickedHandler.bind(this);
-		this._onSubmitHandler = this._onSubmitHandler.bind(this);
 		$.get("http://xueer.ccnuer.cn/api/v1.0/tags/").done(data =>{
 				var hot_tags = JSON.parse(data),arr=[];
 				for (var i=0;i<hot_tags.length;i++){
@@ -80,34 +79,28 @@ class CommentBox extends React.Component{
 	}
 	_onHotClickedHandler(e,val){
 		this._onAddDataHandler(val);
-		$(this.refs.tag_input).focus();
 	}
 	_onRemoveDataHandler(){
-		var arr = this.state.tags
+		var arr = this.state.tags;
 		arr.splice(arr.length-1, 1);
 		this.setState({tags: arr})
 	}
 	_onChangeHandler(e){
 		if(e.target.value !== "" && e.target.value[e.target.value.length-1] == " "){
-			this._onAddDataHandler({title:e.target.value});
-			e.target.value = null;
-			$(e.target).focus();
+			this._onAddDataHandler(e.target.value);
+			e.target.value = "";
 		}
 	}
 	_onKeyDownHandler(e){
 		if (e.key == "Enter"){
 			e.preventDefault();
-			this._onAddDataHandler({title:e.target.value});
+			this._onAddDataHandler(e.target.value);
 			e.target.value = null;
 			$(e.target).focus();
 		}
 		if(e.key == "Backspace" && e.target.value == ""){
-			console.log("onremove!")
 			this._onRemoveDataHandler();
 		}
-	}
-	_onSubmitHandler(e){
-
 	}
 	render(){  
 		var hot_tags = [],current_tags = [];

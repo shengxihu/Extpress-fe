@@ -4,6 +4,7 @@ var _ = require('underscore');
 //load model
 var Course = require('../models/course.js');
 var CommentSend = require('../models/comment_send.js');
+var CourseLike = require('../models/course_like.js');
 
 //load collection
 var Comments = require('../collections/comments.js');
@@ -33,26 +34,23 @@ var course_view = Backbone.View.extend({
     },
     onWCommentClick: function(e) {
         var that = this;
-        require.ensure(["react", "react-dom"], function() {
-            var foo;
-            var React = require("react");
-            var ReactDOM = require("react-dom");
-            var CommentBox = require("../components/comment_box.jsx");
+        require.ensure([], function() {
+            var React = require("react"),
+                ReactDOM = require("react-dom");
+                CommentBox = require("../components/comment_box.jsx");
             that.$(".comment_box_pop").show();
-            ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box"));
-            if (module.hot) {
+            ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box")); 
+             if (module.hot) {
                 module.hot.accept("../components/comment_box.jsx", function() {
                     var CommentBox = require("../components/comment_box.jsx");
                     ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box"));
                 });
-            }           
+            }             
         })
     },
     onLikeCourseClick: function(e) {
-        this.course.set("liked", true);
-        Backbone.sync("update", this.course).done(function(res) {
-            console.log("res");
-        })
+        var m = new CourseLike({c_id:this.course.get("id")});
+        m.save({},{headers:this.getToken()});
     },
     onAddComments: function(e) {
         var that = this;
@@ -75,7 +73,7 @@ var course_view = Backbone.View.extend({
     onMoreCommentsClick: function(e) {
         var that = this;
         this.$(".more_comments").html("载入中···");
-        this.comments.getNextPage().done(function() {
+        this.comments.getNextPage({headers:this.getToken()}).done(function() {
             that.subview.render();
             if(!(that.comments.hasNextPage())){
                 that.$(".more_comments").remove();
@@ -85,13 +83,21 @@ var course_view = Backbone.View.extend({
             }
         })
     },
+    getToken:function(){
+        var auth = {};
+        if (cookie.getCookie("token")){
+            var token = btoa(cookie.getCookie("token")+":")
+            var auth = {"Authorization":"Basic "+ token};
+        }
+        return auth;
+    },
     render: function() {
         var that = this;
         //add loading view
         this.loading_view = new loading_view();
         that.$el.html(this.loading_view.render().el);
         //fetch course data
-        this.course.fetch().done(function() {
+        this.course.fetch({headers:this.getToken()}).done(function() {
             //add course view
             that.$el.append(that.template(that.course.toJSON()));
             //load comments data
@@ -104,7 +110,7 @@ var course_view = Backbone.View.extend({
                 collection: comments
             });
             that.subview = commentsView;
-            comments.getFirstPage()
+            comments.getFirstPage({headers:that.getToken()})
                 .done(function() {
                     that.$(".comments").append(commentsView.render().el);
 

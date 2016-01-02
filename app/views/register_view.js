@@ -1,6 +1,9 @@
 var Backbone = require("Backbone");
 var _ = require('underscore');
 
+//load model
+var Register = require('../models/register.js');
+
 var register_view = Backbone.View.extend({
 	className : 'register_view l_r_view',
 	template: _.template($("#register_view_template").html()),
@@ -8,10 +11,9 @@ var register_view = Backbone.View.extend({
 		this.options = options;
 	},
 	events:{
-		"click .btn":"onBtnClick"
+		"click .submit":"onSubmitClick"
 	},
-	onBtnClick:function(e){
-		this.options.router.navigate($(e.target).data("link"),{trigger: true});
+	onSubmitClick:function(e){
 	},
 	render: function(){
 		this.$el.html(this.template());

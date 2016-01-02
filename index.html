@@ -387,9 +387,12 @@
                 <div class="time"></div>
                 <div class="body"><%= body %></div>
                 <div class="like">
-           			<svg class="like_icon">
-  						<use xlink:href="#heart_f"></use>
-					</svg>
+                    <div class="touch_area">
+                        <svg class="like_icon <% if (liked){ %>liked<% } %>">
+                            <use xlink:href="#heart_f"></use>
+                        </svg>
+                        <span class="like_count"><%= likes %></span>
+                    </div>
 				</div>
             </div>
         </li>
@@ -458,7 +461,9 @@
             </br>
             我们的程序猿正在努力开发个人主页的更多内容…</div>
             <% } else { %>
-            <div>hello there!!!</div>
+            <div class="btns space">
+                <div class="btn logout">注销</div>
+            </div>
             <% } %>
       </script>
       <script type="text/template" id="login_view_template">
@@ -481,7 +486,7 @@
       </script>
       <script type="text/template" id="register_view_template">
             <div class="container">
-                <form>
+                <form class="register_form">
                     <div class="row">
                         <div class="label">用户名:</div>
                         <input type="text"class="input username padd3" id="username" placeholder="挑一个8个字符以内的用户名"/>
@@ -515,13 +520,13 @@
                         ∑(っ °Д °;)っ</br>请放心评价课程时不会显示你的私人信息</br>填写选填信息我们可以给你更加精确的推荐</br>并且可以参与评课活动，获得评课奖励
                     </div>
                      <div class="btns space">
-                        <div class="btn cancel va_item ">取消</div>
-                        <div class="btn va_item">确认</div>
+                        <div class="btn cancel va_item">取消</div>
+                        <div class="btn submit va_item">确认</div>
                      </div>
                 </form>
             </div>
       </script>
-    <script src="/static/x_m/bundle.js"></script>
+    <script src="/static/x_m/bundle.js?v=2333"></script>
 </body>
 
 </html>

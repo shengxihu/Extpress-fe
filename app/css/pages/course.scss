@@ -5,10 +5,6 @@
  *
  * by zindex
  */
-.foo{
-    background:#fff;
-};
-.bar{};
 
 .course_view {
     .info {
@@ -151,7 +147,11 @@
             margin-right: 6px;
         }
         .like_icon use{
+            transition:all;
             fill:$font_999;
+        }
+        .liked use{
+            fill:#ec6941;
         }
     }
     .more_comments{
@@ -226,10 +226,10 @@
              height:35px;
              display:inline-block;
              color:#000;
-             font-size: 14px;/*px*/
+             font-size: 14px;
              vertical-align: middle;
              line-height: 35px;
-             width: 80px
+             width: 85px;
         }
         .tag_icon{
             display:inline-block;
