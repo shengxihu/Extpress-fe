@@ -3,7 +3,6 @@ var util = require("../util/util");
 
 //load views
 var main_view = require("../views/main_view");
-var search_view = require("../views/search_view");
 var course_view = require("../views/course_view");
 var tip_view = require("../views/tip_view");
 var courses_view = require("../views/courses_view");
@@ -18,7 +17,6 @@ var SiteRouter = Backbone.Router.extend({
     routes: {
         '': 'main',
         'login': 'login',
-        'search': 'search',
         'search_result/:keyword(/)': 'search_result',
         'course/:id(/)': 'course',
         'tip/:id(/)':'tip',
@@ -52,20 +50,6 @@ var SiteRouter = Backbone.Router.extend({
         var view = new main_view({router:this});
         this.switchView(view);
         this.navModel.set({currentPage:null,hasPrev:false});
-    },
-    search: function() {
-        var view = new search_view({router:this});
-        this.s_view = view;
-        this.$container.append( view.render().el )
-        var prevSet= {
-                currentPage:this.navModel.get("currentPage"),
-                hasPrev:this.navModel.get("hasPrev")
-            };
-        this.navModel.set({
-            prevSet:prevSet,
-            currentPage:"搜索",
-            hasPrev:false
-        });
     },
     search_result: function(keyword) {
         console.log('you have searched '+keyword);

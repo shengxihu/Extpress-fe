@@ -14,6 +14,7 @@ var cookie = require("./app/util/cookie");
 
 //load view
 var nav_view = require("./app/views/nav_view");
+var search_view = require("./app/views/search_view");
 
 //load routers
 var SiteRouter = require("./app/routers/site_router");
@@ -35,8 +36,12 @@ if(token){
 //initialize router
 var siteRouter = new SiteRouter({container:$("#pageview"),nav_model:navModel,user_model:userModel});
 
+//initialize search view
+var searchView = new search_view({router:siteRouter});
+$(".viewport").append( searchView.render().el );
+
 //initialize nav view
-var navView = new nav_view({model:navModel,router:siteRouter,});
+var navView = new nav_view({model:navModel,router:siteRouter,searchView:searchView});
 $("#nav").append( navView.render().el );
 
 //initialize history pushstate

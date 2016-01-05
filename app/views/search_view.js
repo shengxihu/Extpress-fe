@@ -9,7 +9,8 @@ var search_view = Backbone.View.extend({
     template: _.template($("#search_template").html()),
     events:{
 		'click .search_btn':'onSearch',
-		'click .item':'onClick'
+		'click .item':'onTagClick',
+        'click .circle':'onClick'
     },
     initialize : function(options){
         this.options = options;
@@ -23,15 +24,15 @@ var search_view = Backbone.View.extend({
 			this.options.router.navigate(url,{trigger: true});
 		}
     },
-    onClick:function(e){
+    onTagClick:function(e){
 		this.options.router.navigate($(e.target).data("link"),{trigger: true});
+    },
+    onClick:function(){
+        this.trigger("hide");
     },
     render: function(){
         var that = this;
         this.$el.html(this.template());
-        this.model.fetch().done(function(){
-            that.$(".warpper").addClass("done");
-        })
         return this;
     }
 })

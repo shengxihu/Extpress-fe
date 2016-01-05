@@ -99,7 +99,8 @@ svg g {
   top: 56px;
   left: 0px;
   width: 100%;
-  z-index: 9; }
+  z-index: 9;
+  visibility: hidden; }
   .search_view .warpper {
     opacity: 0;
     width: 100%;
@@ -109,8 +110,6 @@ svg g {
     z-index: 5;
     transition: 1s all;
     transition-delay: .5s; }
-  .search_view .done {
-    opacity: 1; }
   .search_view .container {
     width: 328px;
     margin: 0 auto; }
@@ -164,23 +163,38 @@ svg g {
       border-radius: 2px;
       /*px*/ }
 
+.search_active {
+  visibility: visible; }
+  .search_active .warpper_fadeIn {
+    opacity: 1; }
+  .search_active .circle_fadeIn {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .8; }
+
+.search_hidden .warpper_fadeOut {
+  transition-delay: 0s; }
+
 .circle {
-  opacity: .8;
   margin-left: 264px;
-  transform: translate(-50%, -50%);
   width: 1400px;
   height: 1400px;
   border-radius: 50%;
   background-color: #fff;
-  animation: search_ripple_ani .7s linear; }
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: 1s all; }
 
-@keyframes search_ripple_ani {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0; }
+@keyframes search_ripple_in {
+  0% { }
   100% {
     transform: translate(-50%, -50%) scale(1);
     opacity: .8; } }
+
+@keyframes search_ripple_out {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .8; }
+  100% { } }
 
 /**
  * /course
