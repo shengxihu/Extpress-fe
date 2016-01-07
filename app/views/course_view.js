@@ -3,15 +3,10 @@ var _ = require('underscore');
 
 //load model
 var Course = require('../models/course.js');
-var CommentSend = require('../models/comment_send.js');
-var CourseLike = require('../models/course_like.js');
-
-//load collection
-var Comments = require('../collections/comments.js');
-
 //load views
 var comments_view = require('./comments_view.js');
 var loading_view = require('./loading_view.js');
+var course_info_view = require('./course_info_view.js');
 
 //load cookie
 var cookie = require("../util/cookie.js");
@@ -21,112 +16,35 @@ var course_view = Backbone.View.extend({
     template: _.template($("#course_template").html()),
     initialize: function(options) {
         this.options = options;
-        this.course = new Course({
+        this.model = new Course({
             id: this.options.id
         });
+        this.model.set({counter:0});
+        this.courseInfoView = new course_info_view({id:this.options.id,course_view:this,userModel:this.options.userModel});
+        this.commentsView = new comments_view({id:this.options.id,course_view:this,userModel:this.options.userModel});
+        this.listenTo(this.courseInfoView,"loaded",this.onLoaded);
+        this.listenTo(this.commentsView,"loaded",this.onLoaded);
     },
-    events: {
-        "click .w_comment": "onWCommentClick",
-        "click #course_like": "onLikeCourseClick",
-        "click .more_comments": "onMoreCommentsClick",
-        "click .comment_close": "onCommentCloseClick",
-        "click .comment_submit": "onAddComments"
-    },
-    onWCommentClick: function(e) {
-        var that = this;
-        require.ensure([], function() {
-            var React = require("react"),
-                ReactDOM = require("react-dom");
-                CommentBox = require("../components/comment_box.jsx");
-            that.$(".comment_box_pop").show();
-            ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box")); 
-             if (module.hot) {
-                module.hot.accept("../components/comment_box.jsx", function() {
-                    var CommentBox = require("../components/comment_box.jsx");
-                    ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box"));
-                });
-            }             
-        })
-    },
-    onLikeCourseClick: function(e) {
-        var m = new CourseLike({c_id:this.course.get("id")});
-        m.save({},{headers:this.getToken()});
-    },
-    onAddComments: function(e) {
-        var that = this;
-        e.preventDefault();
-        this.$(".comment_submit").html("发送中");
-        var send = new CommentSend({id:this.course.get("id")})
-        var token = btoa(cookie.getCookie("token")+":")
-        send.set({body:this.$("#body").val(),tags:this.$("#tags").val()})
-        Backbone.sync("create", send,{
-                headers:{
-                     "Authorization":"Basic "+ token
-                }
-            }).done(function() {
-                that.render();
-        })
-    },
-    onCommentCloseClick: function(){
-         this.$(".comment_box_pop").hide();
-    },  
-    onMoreCommentsClick: function(e) {
-        var that = this;
-        this.$(".more_comments").html("载入中···");
-        this.comments.getNextPage({headers:this.getToken()}).done(function() {
-            that.subview.render();
-            if(!(that.comments.hasNextPage())){
-                that.$(".more_comments").remove();
-                that.$el.append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>")
-            }else{
-                that.$(".more_comments").html("展开更多评价");
-            }
-        })
-    },
-    getToken:function(){
-        var auth = {};
-        if (cookie.getCookie("token")){
-            var token = btoa(cookie.getCookie("token")+":")
-            var auth = {"Authorization":"Basic "+ token};
+    onLoaded:function(){
+        var counter = this.model.get("counter");
+         console.log(counter)
+        if (counter < 1){
+            this.model.set({counter:counter+1});
+        }else{
+            this.$el.prepend(this.courseInfoView.el);
+            this.$el.append(this.commentsView.el);
+            this.loading_view.remove();
+            this.loading_view = null;
+            this.model.set({counter:0});
         }
-        return auth;
-    },
+    },  
     render: function() {
         var that = this;
-        //add loading view
+        this.$el.html(this.template());
+        //render loading view
         this.loading_view = new loading_view();
-        that.$el.html(this.loading_view.render().el);
-        //fetch course data
-        this.course.fetch({headers:this.getToken()}).done(function() {
-            //add course view
-            that.$el.append(that.template(that.course.toJSON()));
-            //load comments data
-            var comments = new Comments([], {
-                course_id: that.options.id
-            });
-            //save ref for comments view and collections
-            that.comments = comments;
-            var commentsView = new comments_view({
-                collection: comments
-            });
-            that.subview = commentsView;
-            comments.getFirstPage({headers:that.getToken()})
-                .done(function() {
-                    that.$(".comments").append(commentsView.render().el);
-
-                    if (comments.hasNextPage()) {
-                        that.$el.append("<div class='more_comments'>展开更多评价</div>")
-                    }
-                    //remove loading view
-                    that.loading_view.remove();
-                })
-                .fail(function() {
-                    that.$(".comments").html(
-                        "<div class='no_comments'>∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div>"
-                    );
-                })
-        });
-
+        this.$el.append(this.loading_view.render().el);
+        //render this view
         return this;
     }
 })

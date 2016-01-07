@@ -28,11 +28,20 @@ function checkCookie(val) {
         return false;
     }
 }
+function getToken(){
+        var auth = {};
+        if (cookie.getCookie("token")){
+            var token = btoa(cookie.getCookie("token")+":")
+            var auth = {"Authorization":"Basic "+ token};
+        }
+        return auth;
+}
 
 var cookie = {
     setCookie:setCookie,
     getCookie:getCookie,
     clearCookie:clearCookie,
-    checkCookie:checkCookie
+    checkCookie:checkCookie,
+    getToken:getToken
 }
 module.exports = cookie;

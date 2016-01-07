@@ -153,6 +153,17 @@
         .liked use{
             fill:#ec6941;
         }
+        .new_comment{
+            animation:new_comment_ani 1s linear;
+        }
+        @keyframes new_comment_ani{
+            0%{
+                background-color: red;
+            }
+            100%{
+                background-color: #fff;
+            }
+        }
     }
     .more_comments{
         margin: 17px auto;

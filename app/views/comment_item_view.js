@@ -11,6 +11,7 @@ var comment_item_view = Backbone.View.extend({
     initialize:function(){
          this.model.on('change', this.render, this);
     },
+    tagName:"li",
 	className:"comment_item",
     template: _.template($("#comment_item_template").html()),
     events:{

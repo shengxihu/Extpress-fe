@@ -334,6 +334,14 @@ svg g {
     fill: #999999; }
   .course_view .comments .liked use {
     fill: #ec6941; }
+  .course_view .comments .new_comment {
+    animation: new_comment_ani 1s linear; }
+
+@keyframes new_comment_ani {
+  0% {
+    background-color: red; }
+  100% {
+    background-color: #fff; } }
 
 .course_view .more_comments {
   margin: 17px auto;

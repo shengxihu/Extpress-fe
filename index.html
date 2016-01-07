@@ -334,7 +334,7 @@
         </div>
         <div class="circle circle_fadeIn"></div>
     </script>
-    <script type="text/template" id="course_template">
+    <script type="text/template" id="course_info_template">
         <div class="info" style="background-image:url('/static/x_m/course_bg.png')">
             <div class="overlay mask"></div>
             <div class="overlay top">
@@ -359,7 +359,7 @@
                     <span class="btn_text"><%= likes %></span>
                 </div>
                 <div class="btn w_comment space" id="w_comment">
-                	<svg viewBox="0 0 17 14">
+                    <svg viewBox="0 0 17 14">
                         <use xlink:href="#comments"></use>
                     </svg>
                     <span class="btn_text">写评价</span>
@@ -367,18 +367,21 @@
             </div>
             </div>
         </div>
-        <div class="comments_title">热门评论</div>
-        <div class="comments">
-        </div>
         <div class="comment_box_pop">
             <div class="comment_box" id="comment_box">
             </div>
         </div>
     </script>
+    <script type="text/template" id="course_template">
+    </script>
     <script type="text/template" id="comments_template">
+        <div class="comments_title">热门评论</div>
+        <div class="comments">
+            <div class="comments_view"></div>
+        </div>
     </script>
     <script type="text/template" id="comment_item_template">
-        <li class="space">
+        <div class="space" id="c_<%= id %>">
             <div class="avatar">
 				<img src="/static/x_m/avatar.png"></img>
             </div>
@@ -395,7 +398,7 @@
                     </div>
 				</div>
             </div>
-        </li>
+        </div>
     </script>
     <script type="text/template" id="tip_view_template">
     	<div><%= title %></div>
