@@ -14,7 +14,7 @@
   margin: 16px auto 0px; }
   .tip .item {
     width: 100%;
-    height: 266px;
+    max-height: 266px;
     margin-bottom: 16px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); }
     .tip .item .img {
@@ -34,7 +34,8 @@
         color: #333333; }
     .tip .item .bottom {
       width: 296px;
-      margin: 0 auto; }
+      margin: 0 auto;
+      padding-bottom: 16px; }
       .tip .item .bottom .btns {
         display: inline-block;
         width: 70%;
@@ -892,6 +893,31 @@ svg g {
     transform: scale(2); }
   100% {
     transform: scale(1); } }
+
+/*
+* component back_to_top
+* 
+ */
+.back_to_top {
+  height: 56px;
+  width: 56px;
+  background-color: #2BBB8F;
+  position: fixed;
+  bottom: 58px;
+  right: 16px;
+  opacity: .5;
+  border-radius: 50%;
+  z-index: 8;
+  text-align: center;
+  line-height: 56px; }
+
+.arrow_icon {
+  display: inline-block;
+  height: 21px;
+  vertical-align: middle; }
+
+.arrow_icon use {
+  fill: #fff; }
 
 /** css reset **/
 body {
