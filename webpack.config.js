@@ -45,5 +45,16 @@ module.exports = {
         new webpack.ProvidePlugin({
             "_": "underscore"
         })
-    ]
+    ],
+    devServer: {
+        proxy: {
+            '/api/*': {
+                target: 'http://218.199.196.131',
+                secure: false,
+                pathRewrite: {
+                    '^/api' : ''
+                }
+            }
+        }
+    }
 }

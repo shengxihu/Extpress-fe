@@ -5,7 +5,7 @@ var CommentLike = Backbone.Model.extend({
 		this.options = options;
 	},
 	url:function(){
-		var base = "http://xueer.ccnuer.cn/api/v1.0/comments/";
+		var base = "/api/v1.0/comments/";
 		console.log(base + this.options.c_id + "/like/");
 		return base + this.options.c_id + "/like/"
 	}

@@ -4,7 +4,7 @@ var Register = Backbone.Model.extend({
 	initialize:function(options){
 		this.options = options;
 	},
-	url:"http://xueer.ccnuer.cn/api/v1.0/users/"
+	url:"/api/v1.0/users/"
 })
 
 module.exports = Register;

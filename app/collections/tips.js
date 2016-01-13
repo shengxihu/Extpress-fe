@@ -5,7 +5,7 @@ var Tip = require('../models/tip_item.js');
 
 var TipsCollection = Backbone.Collection.extend({
 	model:Tip,
-	url:'http://xueer.ccnuer.cn/api/tips'
+	url:'/api/tips'
 })
 
 module.exports = TipsCollection;

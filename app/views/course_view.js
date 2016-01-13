@@ -28,7 +28,6 @@ var course_view = Backbone.View.extend({
     },
     onLoaded:function(){
         var counter = this.model.get("counter");
-         console.log(counter)
         if (counter < 1){
             this.model.set({counter:counter+1});
         }else{

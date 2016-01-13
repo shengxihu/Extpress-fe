@@ -899,6 +899,7 @@ svg g {
 * 
  */
 .back_to_top {
+  display: none;
   height: 56px;
   width: 56px;
   background-color: #2BBB8F;
