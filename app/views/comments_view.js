@@ -9,10 +9,12 @@ var Comments = require('../collections/comments.js');
 var cookie = require("../util/cookie.js");
 
 var comments_view = Backbone.View.extend({
+    className: "comments_view",
     template: _.template($("#comments_template").html()),
     initialize: function(options) {
         var that = this;
         this.options = options;
+        this.new_id = this.options.userModel.get("newCommentId");
         this.collection = new Comments([], {
             course_id: that.options.id
         });
@@ -25,9 +27,9 @@ var comments_view = Backbone.View.extend({
                     that.$(".comments").append("<div class='more_comments'>展开更多评价</div>")
                 }
                 that.trigger("loaded");
-                var new_id = "#c_" + that.options.userModel.get("newCommentId");
-                $(new_id).parent().addClass("new_comment");
-                that.options.userModel.set({newCommentId:null});
+                var id = "#c_" + that.new_id;
+                $(id).parent().addClass("new_comment");
+                that.new_id = null;
             })
             /*
             .fail(function() {
@@ -43,24 +45,43 @@ var comments_view = Backbone.View.extend({
     onMoreCommentsClick: function(e) {
         var that = this;
         this.$(".more_comments").html("载入中···");
-        this.collection.getNextPage({headers:cookie.getToken()}).done(function() {
+        this.collection.getNextPage({
+            headers: cookie.getToken()
+        }).done(function() {
             that.render();
-            if(!(that.collection.hasNextPage())){
+            if (!(that.collection.hasNextPage())) {
                 that.$(".more_comments").remove();
                 that.$(".comments").append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>")
-            }else{
+            } else {
                 that.$(".more_comments").html("展开更多评价");
             }
         })
     },
     render: function() {
-        var that = this;
-        this.collection.forEach(function(comment) {
-            var commentItemView = new comment_item_view({
-                model: comment
-            });
-            this.$(".comments_view").append(commentItemView.render().el);
-        }, that)
+        var that = this,
+            flag;
+        if (this.new_id) {
+            this.collection.forEach(function(comment) {
+                var commentItemView = new comment_item_view({
+                    model: comment
+                });
+                if (comment.id === this.new_id) {
+                    this.$(".comments_view").prepend(commentItemView.render().el);
+                    flag = true;
+                } else if (!flag) {
+                    this.$(".comments_view").prepend(commentItemView.render().el);
+                } else {
+                    this.$(".prev_comments").append(commentItemView.render().el);
+                }
+            }, that)
+        } else {
+            this.collection.forEach(function(comment) {
+                var commentItemView = new comment_item_view({
+                    model: comment
+                });
+                this.$(".comments_view").append(commentItemView.render().el);
+            }, that)
+        }
         return this;
     }
 })

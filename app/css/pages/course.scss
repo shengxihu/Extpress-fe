@@ -156,12 +156,23 @@
         .new_comment{
             animation:new_comment_ani 1s linear;
         }
+        .prev_comments{
+            animation:prev_comment_ani 1s linear;   
+        }
         @keyframes new_comment_ani{
             0%{
-                background-color: red;
+                opacity: 0;
             }
             100%{
-                background-color: #fff;
+                opacity:1;
+            }
+        }
+        @keyframes prev_comment_ani{
+            0%{
+                transform:translateY(-127px);
+            }
+            100%{
+                transform:translateY(0px);
             }
         }
     }

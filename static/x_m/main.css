@@ -337,12 +337,20 @@ svg g {
     fill: #ec6941; }
   .course_view .comments .new_comment {
     animation: new_comment_ani 1s linear; }
+  .course_view .comments .prev_comments {
+    animation: prev_comment_ani 1s linear; }
 
 @keyframes new_comment_ani {
   0% {
-    background-color: red; }
+    opacity: 0; }
   100% {
-    background-color: #fff; } }
+    opacity: 1; } }
+
+@keyframes prev_comment_ani {
+  0% {
+    transform: translateY(-127px); }
+  100% {
+    transform: translateY(0px); } }
 
 .course_view .more_comments {
   margin: 17px auto;

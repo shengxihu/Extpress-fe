@@ -59,7 +59,7 @@ class CommentBox extends React.Component{
 		this._onChangeHandler = this._onChangeHandler.bind(this);
 		this._onKeyDownHandler = this._onKeyDownHandler.bind(this);
 		this._onHotClickedHandler = this._onHotClickedHandler.bind(this);
-		$.get("http://xueer.ccnuer.cn/api/v1.0/tags/").done(data =>{
+		$.get("/api/v1.0/tags/").done(data =>{
 				var hot_tags = JSON.parse(data),arr=[];
 				for (var i=0;i<hot_tags.length;i++){
 					arr.push(hot_tags[i].title)

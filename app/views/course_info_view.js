@@ -26,7 +26,7 @@ var course_info_view = Backbone.View.extend({
         "click .comment_close": "onCommentCloseClick",
         "click .comment_submit": "onAddComments"
     },
-      onWCommentClick: function(e) {
+    onWCommentClick: function(e) {
         var that = this;
         require.ensure([], function() {
             var React = require("react"),
