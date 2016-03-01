@@ -82,11 +82,14 @@
             stroke:#ffffff;
         }
     }
+    .tags{
+        margin-bottom: 16px;
+    }
     .comments_title{
         width:331px;
         margin:0 auto;
         font-size: 16px;/*px*/
-        padding:12px 0px 16px 0px;
+        padding:0px 0px 16px 0px;
         color:$font_666;
         border-bottom: 1px solid $bg_ec;/*px*/
     }
@@ -154,10 +157,10 @@
             fill:#ec6941;
         }
         .new_comment{
-            animation:new_comment_ani 1s linear;
+            animation:new_comment_ani 1.5s ease-in-out; 
         }
         .prev_comments{
-            animation:prev_comment_ani 1s linear;   
+            animation:prev_comment_ani 1s cubic-bezier(0, 0.6, 0.1, 1);
         }
         @keyframes new_comment_ani{
             0%{

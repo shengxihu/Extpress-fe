@@ -23,13 +23,11 @@ var comment_item_view = Backbone.View.extend({
             alert("请登录！")
         }else{
             this.like_model = new CommentLike({c_id:this.model.id});
-            var token = btoa(cookie.getCookie("token")+":")
+            var token = cookie.getToken();
             this.like_model.save(
                 {},
                 {
-                    headers:{
-                        "Authorization":"Basic "+ token
-                    }
+                    headers:token
                 }).done(function(data){
                     that.model.set({likes:data.likes,liked:data.liked})
                 })
