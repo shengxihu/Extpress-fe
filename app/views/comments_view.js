@@ -1,11 +1,11 @@
 var Backbone = require("Backbone");
-var _ = require('underscore');
+var _ = require("underscore");
 
-//load subview
-var comment_item_view = require('./comment_item_view.js');
-//load collection
-var Comments = require('../collections/comments.js');
-//load cookie
+// load subview
+var comment_item_view = require("./comment_item_view.js");
+// load collection
+var Comments = require("../collections/comments.js");
+// load cookie
 var cookie = require("../util/cookie.js");
 
 var comments_view = Backbone.View.extend({
@@ -19,23 +19,23 @@ var comments_view = Backbone.View.extend({
       course_id: that.options.id
     });
     this.collection.getFirstPage({
-        headers: cookie.getToken()
-      }).done(function() {
-        that.render();
-        if (that.collection.hasNextPage()) {
-          that.$(".comments").append("<div class='more_comments'>展开更多评价</div>")
-        }
-        that.trigger("loaded");
-        var id = "#c_" + that.new_id;
-        $(id).parent().addClass("new_comment");
-        that.new_id = null;
-        if (that.collection.length == 0){
-            that.$(".comments").html(
-              "<div class='no_comments'>∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div>"
-            );
-        }
-      });
-     this.$el.html(this.template());
+      headers: cookie.getToken()
+    }).done(function() {
+      that.render();
+      if (that.collection.hasNextPage()) {
+        that.$(".comments").append("<div class='more_comments'>展开更多评价</div>");
+      }
+      that.trigger("loaded");
+      var id = "#c_" + that.new_id;
+      $(id).parent().addClass("new_comment");
+      that.new_id = null;
+      if (that.collection.length === 0) {
+        that.$(".comments").html(
+          "<div class='no_comments'>∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div>"
+        );
+      }
+    });
+    this.$el.html(this.template());
   },
   events: {
     "click .more_comments": "onMoreCommentsClick"
@@ -49,15 +49,15 @@ var comments_view = Backbone.View.extend({
       that.render();
       if (!(that.collection.hasNextPage())) {
         that.$(".more_comments").remove();
-        that.$(".comments").append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>")
+        that.$(".comments").append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>");
       } else {
         that.$(".more_comments").html("展开更多评价");
       }
-    })
+    });
   },
   render: function() {
-    var that = this,
-      flag;
+    var that = this;
+    var flag;
     if (this.new_id) {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
@@ -71,18 +71,20 @@ var comments_view = Backbone.View.extend({
         } else {
           this.$(".prev_comments").append(commentItemView.render().el);
         }
-      }, that)
-      this.options.userModel.set({newCommentId:null});
+      }, that);
+      this.options.userModel.set({
+        newCommentId: null
+      });
     } else {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
           model: comment
         });
         this.$(".comments_view").append(commentItemView.render().el);
-      }, that)
+      }, that);
     }
     return this;
   }
-})
+});
 
 module.exports = comments_view;

@@ -1,21 +1,20 @@
 var Backbone = require("Backbone");
-var _ = require('underscore');
+var _ = require("underscore");
 
-//load view
-var courses_item_view = require('./courses_item_view.js');
-var loading_view = require('./loading_view.js');
+// load view
+var courses_item_view = require("./courses_item_view.js");
+var loading_view = require("./loading_view.js");
 
-//load collection
-var Courses = require('../collections/courses.js');
+// load collection
+var Courses = require("../collections/courses.js");
 
 var courses_view = Backbone.View.extend({
-  className: 'courses_list list',
+  className: "courses_list list",
   template: _.template($("#courses_list_template").html()),
   initialize: function(options) {
     this.options = options;
-    var that = this;
     this.$el.html(this.template());
-    var courses = new Courses();
+    var courses = new Courses(null, {params:this.options.params});
     this.collection = courses;
     this.getFirstPageDone();
   },
@@ -59,7 +58,7 @@ var courses_view = Backbone.View.extend({
   getFirstPageDone: function() {
     var that = this;
     this.addLoading();
-    this.collection.getFirstPage().done(function() {
+    this.collection.getPage(this.options.params.page - 0).done(function() {
       that.refresh();
     })
   },
@@ -81,9 +80,9 @@ var courses_view = Backbone.View.extend({
         model: course
       });
       this.$(".list").append(coursesItemView.render().el);
-    }, that)
+    }, that);
     return this;
   }
-})
+});
 
 module.exports = courses_view;

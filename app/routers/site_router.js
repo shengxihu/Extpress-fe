@@ -14,77 +14,144 @@ var register_view = require("../views/register_view");
 var Tip = require('../models/tip.js');
 
 var SiteRouter = Backbone.Router.extend({
-    routes: {
-        '': 'main',
-        'login': 'login',
-        'search_result/:keyword(/)': 'search_result',
-        'course/:id(/)': 'course',
-        'tip/:id(/)':'tip',
-        'courses':'courses',
-        'user(/:username)':'user',
-        'login':'login',
-        'register':'register'
-    },
-    initialize : function(options){
-        this.$container = options.container;
-        this.navModel = options.nav_model;
-        this.userModel = options.user_model;
-    },
-    switchView: function(view) {
-        if(this.s_view){
-            this.removeSearchView();
-        }
-        if (this.currentView) {
-            this.currentView.remove();
-        }
-        this.$container.append( view.render().el )
-        this.currentView = view;
-    },
-    removeSearchView:function(){
-        if (this.s_view) {
-            this.s_view.remove();
-            this.s_view = null;
-        }
-    },
-    main: function() {
-        var view = new main_view({router:this});
-        this.switchView(view);
-        this.navModel.set({currentPage:null,hasPrev:false});
-    },
-    search_result: function(keyword) {
-        console.log('you have searched '+keyword);
-    },
-    course: function(id) {
-        var view = new course_view({router:this,id:id,userModel:this.userModel});
-        this.switchView(view);
-        this.navModel.set({currentPage:"课程详情",hasPrev:true});
-    },
-    tip: function(id) {
-        var tip = new Tip({id:id});
-        var view = new tip_view({router:this,model:tip});
-        this.switchView(view);
-        this.navModel.set({currentPage:"专题",hasPrev:true});
-    },
-    courses:function(){
-        var view = new courses_view({router:this});
-        this.switchView(view);
-        this.navModel.set({currentPage:"所有课程",hasPrev:true});
-    },
-    user:function(){
-        var view = new user_view({router:this,model:this.userModel});
-        this.switchView(view);
-        this.navModel.set({currentPage:"我的学而",hasPrev:true});
-    },
-    login:function(){
-        var view = new login_view({router:this,userModel:this.userModel});
-        this.switchView(view);
-        this.navModel.set({currentPage:"登录",hasPrev:false});
-    },
-    register:function(){
-        var view = new register_view({router:this});
-        this.switchView(view);
-        this.navModel.set({currentPage:"注册",hasPrev:false});
+  routes: {
+    '': 'main',
+    'login': 'login',
+    'search_result/:keyword(/)': 'search_result',
+    'course/:id(/)': 'course',
+    'tip/:id(/)': 'tip',
+    'courses?*queryString': 'courses',
+    'user(/:username)': 'user',
+    'login': 'login',
+    'register': 'register'
+  },
+  initialize: function(options) {
+    this.$container = options.container;
+    this.navModel = options.nav_model;
+    this.userModel = options.user_model;
+  },
+  switchView: function(view) {
+    if (this.s_view) {
+      this.removeSearchView();
     }
+    if (this.currentView) {
+      this.currentView.remove();
+    }
+    this.$container.append(view.render().el)
+    this.currentView = view;
+  },
+  removeSearchView: function() {
+    if (this.s_view) {
+      this.s_view.remove();
+      this.s_view = null;
+    }
+  },
+  main: function() {
+    var view = new main_view({
+      router: this
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: null,
+      hasPrev: false
+    });
+  },
+  search_result: function(keyword) {
+    console.log('you have searched ' + keyword);
+  },
+  course: function(id) {
+    var view = new course_view({
+      router: this,
+      id: id,
+      userModel: this.userModel
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "课程详情",
+      hasPrev: true
+    });
+  },
+  tip: function(id) {
+    var tip = new Tip({
+      id: id
+    });
+    var view = new tip_view({
+      router: this,
+      model: tip
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "专题",
+      hasPrev: true
+    });
+  },
+  courses: function(queryString) {
+    var params = this.parseQueryString(queryString);
+    console.log(params);
+    var view = new courses_view({
+      router: this,
+      params:params
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "所有课程",
+      hasPrev: true
+    });
+  },
+  user: function() {
+    var view = new user_view({
+      router: this,
+      model: this.userModel
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "我的学而",
+      hasPrev: true
+    });
+  },
+  login: function() {
+    var view = new login_view({
+      router: this,
+      userModel: this.userModel
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "登录",
+      hasPrev: false
+    });
+  },
+  register: function() {
+    var view = new register_view({
+      router: this
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "注册",
+      hasPrev: false
+    });
+  },
+  parseQueryString: function(queryString) {
+    var params = {};
+    if (queryString) {
+      _.each(
+        _.map(decodeURI(queryString).split(/&/g), function(el, i) {
+          var aux = el.split('='),
+            o = {};
+          if (aux.length >= 1) {
+            var val = undefined;
+            if (aux.length == 2)
+              val = aux[1];
+            o[aux[0]] = val;
+          }
+          return o;
+        }),
+        function(o) {
+          _.extend(params, o);
+        }
+      );
+    }
+    return params;
+  }
 });
 
 module.exports = SiteRouter;

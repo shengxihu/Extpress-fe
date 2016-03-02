@@ -22,7 +22,7 @@ var course_info_view = Backbone.View.extend({
     }).done(function() {
       that.render();
       that.trigger("loaded");
-    })
+    });
   },
   events: {
     "click .w_comment": "onWCommentClick",
@@ -44,14 +44,14 @@ var course_info_view = Backbone.View.extend({
           ReactDOM.render(React.createElement(CommentBox, null), document.querySelector(".comment_box"));
         });
       }
-    })
+    });
   },
   onLikeCourseClick: function(e) {
     var m = new CourseLike({
-      c_id: this.course.get("id")
+      c_id: this.model.get("id")
     });
     m.save({}, {
-      headers: this.getToken()
+      headers: cookie.getToken()
     });
   },
   onAddComments: function(e) {
@@ -71,9 +71,9 @@ var course_info_view = Backbone.View.extend({
     }).done(function(data) {
       that.options.userModel.set({
         newCommentId: data.id
-      })
+      });
       Backbone.history.loadUrl(Backbone.history.fragment);
-    })
+    });
   },
   onCommentCloseClick: function() {
     this.$(".comment_box_pop").hide();
@@ -82,6 +82,6 @@ var course_info_view = Backbone.View.extend({
     this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
-})
+});
 
 module.exports = course_info_view;

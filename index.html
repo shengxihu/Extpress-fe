@@ -229,6 +229,14 @@
         </g>
     </g>
          </symbol>
+         <symbol id="arrow_down" viewBox="0 0 14 5">
+             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="课程详情底部" transform="translate(-141.000000, -196.000000)" fill="#999999">
+                    <path d="M141,196 L155,196 L148,201 L141,196 Z" id="Path-259">
+                    </path>
+                </g>
+            </g>
+         </symbol>
     </svg>
     <div class="viewport">
         <div id="nav"></div>
@@ -286,7 +294,7 @@
             <span data-link="course/1" class="tab_text">推荐课程</span>
         </div>
         <div class="tab tab_all va_item">
-            <span data-link="courses" class="tab_text">所有课程</span>
+            <span data-link="courses?page=2&sort=like" class="tab_text">所有课程</span>
         </div>
     </script>
     <script type="text/template" id="main_template">
@@ -377,8 +385,17 @@
             </div>
             </div>
         </div>
-        <div>
-            tag here 
+        <div class="tags space"> 
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
+            <span class="tags_item">sss</span>
         </div>
         <div class="comment_box_pop">
             <div class="comment_box" id="comment_box">
@@ -400,10 +417,16 @@
             <div class="avatar">
 				<img src="/static/x_m/avatar.png"></img>
             </div>
-            <div class="content">
+            <div class="content <% if (fold){ %>content_fold<% } %>">
                 <div class="name"><%= user_name %></div>
                 <div class="time"></div>
-                <div class="body"><%= body %></div>
+                <div class="body">
+                 <% if (fold){ %> 
+                    <%= body_short %> 
+                 <% } else { %>
+                    <%= body %> 
+                 <% } %>
+                </div>
                 <div class="like">
                     <div class="touch_area">
                         <svg class="like_icon <% if (liked){ %>liked<% } %>">
@@ -414,6 +437,14 @@
 				</div>
             </div>
         </div>
+        <% if (fold) { %>
+            <div class="more space">
+                <svg class="more_icon">
+                    <use xlink:href="#arrow_down"></use>
+                </svg>
+                <span class="more_text">查看全文</span>
+            </div>
+        <% } %>
     </script>
     <script type="text/template" id="tip_view_template">
     	<div><%= title %></div>

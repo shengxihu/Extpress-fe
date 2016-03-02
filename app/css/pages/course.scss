@@ -1,4 +1,5 @@
 @import "../common/common.scss";
+@import "../mixin/tags.scss";
 
 /**
  * /course
@@ -83,7 +84,11 @@
         }
     }
     .tags{
-        margin-bottom: 16px;
+        margin:21px 27px 1px 33px;
+    }
+    .tags_item{
+        @include tag();
+        margin-bottom: 15px;
     }
     .comments_title{
         width:331px;
@@ -108,8 +113,29 @@
             list-style: none;
             width:100%;
             padding-top: 20px;
-            padding-bottom: 17px;
             border-bottom: 1px solid $bg_ec;/*px*/  
+        }
+        .more{
+            text-align: center;
+            margin-top:4px;
+            margin-bottom: 9px;
+            line-height: 14px;/*px*/
+            color:$font_999;
+        }
+        .more_icon{
+            margin-right: 6px;
+            display:inline-block;
+            width:14px;/*px*/
+            height:5px;/*px*/
+            vertical-align:middle;
+        }
+        .more_icon use{
+            fill:$font_999;
+        }
+        .more_text{
+            font-size: 14px;/*px*/
+            display:inline-block;
+            vertical-align: middle;
         }
         .avatar{
             display:inline-block;
@@ -129,6 +155,13 @@
             display:inline-block;
             width:276px;
             font-size: 14px;/*px*/
+            padding-bottom: 17px;
+        }
+        .body{
+            font-size: 14px;/*px*/
+        }
+        .content_fold{
+            padding-bottom: 0px;
         }
         .name,.time{
             color:$font_999;
