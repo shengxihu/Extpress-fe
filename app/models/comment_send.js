@@ -6,7 +6,7 @@ var CommentSend = Backbone.Model.extend({
 	},
 	url:function(){
 		var base = "/api/v1.0/courses/";
-		return base + this.options.id + '/comments/'
+		return base + this.options.cid + '/comments/'
 	}
 })
 

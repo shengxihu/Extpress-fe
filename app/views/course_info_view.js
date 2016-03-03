@@ -59,7 +59,7 @@ var course_info_view = Backbone.View.extend({
     e.preventDefault();
     this.$(".comment_submit").html("发送中");
     var send = new CommentSend({
-      id: this.options.id
+      cid: this.options.id
     });
     var token = cookie.getToken();
     send.set({

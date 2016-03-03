@@ -8,16 +8,18 @@ var Courses = Backbone.PageableCollection.extend({
     this.params = options.params;
     this.state.currentPage = this.params.page - 0;
     this.state.sortKey = this.params.sort;
-    console.log(this.state)
+    console.log(this.state);
+    this.queryParams.foo = 300;
   },
   url: "/api/v1.0/courses/",
 
   model: Course,
+
+  mode: "infinite",
   // Initial pagination states
   state: {
     pageSize: 20,
-    firstPage: 1,
-    totalRecords: 200
+    firstPage: 1
   },
 
   // You can remap the query parameters from ``state`` keys from the default

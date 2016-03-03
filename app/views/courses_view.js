@@ -12,11 +12,47 @@ var courses_view = Backbone.View.extend({
   className: "courses_list list",
   template: _.template($("#courses_list_template").html()),
   initialize: function(options) {
+    // int flag
+    this.loadingNext = false;
+    this.count = 0;
+
+    var that = this;
     this.options = options;
     this.$el.html(this.template());
-    var courses = new Courses(null, {params:this.options.params});
+    var courses = new Courses(null, {
+      params: this.options.params
+    });
     this.collection = courses;
-    this.getFirstPageDone();
+    var page = this.options.params.page - 0;
+    if (page > 1) {
+      this.addLoading();
+      this.collection.state.currentPage = 0;
+      this.collection.getFirstPage().done(function(){
+        that.count = that.count + 1;
+        for (var i = 1; i <= (page-1); i++) {
+        that.collection.getNextPage().done(function() {
+          that.count = that.count + 1;
+          console.log(that.count);
+          if (that.count === page) {
+            for (var i = 1; i <= page; i++) {
+              that.collection.getPage(i).done(function() {
+                that.refresh();
+              })
+            }
+          }
+        });
+      }
+      })
+      
+    } else {
+      this.getFirstPageDone();
+    }
+
+    // cache
+    this.$body = $('body');
+    this.$viewport = $('.viewport');
+
+    window.addEventListener("scroll", this.onScroll.bind(this));
   },
   events: {
     'click .s_item': 'onSortClick',
@@ -28,6 +64,12 @@ var courses_view = Backbone.View.extend({
       trigger: true
     });
   },
+  onScroll: function() {
+    if ((window.pageYOffset + this.$body.height()) >= (this.$viewport.height() - 200)) {
+      this.onNextPage()
+      console.log("at bottom!!");
+    }
+  },
   addLoading: function() {
     this.loading_view = new loading_view();
     this.$el.append(this.loading_view.render().el);
@@ -35,23 +77,26 @@ var courses_view = Backbone.View.extend({
   refresh: function() {
     this.render();
     this.loading_view.remove();
-    if (this.collection.hasPreviousPage()) {
-      $('.prev').addClass('active');
-    };
-    if (this.collection.hasNextPage()) {
-      $('.next').addClass('active');
-    };
+    this.loadingNext = false;
+    if (!this.collection.hasNextPage()) {
+      this.$('.hint').html('(￣▽￣") 已经是全部的结果啦');
+    }
   },
-  onPagiClick: function(e) {
+  onNextPage: function() {
     var that = this;
-    this.addLoading();
-    if ($(e.target).data("dir") === -1) {
-      this.collection.getPreviousPage().done(function() {
-        that.refresh();
-      });
-    } else {
+    if (this.collection.hasNextPage() && !this.loadingNext) {
+      this.$('.hint').html('(￣▽￣") 加载中');
+      this.loadingNext = true;
       this.collection.getNextPage().done(function() {
         that.refresh();
+        var params = that.options.params;
+        params.page = that.collection.state.currentPage;
+        var queryString = $.param(params);
+        var url = 'courses?' + queryString;
+        that.options.router.navigate(url, {
+          trigger: false,
+          replace: true
+        });
       });
     }
   },
@@ -60,20 +105,24 @@ var courses_view = Backbone.View.extend({
     this.addLoading();
     this.collection.getPage(this.options.params.page - 0).done(function() {
       that.refresh();
-    })
+    });
+    //this.collection.fetch().done(function() {
+    //  that.refresh();
+    //  that.collection.switchMode('infinite');
+    //});
   },
   onSortClick: function(e) {
-    var that = this;
-    this.collection.setSorting($(e.target).data("sort"));
-    this.addLoading();
-    $(".s_item").removeClass("active");
-    $(e.target).addClass("active");
-    this.collection.fetch().done(function() {
-      that.refresh();
+    var params = this.options.params;
+    params.page = 1;
+    params.sort = $(e.target).data("sort");
+    var queryString = $.param(params);
+    var url = 'courses?' + queryString;
+    this.options.router.navigate(url, {
+        trigger: true
     });
   },
   render: function() {
-    this.$(".list").html("");
+    //this.$(".list").html("");
     var that = this;
     this.collection.forEach(function(course) {
       var coursesItemView = new courses_item_view({

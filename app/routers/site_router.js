@@ -130,6 +130,7 @@ var SiteRouter = Backbone.Router.extend({
       hasPrev: false
     });
   },
+  // should be seprate to a single util moudule
   parseQueryString: function(queryString) {
     var params = {};
     if (queryString) {

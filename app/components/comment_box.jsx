@@ -68,6 +68,7 @@ class CommentBox extends React.Component{
 			})
 	}
 	_onAddDataHandler(val){
+		val = val.replace(/(^\s*)|(\s*$)/g, "");
 		var arr = this.state.tags
 		for(var i=0;i<arr.length;i++){
 			if(arr[i] === val){
