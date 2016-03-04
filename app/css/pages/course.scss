@@ -57,12 +57,15 @@
         	text-align: center;
         }
         .btn_text{
+            opacity:1;
             font-size:14px;/*px*/
             display:inline-block;
             vertical-align: middle;
+            transition:all 3s;
         }
         .like{
         	margin-right: 19.5px;
+            overflow:hidden;
         }
         .w_comment svg,.like svg{
             display:inline-block;
@@ -81,6 +84,34 @@
         }
         g#outline{
             stroke:#ffffff;
+        }
+        .heart_icon_filled{
+            transform:translateX(-200px);
+        }
+        .heart_icon_filled use{
+            fill:#fff;
+        }
+        .animating .btn_text{
+            opacity:0;
+        }
+        .animating .heart_icon{
+            transform:translateX(-200px);
+            animation:heart_scroll linear 2s;
+        }
+        .animating .heart_icon_filled{
+            transform:translateX(0px);
+            animation:heart_scroll_filled linear 4s;
+        }
+        @keyframes heart_scroll
+        {
+            0% {transform:translateX(0px) rotate(0deg);}
+            100% {transform:translateX(200px) rotate(720deg);}
+        }
+        @keyframes heart_scroll_filled
+        {
+            0% {transform:translateX(-200px) rotate(720deg);}
+            50% {transform:translateX(-200px) rotate(720deg);}
+            100% {transform:translateX(0px) rotate(0deg);}
         }
     }
     .tags{

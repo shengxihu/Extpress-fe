@@ -26,24 +26,18 @@ var courses_view = Backbone.View.extend({
     var page = this.options.params.page - 0;
     if (page > 1) {
       this.addLoading();
-      this.collection.state.currentPage = 0;
-      this.collection.getFirstPage().done(function(){
-        that.count = that.count + 1;
-        for (var i = 1; i <= (page-1); i++) {
-        that.collection.getNextPage().done(function() {
-          that.count = that.count + 1;
-          console.log(that.count);
-          if (that.count === page) {
-            for (var i = 1; i <= page; i++) {
-              that.collection.getPage(i).done(function() {
-                that.refresh();
-              })
-            }
+      this.collection.switchMode('client', {fetch:false});
+      this.collection.fetch().done(function() {
+        that.refresh(true);
+        that.collection.switchMode('infinite', {fetch:false});
+        that.collection.links[page] = '/api/v1.0/courses/?' + $.param(that.options.params);
+        that.collection.queryParams.num = null;
+        that.collection.getPage(page, {fetch:true}).done(function(){
+          if (!that.collection.hasNextPage()) {
+            that.$('.hint').html('(￣▽￣") 已经是全部的结果啦');
           }
-        });
-      }
-      })
-      
+        })
+      });
     } else {
       this.getFirstPageDone();
     }
@@ -74,8 +68,8 @@ var courses_view = Backbone.View.extend({
     this.loading_view = new loading_view();
     this.$el.append(this.loading_view.render().el);
   },
-  refresh: function() {
-    this.render();
+  refresh: function(full) {
+    this.render(full);
     this.loading_view.remove();
     this.loadingNext = false;
     if (!this.collection.hasNextPage()) {
@@ -84,6 +78,7 @@ var courses_view = Backbone.View.extend({
   },
   onNextPage: function() {
     var that = this;
+    console.log(this.collection.hasNextPage(),this.loadingNext);
     if (this.collection.hasNextPage() && !this.loadingNext) {
       this.$('.hint').html('(￣▽￣") 加载中');
       this.loadingNext = true;
@@ -121,16 +116,26 @@ var courses_view = Backbone.View.extend({
         trigger: true
     });
   },
-  render: function() {
+  render: function(full) {
     //this.$(".list").html("");
+  
     var that = this;
-    this.collection.forEach(function(course) {
+    if (full){
+      this.collection.fullCollection.forEach(function(course) {
       var coursesItemView = new courses_item_view({
         model: course
       });
       this.$(".list").append(coursesItemView.render().el);
-    }, that);
-    return this;
+      }, that);
+    }else{
+      this.collection.forEach(function(course) {
+        var coursesItemView = new courses_item_view({
+          model: course
+        });
+        this.$(".list").append(coursesItemView.render().el);
+      }, that);
+      return this;
+    }
   }
 });
 

@@ -8,8 +8,7 @@ var Courses = Backbone.PageableCollection.extend({
     this.params = options.params;
     this.state.currentPage = this.params.page - 0;
     this.state.sortKey = this.params.sort;
-    console.log(this.state);
-    this.queryParams.foo = 300;
+    this.queryParams.num = this.state.currentPage * this.state.pageSize;
   },
   url: "/api/v1.0/courses/",
 

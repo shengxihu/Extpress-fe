@@ -373,14 +373,14 @@
                     <p>
                         <%= teacher %>
                     </p>
-                    <p>
-                        
-                    </p>
                 </div>
             </div>
             <div class="btns space">
                 <div class="btn like space" id="course_like">
-                   <svg viewBox="0 0 17 15">
+                    <svg viewBox="0 0 17 15" class="heart_icon_filled">
+                        <use xlink:href="#heart_s"></use>
+                    </svg>
+                   <svg viewBox="0 0 17 15" class="heart_icon">
                         <use xlink:href="#heart_s"></use>
                     </svg>
                     <span class="btn_text"><%= likes %></span>
