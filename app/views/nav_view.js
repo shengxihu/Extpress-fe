@@ -19,6 +19,9 @@ var nav_view = Backbone.View.extend({
         "click .search":"toggleSearchDisplay"
     },
     onLinkClicked:function(e){
+        if (this.showSearchFlag) {
+            this.toggleSearchDisplay();
+        }
 		this.router.navigate($(e.target).data("link"),{trigger: true});
     },
     toggleSearchDisplay:function(){
@@ -32,7 +35,6 @@ var nav_view = Backbone.View.extend({
             $(".search_view").removeClass("search_active").addClass("search_hidden");
         }else{
             this.showSearchFlag = true;
-            //this.listenTo(view, 'clickRemove', this.removeSearch);
             var prevSet= {
                 currentPage:model.get("currentPage"),
                 hasPrev:model.get("hasPrev")

@@ -5,12 +5,19 @@ var Course = require("../models/courses_item.js");
 
 var Courses = Backbone.PageableCollection.extend({
   initialize: function(model, options) {
-    this.params = options.params;
+    this.options = options
+    this.params = this.options.params;
     this.state.currentPage = this.params.page - 0;
     this.state.sortKey = this.params.sort;
-    this.queryParams.num = this.state.currentPage * this.state.pageSize;
+    if (this.params.type == 'courses' && this.params.page > 1){
+      this.queryParams.num = this.state.currentPage * this.state.pageSize;
+    }else{
+      this.queryParams.keywords = this.params.keywords
+    }
   },
-  url: "/api/v1.0/courses/",
+  url: function(){
+    return "/api/v1.0/" +  this.params.type + "/"
+  },
 
   model: Course,
 

@@ -20,7 +20,10 @@ var search_view = Backbone.View.extend({
 		if(!this.$('.search_input').val()){
 			console.log("no value!");
 		}else{
-			var url = "search_result/" + this.$('.search_input').val();
+            this.trigger("hide");
+            var params = {page:1,type:'search'};
+            params.keywords = this.$('.search_input').val();
+			var url = "search_result?" + $.param(params);
 			this.options.router.navigate(url,{trigger: true});
 		}
     },

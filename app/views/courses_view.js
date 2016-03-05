@@ -61,7 +61,6 @@ var courses_view = Backbone.View.extend({
   onScroll: function() {
     if ((window.pageYOffset + this.$body.height()) >= (this.$viewport.height() - 200)) {
       this.onNextPage()
-      console.log("at bottom!!");
     }
   },
   addLoading: function() {
@@ -78,7 +77,6 @@ var courses_view = Backbone.View.extend({
   },
   onNextPage: function() {
     var that = this;
-    console.log(this.collection.hasNextPage(),this.loadingNext);
     if (this.collection.hasNextPage() && !this.loadingNext) {
       this.$('.hint').html('(￣▽￣") 加载中');
       this.loadingNext = true;

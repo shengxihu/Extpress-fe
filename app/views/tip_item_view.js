@@ -11,7 +11,7 @@ var tip_item_view = Backbone.View.extend({
 		"click .tip_link":"onLinkClicked"
 	},
 	onLinkClicked:function(e){
-		this.options.router.navigate($(e.target).data("link"),{trigger: true});
+		this.options.router.navigate("tip/" + $(e.target).data("link"),{trigger: true});
 	},
 	render: function(){
 		this.$el.html(this.template(this.model.toJSON()));

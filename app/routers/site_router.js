@@ -17,7 +17,7 @@ var SiteRouter = Backbone.Router.extend({
   routes: {
     '': 'main',
     'login': 'login',
-    'search_result/:keyword(/)': 'search_result',
+    'search_result?*queryString': 'search_result',
     'course/:id(/)': 'course',
     'tip/:id(/)': 'tip',
     'courses?*queryString': 'courses',
@@ -31,20 +31,11 @@ var SiteRouter = Backbone.Router.extend({
     this.userModel = options.user_model;
   },
   switchView: function(view) {
-    if (this.s_view) {
-      this.removeSearchView();
-    }
     if (this.currentView) {
       this.currentView.remove();
     }
     this.$container.append(view.render().el)
     this.currentView = view;
-  },
-  removeSearchView: function() {
-    if (this.s_view) {
-      this.s_view.remove();
-      this.s_view = null;
-    }
   },
   main: function() {
     var view = new main_view({
@@ -56,8 +47,17 @@ var SiteRouter = Backbone.Router.extend({
       hasPrev: false
     });
   },
-  search_result: function(keyword) {
-    console.log('you have searched ' + keyword);
+  search_result: function(queryString) {
+    var params = this.parseQueryString(queryString);
+    var view = new courses_view({
+      router: this,
+      params:params
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "搜索结果",
+      hasPrev: true
+    });
   },
   course: function(id) {
     var view = new course_view({

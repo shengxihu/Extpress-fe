@@ -1,7 +1,7 @@
 var Backbone = require("Backbone");
 
 var Tip = Backbone.Model.extend({
-	urlRoot:'/api/tip'
+	urlRoot:'/api/v1.0/tips'
 })
 
 module.exports = Tip;

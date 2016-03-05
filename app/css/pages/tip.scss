@@ -1,0 +1,60 @@
+@import "../common/common.scss";
+@import "../mixin/button.scss";
+
+/**
+ * tip_view
+ * by zindex
+ */
+
+.tip_view{
+	width: 328px;
+	padding-top: 14px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.tip_title{
+	font-size: 20px;/*px*/
+	line-height: 28px;/*px*/
+	padding-bottom: 16px;
+	border-bottom:1px solid $bg_ec;
+	color:$font_333;
+}
+.tip_info{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color:$font_999;
+}
+.tip_info_item{
+	font-size: 14px;/*px*/
+	display:inline-block;
+	width:50%;
+}
+.tip_info_date{
+	text-align: right;
+}
+.tip_content{
+	font-size: 14px;/*px*/
+	color:$font_333;
+	line-height: 18px;/*px*/
+}
+.tip_btns{
+	text-align: center;
+}
+.tip_btn{
+	@include button_main(154px, 40px, $main_orange);
+}
+.tip_btn_like{
+	margin-right: 20px;
+}
+.tip_btn--icon{
+	display:inline-block;
+	width:16px;/*px*/
+	height:15px;/*px*/
+	vertical-align: middle;
+}
+.tip_btn--icon use{
+	fill:none;
+}
+.tip_btn--icon use svg g.tip_stroke{
+	stroke:$main_orange;
+}
