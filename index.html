@@ -187,7 +187,7 @@
         </symbol>
         <symbol id="heart_s">
         	<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="课程详情" transform="translate(-57.000000, -236.000000)" stroke="#000">
+        <g id="课程详情" transform="translate(-57.000000, -236.000000)" stroke="#fff">
             <g id="Group" transform="translate(0.000000, 80.272000)">
                 <g id="喜欢-+-Shape-Copy-3" transform="translate(58.000000, 155.000000)">
                     <path d="M7.5,4.4375 C6.94166667,3.03025 5.3775,2 3.75,2 C1.63083333,2 0,3.56975 0,5.65625 C0,8.5235625 3.16083333,10.740875 7.5,15 C11.8391667,10.740875 15,8.5235625 15,5.65625 C15,3.56975 13.3691667,2 11.25,2 C9.62083333,2 8.05833333,3.03025 7.5,4.4375 Z" id="Shape-Copy-3"></path>
@@ -371,8 +371,7 @@
         <div class="circle circle_fadeIn"></div>
     </script>
     <script type="text/template" id="course_info_template">
-        <div class="info" style="background-image:url('/static/x_m/course_bg.png')">
-            <div class="overlay mask"></div>
+        <div class="info" style="background-image:url('http://7oxh2b.com1.z0.glb.clouddn.com/xueer_bg_<%= Math.floor(Math.random()*4) + 1  %>.png')">
             <div class="overlay top">
             <div class="basic">
                 <div class="title">
@@ -386,13 +385,15 @@
             </div>
             <div class="btns space">
                 <div class="btn like space" id="course_like">
-                    <svg viewBox="0 0 17 15" class="heart_icon_filled">
-                        <use xlink:href="#heart_s"></use>
-                    </svg>
-                   <svg viewBox="0 0 17 15" class="heart_icon">
-                        <use xlink:href="#heart_s"></use>
-                    </svg>
-                    <span class="btn_text"><%= likes %></span>
+                   <div class="btn_container">
+                       <svg viewBox="0 0 17 15" class="heart_icon">
+                            <use xlink:href="#heart_s"></use>
+                       </svg>
+                       <span class="btn_text"><%= likes ? likes : 0 %></span>
+                       <svg viewBox="0 0 17 15" class="heart_icon_filled">
+                            <use xlink:href="#heart_s"></use>
+                       </svg>
+                   </div>
                 </div>
                 <div class="btn w_comment space" id="w_comment">
                     <svg viewBox="0 0 17 14">
@@ -446,7 +447,7 @@
                         <svg class="like_icon <% if (liked){ %>liked<% } %>">
                             <use xlink:href="#heart_f"></use>
                         </svg>
-                        <span class="like_count"><%= likes %></span>
+                        <span class="like_count"><%= likes  %></span>
                     </div>
 				</div>
             </div>
@@ -499,12 +500,12 @@
                     <span class="va_item comments">
                         <svg>
                             <use xlink:href="#comments_fill"></use>
-                        </svg><%= views %>
+                        </svg><%= views ? views : 0 %>
                     </span>
                     <span class="va_item likes">
                         <svg>
                             <use xlink:href="#heart_f"></use>
-                        </svg><%= likes %>
+                        </svg><%= likes ? likes : 0 %>
                     </span>
                 </div>
             </div>
@@ -600,6 +601,16 @@
         <svg class="arrow_icon">
                <use xlink:href="#back_to_top"></use>
         </svg>   
+     </script>
+     <script type="text/template" id="dialog_template">
+        <div class="dialog_top">
+            <div class="dialog_img"></div>
+            <div class="dialog_text">请登录后操作</div>
+        </div> 
+        <div class="dialog_btns space">
+            <div class="dialog_btn dialog_btn_cancel">等会再说</div>
+            <div class="dialog_btn dialog_btn_login">去登录</div>
+        </div> 
      </script>
     <script src="/static/x_m/bundle.js?v=2333"></script>
 </body>

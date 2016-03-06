@@ -22,7 +22,6 @@ var SiteRouter = Backbone.Router.extend({
     'tip/:id(/)': 'tip',
     'courses?*queryString': 'courses',
     'user(/:username)': 'user',
-    'login': 'login',
     'register': 'register'
   },
   initialize: function(options) {
@@ -87,7 +86,6 @@ var SiteRouter = Backbone.Router.extend({
   },
   courses: function(queryString) {
     var params = this.parseQueryString(queryString);
-    console.log(params);
     var view = new courses_view({
       router: this,
       params:params

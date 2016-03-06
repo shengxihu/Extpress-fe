@@ -7,6 +7,7 @@ var TipListCollection = require('../collections/tip_list.js');
 //load view
 var tip_item_view = require('./tip_item_view.js');
 
+
 var main_tip_view = Backbone.View.extend({
 	className : 'tip',
 	initialize:function(options){

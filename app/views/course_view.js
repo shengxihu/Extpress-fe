@@ -26,12 +26,14 @@ var course_view = Backbone.View.extend({
     this.courseInfoView = new course_info_view({
       id: this.options.id,
       course_view: this,
-      userModel: this.options.userModel
+      userModel: this.options.userModel,
+      router:this.options.router
     });
     this.commentsView = new comments_view({
       id: this.options.id,
       course_view: this,
-      userModel: this.options.userModel
+      userModel: this.options.userModel,
+      router:this.options.router
     });
     this.listenTo(this.courseInfoView, "loaded", this.onLoaded);
     this.listenTo(this.commentsView, "loaded", this.onLoaded);

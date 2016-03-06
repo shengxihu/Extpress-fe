@@ -61,6 +61,7 @@ var comments_view = Backbone.View.extend({
     if (this.new_id) {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
+          router:this.options.router,
           model: comment
         });
         if (comment.id === this.new_id) {
@@ -78,6 +79,7 @@ var comments_view = Backbone.View.extend({
     } else {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
+          router:this.options.router,
           model: comment
         });
         this.$(".comments_view").append(commentItemView.render().el);

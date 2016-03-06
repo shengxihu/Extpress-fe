@@ -7,8 +7,12 @@ var CommentLike = require("../models/comment_like.js");
 // load cookie
 var cookie = require("../util/cookie.js");
 
+// load component
+var dialog_view = require('../components/dialog.js');
+
 var comment_item_view = Backbone.View.extend({
-  initialize: function() {
+  initialize: function(options) {
+    this.options = options;
     if (this.model.get("body").length > 60) {
       this.model.set({
         fold: true,
@@ -33,11 +37,15 @@ var comment_item_view = Backbone.View.extend({
       fold: false
     });
   },
-  onLikeClick: function() {
+  onLikeClick: function(e) {
     var that = this;
     if (!cookie.getCookie("token")) {
-      alert("请登录！");
+      var dialog = new dialog_view({router:this.options.router});
+      this.$el.append( dialog.render().el );
+    } else if (this.model.get('liked')){
+      return;
     } else {
+      this.$('svg').addClass('liked');
       this.like_model = new CommentLike({
         c_id: this.model.id
       });
@@ -47,7 +55,7 @@ var comment_item_view = Backbone.View.extend({
       }).done(function(data) {
         that.model.set({
           likes: data.likes,
-          liked: data.liked
+          liked: true
         });
       });
     }
