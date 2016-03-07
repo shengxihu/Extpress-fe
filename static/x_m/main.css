@@ -1,3 +1,38 @@
+/** css reset **/
+body {
+  height: 100%;
+  font-family: "Helvetica","PingFang SC","STHeiti","sans-serif";
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent; }
+
+html, body, button, form, textarea, input, p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+input, button, textarea {
+  border: 0;
+  outline: 0;
+  box-sizing: content-box; }
+
+html {
+  height: 100%; }
+
+a {
+  text-decoration: none; }
+
+textarea {
+  display: block; }
+
+/**
+ *  page basic style
+ */
+.pageview {
+  position: relative; }
+
+svg path {
+  transition: inherit;
+  stroke-dashoffset: inherit; }
+
 /**
  * page index
  */
@@ -598,7 +633,8 @@ svg g {
   height: 48px;
   background-color: #ECECEC;
   line-height: 48px;
-  color: #666666; }
+  color: #666666;
+  position: relative; }
   .menu .sort, .menu .filter {
     height: 100%;
     font-size: 14px;
@@ -617,6 +653,45 @@ svg g {
   .menu .filter {
     width: 27.7%;
     text-align: center; }
+  .menu .filter_list {
+    display: none;
+    width: 100px;
+    position: absolute;
+    top: 48px;
+    right: 0px;
+    background-color: #ECECEC;
+    font-size: 14px;
+    /*px*/ }
+  .menu label {
+    display: inline-block;
+    line-height: 14px;
+    /*px*/ }
+  .menu .filter_icon {
+    display: inline-block;
+    width: 8px;
+    /*px*/
+    height: 8px;
+    /*px*/
+    text-align: center;
+    line-height: 12px;
+    border: 1px solid #979797;
+    /*px*/
+    padding: 1.5px;
+    /*px*/
+    vertical-align: middle;
+    margin-left: 13px; }
+  .menu .filter_text {
+    display: inline-block;
+    vertical-align: middle; }
+  .menu input[type="radio"] {
+    display: none; }
+  .menu .filter_icon use {
+    transition: stroke-dashoffset .4s linear; }
+  .menu input[type="radio"] ~ label use {
+    stroke-dashoffset: 12px;
+    /*no*/ }
+  .menu input[type="radio"]:checked ~ label use {
+    stroke-dashoffset: 0px; }
 
 .list {
   width: 100%; }
@@ -1159,34 +1234,3 @@ svg g {
 
 .dialog_btn_cancel {
   border-right: 1px solid #fff; }
-
-/** css reset **/
-body {
-  height: 100%;
-  font-family: "Helvetica","PingFang SC","STHeiti","sans-serif";
-  line-height: 1;
-  -webkit-tap-highlight-color: transparent; }
-
-html, body, button, form, textarea, input, p, h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0; }
-
-input, button, textarea {
-  border: 0;
-  outline: 0;
-  box-sizing: content-box; }
-
-html {
-  height: 100%; }
-
-a {
-  text-decoration: none; }
-
-textarea {
-  display: block; }
-
-/**
- *  page basic style
- */
-.pageview {
-  position: relative; }

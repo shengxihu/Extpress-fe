@@ -51,8 +51,12 @@ var courses_view = Backbone.View.extend({
   events: {
     'click .s_item': 'onSortClick',
     'click .p_item': 'onPagiClick',
-    'click .c_link': 'onCourseClick'
+    'click .c_link': 'onCourseClick',
+    'click .filter': 'onFilterClick'
   },
+  onFilterClick: function(){
+    this.$('.filter_list').toggle();
+  },  
   onCourseClick: function(e) {
     this.options.router.navigate("course/" + $(e.target).data("id"), {
       trigger: true
