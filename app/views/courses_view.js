@@ -18,7 +18,7 @@ var courses_view = Backbone.View.extend({
 
     var that = this;
     this.options = options;
-    this.$el.html(this.template());
+    this.$el.html(this.template({params:this.options.params}));
     var courses = new Courses(null, {
       params: this.options.params
     });
@@ -56,6 +56,17 @@ var courses_view = Backbone.View.extend({
   },
   onFilterClick: function(){
     this.$('.filter_list').toggle();
+    var val = $("input[name='category']:checked").val();
+    if (val){
+      var params = this.options.params;
+      params.page = 1;
+      params.main_cat = val
+      var queryString = $.param(params);
+      var url = 'courses?' + queryString;
+      this.options.router.navigate(url, {
+          trigger: true
+      });
+    }
   },  
   onCourseClick: function(e) {
     this.options.router.navigate("course/" + $(e.target).data("id"), {

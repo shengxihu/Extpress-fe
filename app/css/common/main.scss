@@ -23,7 +23,7 @@ a{
 textarea{
 	display:block;
 }
-
+a:visited { color:#999 };
 
 /**
  *  page basic style
@@ -38,6 +38,10 @@ svg path{
 	stroke-dashoffset:inherit;
 }
 
+// token
+#token{
+	display:none;
+}
 @import "../pages/index.scss";
 @import "../pages/search.scss";
 @import "../pages/course.scss";

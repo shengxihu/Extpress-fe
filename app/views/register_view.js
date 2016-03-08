@@ -14,13 +14,19 @@ var register_view = Backbone.View.extend({
 		"click .submit":"onSubmitClick"
 	},
 	onSubmitClick:function(e){
+
+		var token =  "Basic " + $('#token').html();
 		var that = this;
 		var m = new Register({
 			username:this.$("form .username").val(),
 			password:btoa(this.$("form .password").val()),
 			email:this.$("form .email").val()
 		});
-		m.save().done(function(){
+		m.save({}, {
+			headers: {
+				Authorization: token
+			} 
+		}).done(function(){
 			that.options.router.navigate("/login",{trigger:true});
 		})
 	},

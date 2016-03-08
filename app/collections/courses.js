@@ -9,6 +9,7 @@ var Courses = Backbone.PageableCollection.extend({
     this.params = this.options.params;
     this.state.currentPage = this.params.page - 0;
     this.state.sortKey = this.params.sort;
+    this.queryParams.main_cat = this.params.main_cat;
     if (this.params.type == 'courses' && this.params.page > 1){
       this.queryParams.num = this.state.currentPage * this.state.pageSize;
     }else{
@@ -37,10 +38,6 @@ var Courses = Backbone.PageableCollection.extend({
     totalRecords: null,
     sortKey: "sort",
     order: null,
-    directions: {
-      "-1": "asc",
-      "1": "desc"
-    },
     per_page: null
   }
 
