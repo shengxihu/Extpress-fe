@@ -48,3 +48,5 @@ $("#nav").append( navView.render().el );
 Backbone.history.start({
     pushState: !0
 });
+
+$('.viewport').show();

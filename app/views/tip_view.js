@@ -14,7 +14,8 @@ var tip_view = Backbone.View.extend({
 		this.options = options;
 	},
 	events:{
-		"click .tip_btn_like":"onLikeClicked"
+		"click .tip_btn_like":"onLikeClicked",
+		"click .tip_btn_back":"onBackClicked"
 	},
 	onLikeClicked:function(){
 		var that = this;
@@ -32,6 +33,9 @@ var tip_view = Backbone.View.extend({
         // re-render
         that.$el.html(that.template(that.model.toJSON()));
     });
+	},
+	onBackClicked:function(){
+		this.options.router.navigate("",{trigger: true});
 	},
 	render: function(){
 		var that = this;
