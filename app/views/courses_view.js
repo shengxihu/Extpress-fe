@@ -130,6 +130,7 @@ var courses_view = Backbone.View.extend({
     });
   },
   render: function(full) {
+    console.log("render!");
     //this.$(".list").html("");
   
     var that = this;
