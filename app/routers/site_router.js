@@ -30,7 +30,6 @@ var SiteRouter = Backbone.Router.extend({
     this.userModel = options.user_model;
   },
   switchView: function(view) {
-    console.log('switch!!');
     if (this.currentView) {
       this.currentView.remove();
     }
@@ -134,7 +133,6 @@ var SiteRouter = Backbone.Router.extend({
       scrollArr.push(document.body.scrollTop);
       this.navModel.set({scrollPos:scrollArr});
       if (callback) callback.apply(this, args);
-      console.log( this.navModel.get('scrollPos'));
   },
   // should be seprate to a single util moudule
   parseQueryString: function(queryString) {

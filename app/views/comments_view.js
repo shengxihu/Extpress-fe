@@ -24,6 +24,8 @@ var comments_view = Backbone.View.extend({
       that.render();
       if (that.collection.hasNextPage()) {
         that.$(".comments").append("<div class='more_comments'>展开更多评价</div>");
+      }else{
+        that.$(".comments").append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>");
       }
       that.trigger("loaded");
       var id = "#c_" + that.new_id;

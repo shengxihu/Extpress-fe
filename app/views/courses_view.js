@@ -129,10 +129,7 @@ var courses_view = Backbone.View.extend({
         trigger: true
     });
   },
-  render: function(full) {
-    console.log("render!");
-    //this.$(".list").html("");
-  
+  render: function(full) {  
     var that = this;
     if (full){
       this.collection.fullCollection.forEach(function(course) {
