@@ -2,7 +2,7 @@ var Backbone = require("Backbone");
 var _ = require('underscore');
 
 //load model
-var Register = require('../models/register.js');
+var Register = require('../models/auth_register.js');
 
 var register_view = Backbone.View.extend({
 	className : 'register_view l_r_view',
@@ -15,7 +15,7 @@ var register_view = Backbone.View.extend({
 	},
 	onSubmitClick:function(e){
 
-		var token =  "Basic " + $('#token').html();
+		var token =  "Basic " + $("#grantToken").html()
 		var that = this;
 		var m = new Register({
 			username:this.$("form .username").val(),
