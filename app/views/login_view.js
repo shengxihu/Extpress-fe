@@ -44,33 +44,31 @@ var login_view = Backbone.View.extend({
             Authorization: "Basic " + $("#grantToken").html()
           }
         }).done(function(flag) {
-          if (flag.user === "ture") {
+          if (flag.user == "true") {
             // get token
-            that.getToken();
+            that.getToken(btoa(res.email+ ":" + "muxi304"));
           } else {
             // register new user
             var token = "Basic " + $("#token").html();
             var m = new Register({
               username: res.username,
               password: btoa("muxi304"),
-              email: res.email,
-              roleid: 1
+              email: res.email
             });
             m.save({}, {
               headers: {
                 Authorization: token
               }
             }).done(function() {
-              that.getToken();
+              that.getToken(btoa(res.email+ ":" + "muxi304"));
             });
           }
         });
       });
     });
   },
-  getToken: function() {
+  getToken: function(auth) {
     var that = this;
-    var auth = btoa($(".username").val() + ":" + $(".password").val());
     this.options.userModel.fetch({
       headers: {
         Authorization: "Basic " + auth
