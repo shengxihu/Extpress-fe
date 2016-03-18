@@ -70,8 +70,10 @@ Backbone.history.start({
 
 $('.viewport').show();
 
-if (window.location.pathname.length > 1){
-	siteRouter.navigate(window.location.pathname.slice(1),{trigger:true});
+if (window.location.pathname.length > 1) {
+  siteRouter.navigate(window.location.pathname.slice(1), {
+    trigger: true
+  });
 }
 
 function scroll() {
