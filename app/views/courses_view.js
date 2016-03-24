@@ -45,8 +45,8 @@ var courses_view = Backbone.View.extend({
     // cache
     this.$body = $('body');
     this.$viewport = $('.viewport');
-
-    window.addEventListener("scroll", this.onScroll.bind(this));
+    this.onScrollBind = this.onScroll.bind(this)
+    window.addEventListener("scroll", this.onScrollBind);
   },
   events: {
     'click .s_item': 'onSortClick',
@@ -60,7 +60,7 @@ var courses_view = Backbone.View.extend({
     if (val){
       var params = this.options.params;
       params.page = 1;
-      params.main_cat = val
+      params.main_cat = val;
       var queryString = $.param(params);
       var url = 'courses?' + queryString;
       this.options.router.navigate(url, {
@@ -75,7 +75,7 @@ var courses_view = Backbone.View.extend({
   },
   onScroll: function() {
     if ((window.pageYOffset + this.$body.height()) >= (this.$viewport.height() - 200)) {
-      this.onNextPage()
+      if(!this.loadingNext){this.onNextPage();}
     }
   },
   addLoading: function() {
@@ -85,18 +85,16 @@ var courses_view = Backbone.View.extend({
   refresh: function(full) {
     this.render(full);
     this.loading_view.remove();
-    this.loadingNext = false;
     if (!this.collection.hasNextPage()) {
       this.$('.hint').html('(￣▽￣") 已经是全部的结果啦');
     }
   },
   onNextPage: function() {
     var that = this;
-    if (this.collection.hasNextPage() && !this.loadingNext) {
-      this.$('.hint').html('(￣▽￣") 加载中');
+    if (this.collection.hasNextPage()) {
       this.loadingNext = true;
+      this.$('.hint').html('(￣▽￣") 加载中');
       this.collection.getNextPage().done(function() {
-        that.refresh();
         var params = that.options.params;
         params.page = that.collection.state.currentPage;
         var queryString = $.param(params);
@@ -105,6 +103,8 @@ var courses_view = Backbone.View.extend({
           trigger: false,
           replace: true
         });
+        that.refresh();
+        that.loadingNext = false;
       });
     }
   },
@@ -114,10 +114,6 @@ var courses_view = Backbone.View.extend({
     this.collection.getPage(this.options.params.page - 0).done(function() {
       that.refresh();
     });
-    //this.collection.fetch().done(function() {
-    //  that.refresh();
-    //  that.collection.switchMode('infinite');
-    //});
   },
   onSortClick: function(e) {
     var params = this.options.params;
@@ -128,6 +124,10 @@ var courses_view = Backbone.View.extend({
     this.options.router.navigate(url, {
         trigger: true
     });
+  },
+  remove: function() {
+    window.removeEventListener("scroll", this.onScrollBind)
+    Backbone.View.prototype.remove.call(this);
   },
   render: function(full) {  
     var that = this;

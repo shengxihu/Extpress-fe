@@ -418,6 +418,8 @@
         </div>
         <div class="tags space"> 
             <span class="tags_item"><%= main_category %></span>
+            <span class="tags_item"><%= sub_category %></span>
+            <span class="tags_item"><%= credit_category %></span>
             <% if(hot_tags.length > 0) { %>
                 <% _.each(hot_tags.split(" "), function(i) { %>
                 <span class="tags_item"><%= i %></span>
