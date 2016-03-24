@@ -79,11 +79,11 @@ if (window.location.pathname.length > 1) {
 function scroll() {
   var scrollArr = navModel.get('scrollPos');
   scrollArr.pop();
-  window.scrollTo(0, scrollArr[scrollArr.length - 1]);
+  window.scrollTo(0, scrollArr.splice([scrollArr.length - 1], 2)[0]);
 }
 
 if (navigator.platform === "iPhone") {
   window.onpopstate = function() {
-    setTimeout(scroll, 200);
+    setTimeout(scroll, 500);
   };
 }
