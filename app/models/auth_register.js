@@ -4,7 +4,7 @@ var AuthRegister = Backbone.Model.extend({
 	initialize:function(options){
 		this.options = options;
 	},
-	url:"http://115.28.152.113:5050/api/users/"
+	url:"http://120.25.166.213:5050/api/users/"
 })
 
 module.exports = AuthRegister;
