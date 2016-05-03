@@ -1,7 +1,7 @@
 var Backbone = require("Backbone");
 var util = require("../util/util");
 
-//load views
+// load views
 var main_view = require("../views/main_view");
 var course_view = require("../views/course_view");
 var tip_view = require("../views/tip_view");
@@ -9,20 +9,22 @@ var courses_view = require("../views/courses_view");
 var user_view = require("../views/user_view");
 var login_view = require("../views/login_view");
 var register_view = require("../views/register_view");
+var error_view = require("../views/error_view");
 
-//load model
-var Tip = require('../models/tip.js');
+// load model
+var Tip = require("../models/tip.js");
 
 var SiteRouter = Backbone.Router.extend({
   routes: {
-    '': 'main',
-    'login': 'login',
-    'search_result?*queryString': 'search_result',
-    'course/:id(/)': 'course',
-    'tip/:id(/)': 'tip',
-    'courses?*queryString': 'courses',
-    'user(/:username)': 'user',
-    'register': 'register'
+    "": "main",
+    "login": "login",
+    "search_result?*queryString": "search_result",
+    "course/:id(/)": "course",
+    "tip/:id(/)": "tip",
+    "courses?*queryString": "courses",
+    "user(/:username)": "user",
+    "register": "register",
+    "error": "error"
   },
   initialize: function(options) {
     this.$container = options.container;
@@ -50,7 +52,7 @@ var SiteRouter = Backbone.Router.extend({
     var params = this.parseQueryString(queryString);
     var view = new courses_view({
       router: this,
-      params:params
+      params: params
     });
     this.switchView(view);
     this.navModel.set({
@@ -88,7 +90,7 @@ var SiteRouter = Backbone.Router.extend({
     var params = this.parseQueryString(queryString);
     var view = new courses_view({
       router: this,
-      params:params
+      params: params
     });
     this.switchView(view);
     this.navModel.set({
@@ -128,24 +130,39 @@ var SiteRouter = Backbone.Router.extend({
       hasPrev: false
     });
   },
-  execute: function(callback, args, name) {
-      var scrollArr = this.navModel.get('scrollPos');
-      scrollArr.push(document.body.scrollTop);
-      this.navModel.set({scrollPos:scrollArr});
-      if (callback) callback.apply(this, args);
+  execute: function(callback, args) {
+    var scrollArr = this.navModel.get("scrollPos");
+    scrollArr.push(document.body.scrollTop);
+    this.navModel.set({
+      scrollPos: scrollArr
+    });
+    if (callback) {
+      callback.apply(this, args);
+    }
+  },
+  error: function() {
+    var view = new error_view({
+      router: this
+    });
+    this.switchView(view);
+    this.navModel.set({
+      currentPage: "∑(っ °Д °;)っ出错啦",
+      hasPrev: false
+    });
   },
   // should be seprate to a single util moudule
   parseQueryString: function(queryString) {
     var params = {};
     if (queryString) {
       _.each(
-        _.map(decodeURI(queryString).split(/&/g), function(el, i) {
-          var aux = el.split('='),
-            o = {};
+        _.map(decodeURI(queryString).split(/&/g), function(el) {
+          var aux = el.split("=");
+          var o = {};
           if (aux.length >= 1) {
-            var val = undefined;
-            if (aux.length == 2)
+            var val;
+            if (aux.length === 2) {
               val = aux[1];
+            }
             o[aux[0]] = val;
           }
           return o;

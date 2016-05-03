@@ -1,0 +1,31 @@
+@import "../common/common.scss";
+@import "../mixin/button.scss";
+
+/**
+ * error.scss
+ * 
+ * by zindex
+ */
+
+.error{
+	.container{
+		padding-top: 100px;
+		width:217px;
+		margin:0 auto;
+		text-align: center;
+		img{
+			display:block;
+			width: 100%;
+			height:167px;
+		}
+		.text{
+			color: $font_999;
+			font-size: 14px;/*px*/
+			margin-top: 18px;
+		}
+		.btn{
+			@include button_main(156px, 40px, $main_orange);
+			margin-top: 20px;
+		}
+	}
+}

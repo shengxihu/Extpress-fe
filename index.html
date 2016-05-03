@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
+<link rel="dns-prefetch" href="http://static.muxistudio.com" />
 <link rel="apple-touch-icon" sizes="57x57" href="/static/x_m/favicon/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/static/x_m/favicon/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/static/x_m/favicon/apple-icon-72x72.png">
@@ -10,7 +11,6 @@
 <link rel="apple-touch-icon" sizes="144x144" href="/static/x_m/favicon/apple-icon-144x144.png">
 <link rel="apple-touch-icon" sizes="152x152" href="/static/x_m/favicon/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/static/x_m/favicon/apple-icon-180x180.png">
-
 <link rel="manifest" href="/static/x_m/favicon/manifest.json">
 <meta name="msapplication-TileImage" content="/static/x_m/favicon/ms-icon-144x144.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/static/x_m/favicon/favicon-96x96.png">
@@ -320,7 +320,7 @@
             <span data-link="tips" class="tab_text current">首页</span>
         </div>
         <div class="tab tab_recommend va_item">
-            <span data-link="courses?type=courses&page=1&sort=like" class="tab_text">推荐课程</span>
+            <span data-link="error" class="tab_text">推荐课程</span>
         </div>
         <div class="tab tab_all va_item">
             <span data-link="courses?type=courses&page=1&sort=view" class="tab_text">所有课程</span>
@@ -382,7 +382,7 @@
         <div class="circle circle_fadeIn"></div>
     </script>
     <script type="text/template" id="course_info_template">
-        <div class="info" style="background-image:url('http://7oxh2b.com1.z0.glb.clouddn.com/xueer_bg_<%= Math.floor(Math.random()*4) + 1  %>.png')">
+        <div class="info" style="background-image:url('http://static.muxistudio.com/xueer_bg_<%= Math.floor(Math.random()*4) + 1  %>.png')">
             <div class="overlay top">
             <div class="basic">
                 <div class="title">
@@ -673,6 +673,13 @@
         <div class="dialog_btns space">
             <div class="dialog_btn dialog_btn_cancel">等会再说</div>
             <div class="dialog_btn dialog_btn_login">去登录</div>
+        </div> 
+     </script>
+     <script type="text/template" id="error_view_template">
+        <div class="container">
+            <img src="http://static.muxistudio.com/bunny_sorry.png" alt="bunny">
+            <div class="text">你似乎来到了错误的服务区</div>
+            <div class="btn">刷新</div>
         </div> 
      </script>
     <script src="/static/x_m/bundle.js?v=2333"></script>

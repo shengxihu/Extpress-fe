@@ -986,6 +986,42 @@ svg g {
 .tip_btn--icon use svg g.tip_stroke {
   stroke: #EEAB5D; }
 
+/**
+ * error.scss
+ * 
+ * by zindex
+ */
+.error .container {
+  padding-top: 100px;
+  width: 217px;
+  margin: 0 auto;
+  text-align: center; }
+  .error .container img {
+    display: block;
+    width: 100%;
+    height: 167px; }
+  .error .container .text {
+    color: #999999;
+    font-size: 14px;
+    /*px*/
+    margin-top: 18px; }
+  .error .container .btn {
+    display: inline-block;
+    vertical-align: top;
+    width: 156px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #EEAB5D;
+    /*px*/
+    font-size: 14px;
+    /*px*/
+    color: #EEAB5D;
+    border-radius: 2px;
+    /*px*/
+    margin-top: 20px; }
+
 .space {
   font-size: 0 !important; }
 

@@ -1,16 +1,16 @@
 var Backbone = require("Backbone");
-var _ = require('underscore');
+var _ = require("underscore");
 
 // load model
-var CourseInfo = require('../models/course_info.js');
-var CommentSend = require('../models/comment_send.js');
-var CourseLike = require('../models/course_like.js');
+var CourseInfo = require("../models/course_info.js");
+var CommentSend = require("../models/comment_send.js");
+var CourseLike = require("../models/course_like.js");
 
 // load cookie
 var cookie = require("../util/cookie.js");
 
 // load component
-var dialog_view = require('../components/dialog.js');
+var dialog_view = require("../components/dialog.js");
 
 var course_info_view = Backbone.View.extend({
   className: "course_info",
@@ -36,6 +36,13 @@ var course_info_view = Backbone.View.extend({
   },
   onWCommentClick: function(e) {
     var that = this;
+    if (!cookie.getCookie("token")) {
+      var dialog = new dialog_view({
+        router: this.options.router
+      });
+      this.$el.append(dialog.render().el);
+      return;
+    }
     require.ensure([], function() {
       var React = require("react"),
         ReactDOM = require("react-dom");
@@ -51,9 +58,9 @@ var course_info_view = Backbone.View.extend({
     });
   },
   onLikeCourseClick: function(e) {
-    if (this.model.get('liked')){
+    if (this.model.get('liked')) {
       return;
-    }else if (cookie.getCookie("token")){
+    } else if (cookie.getCookie("token")) {
       this.$('#course_like').addClass('animating');
       var m = new CourseLike({
         c_id: this.model.get("id")
@@ -62,15 +69,19 @@ var course_info_view = Backbone.View.extend({
       m.save({}, {
         headers: cookie.getToken()
       });
-    }else{
-      var dialog = new dialog_view({router:this.options.router});
-      this.$el.append( dialog.render().el );
+    } else {
+      var dialog = new dialog_view({
+        router: this.options.router
+      });
+      this.$el.append(dialog.render().el);
     }
   },
-  updateLike: function(m){
+  updateLike: function(m) {
     this.$('#course_like .btn_text').html(m.get("likes"));
     this.$('#course_like').addClass('animated');
-    this.model.set({liked:true});
+    this.model.set({
+      liked: true
+    });
   },
   onAddComments: function(e) {
     var that = this;
