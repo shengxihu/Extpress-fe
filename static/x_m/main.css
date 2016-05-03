@@ -851,6 +851,11 @@ svg g {
     left: 0;
     top: 26px;
     padding-left: 7px; }
+  .l_r_view .row .message {
+    position: absolute;
+    right: 0;
+    margin-top: 8px;
+    color: #FF7979; }
 
 .l_r_view .hint_text {
   width: 272px;

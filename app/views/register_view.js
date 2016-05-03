@@ -19,7 +19,7 @@ var register_view = Backbone.View.extend({
 		var that = this;
 		var m = new Register({
 			username:this.$("form .username").val(),
-			password:btoa(this.$("form .password").val()),
+			password:this.$("form .password").val(),
 			email:this.$("form .email").val(),
 			roleid: 1
 		});

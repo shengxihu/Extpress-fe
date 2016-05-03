@@ -45,11 +45,17 @@
 			margin-bottom: 0px;
 			border-bottom: 2px solid $main_orange;/*px*/
 		}
-		.label{
+		.label{  
 			position:absolute;
 			left:0;
 			top:26px;
 			padding-left: 7px;
+		}
+		.message{
+			position:absolute;
+			right:0;
+			margin-top: 8px;
+			color:$main_pink;
 		}
 	}
 	.hint_text{

@@ -5,6 +5,7 @@ var _ = require("underscore");
 var cookie = require("../util/cookie.js");
 
 // load model
+var Login = require("../models/login.js");
 var authLogin = require("../models/auth_login.js");
 var authInfo = require("../models/auth_info.js");
 var Register = require("../models/register.js");
@@ -15,13 +16,40 @@ var login_view = Backbone.View.extend({
   template: _.template($("#login_view_template").html()),
   initialize: function(options) {
     this.options = options;
+    this.model = new Login({
+      authFail: [true, false],
+      message: ["", ""]
+    });
+    this.listenTo(this.model, "change", this.render);
   },
   events: {
     "click .btn": "onBtnClick"
   },
+  validateForm: function() {
+    if ($(".username").val() === "") {
+      this.model.set({
+        authFail: [true, false],
+        message: ["请填写用户名", ""]
+      });
+      return false;
+    }
+    if ($(".password").val() === "") {
+      this.model.set({
+        authFail: [false, true],
+        message: ["", "请填写密码"]
+      });
+      return false;
+    }
+    return true;
+  },
   onBtnClick: function() {
+    if (this.validateForm()) {
+      this.send();
+    }
+  },
+  send: function() {
     var that = this;
-    var auth = btoa($(".username").val() + ":" + $(".password").val());
+    var auth = btoa(_.escape($(".username").val()) + ":" + _.escape($(".password").val()));
     var authLoginModel = new authLogin();
     authLoginModel.fetch({
       headers: {
@@ -44,9 +72,9 @@ var login_view = Backbone.View.extend({
             Authorization: "Basic " + $("#grantToken").html()
           }
         }).done(function(flag) {
-          if (flag.user == "true") {
+          if (flag.user === "true") {
             // get token
-            that.getToken(btoa(res.email+ ":" + "muxi304"));
+            that.getToken(btoa(res.email + ":" + "muxi304"));
           } else {
             // register new user
             var token = "Basic " + $("#token").html();
@@ -60,10 +88,15 @@ var login_view = Backbone.View.extend({
                 Authorization: token
               }
             }).done(function() {
-              that.getToken(btoa(res.email+ ":" + "muxi304"));
+              that.getToken(btoa(res.email + ":" + "muxi304"));
             });
           }
         });
+      });
+    }).fail(function() {
+      that.model.set({
+        authFail: [true, true],
+        message: ["", "用户名或密码错误"]
       });
     });
   },
@@ -84,7 +117,7 @@ var login_view = Backbone.View.extend({
     });
   },
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });

@@ -601,13 +601,15 @@
       <script type="text/template" id="login_view_template">
             <div class="container">
                 <form>
-                    <div class="row">
+                    <div class="row<% if (authFail[0]){ %> auth_fail<% } %>">
                         <div class="label">用户名:</div>
                         <input type="text"class="input username" id="username"/>
+                        <div class="message"><%= message[0] %></div>
                     </div>
-                    <div class="row">
+                    <div class="row<% if (authFail[1]){ %> auth_fail<% } %>">
                         <div class="label">密码:</div>
                         <input type="password" class="input password" id="password"/>
+                        <div class="message"><%= message[1] %></div>
                     </div>
                      <div class="btns space login_btns">
                         <div class="forget va_item">忘记密码？&nbsp;</div>
