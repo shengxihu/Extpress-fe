@@ -7,6 +7,12 @@ var error_view = Backbone.View.extend({
   initialize: function(options) {
     this.options = options;
   },
+  events: {
+    "click .btn": "onBtnClick"
+  },
+  onBtnClick: function() {
+    window.history.back();
+  },
   render: function() {
     this.$el.html(this.template());
     return this;

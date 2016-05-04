@@ -24,7 +24,7 @@ var comments_view = Backbone.View.extend({
       that.render();
       if (that.collection.hasNextPage()) {
         that.$(".comments").append("<div class='more_comments'>展开更多评价</div>");
-      }else{
+      } else {
         that.$(".comments").append("<div class='no_more_comments'>∑(っ °Д °;)っ<br>没有更多评价了。<div>");
       }
       that.trigger("loaded");
@@ -36,6 +36,10 @@ var comments_view = Backbone.View.extend({
           "<div class='no_comments'>∑(っ °Д °;)っ<br>没有任何评价，快去添加第一条评价吧。<div>"
         );
       }
+    }).fail(function() {
+      that.options.router.navigate("error", {
+        trigger: true
+      });
     });
     this.$el.html(this.template());
   },
@@ -63,7 +67,7 @@ var comments_view = Backbone.View.extend({
     if (this.new_id) {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
-          router:this.options.router,
+          router: this.options.router,
           model: comment
         });
         if (comment.id === this.new_id) {
@@ -81,7 +85,7 @@ var comments_view = Backbone.View.extend({
     } else {
       this.collection.forEach(function(comment) {
         var commentItemView = new comment_item_view({
-          router:this.options.router,
+          router: this.options.router,
           model: comment
         });
         this.$(".comments_view").append(commentItemView.render().el);

@@ -17,20 +17,27 @@ var login_view = Backbone.View.extend({
   initialize: function(options) {
     this.options = options;
     this.model = new Login({
-      authFail: [true, false],
-      message: ["", ""]
+      authFail: [false, false],
+      message: ["", ""],
+      username: "",
+      password: ""
     });
-    this.listenTo(this.model, "change", this.render);
+    this.listenTo(this.model, "authFail", this.render);
   },
   events: {
     "click .btn": "onBtnClick"
   },
   validateForm: function() {
+    this.model.set({
+      username: $(".username").val(),
+      password: $(".password").val()
+    });
     if ($(".username").val() === "") {
       this.model.set({
         authFail: [true, false],
         message: ["请填写用户名", ""]
       });
+      this.model.trigger("authFail");
       return false;
     }
     if ($(".password").val() === "") {
@@ -38,6 +45,7 @@ var login_view = Backbone.View.extend({
         authFail: [false, true],
         message: ["", "请填写密码"]
       });
+      this.model.trigger("authFail");
       return false;
     }
     return true;
@@ -96,8 +104,11 @@ var login_view = Backbone.View.extend({
     }).fail(function() {
       that.model.set({
         authFail: [true, true],
-        message: ["", "用户名或密码错误"]
+        message: ["", "用户名或密码错误"],
+        username: "",
+        password: ""
       });
+      that.model.trigger("authFail");
     });
   },
   getToken: function(auth) {

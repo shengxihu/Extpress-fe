@@ -52,12 +52,28 @@
 			padding-left: 7px;
 		}
 		.message{
+			display:none;
 			position:absolute;
 			right:0;
 			margin-top: 8px;
 			color:$main_pink;
+			font-size: 12px;/*px*/
+			line-height: 17px;
+			height:17px;
+		}
+		.warnning_icon{
+			display:inline-block;
+			width:17px;
+			height:15px;
+			vertical-align: middle;
+		}
+		.warnning_icon use{
+			fill:#ff7979;
 		}
 	}
+	.auth_fail .message{
+			display:block;
+		}
 	.hint_text{
 		width:272px;
 		margin:0 auto;

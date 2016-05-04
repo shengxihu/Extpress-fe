@@ -264,6 +264,13 @@
                 </g>
             </g>
          </symbol>
+         <symbol id="warnning" viewBox="0 0 17 15">
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="用户-注册" transform="translate(-323.000000, -188.000000)" fill="#FF7979">
+                    <path d="M323,203 L340,203 L331.5,188 L323,203 L323,203 Z M332.5,201 L330.5,201 L330.5,199 L332.5,199 L332.5,201 L332.5,201 Z M332.5,198 L330.5,198 L330.5,194 L332.5,194 L332.5,198 L332.5,198 Z" id="Shape"></path>
+                </g>
+            </g>
+         </symbol>
     </svg>
     <div class="viewport" style="display:none">
         <div id="nav"></div>
@@ -320,7 +327,7 @@
             <span data-link="tips" class="tab_text current">首页</span>
         </div>
         <div class="tab tab_recommend va_item">
-            <span data-link="error" class="tab_text">推荐课程</span>
+            <span data-link="courses?type=courses&page=1&sort=like" class="tab_text">推荐课程</span>
         </div>
         <div class="tab tab_all va_item">
             <span data-link="courses?type=courses&page=1&sort=view" class="tab_text">所有课程</span>
@@ -382,17 +389,17 @@
         <div class="circle circle_fadeIn"></div>
     </script>
     <script type="text/template" id="course_info_template">
-        <div class="info" style="background-image:url('http://static.muxistudio.com/xueer_bg_<%= Math.floor(Math.random()*4) + 1  %>.png')">
-            <div class="overlay top">
-            <div class="basic">
-                <div class="title">
-                    <%= title %>
-                </div>
-                <div class="others">
-                    <p>
-                        <%= teacher %>
-                    </p>
-                </div>
+        <div class="info">
+            <div class="overlay" style="background-image:url('http://static.muxistudio.com/xueer_bg_<%= Math.floor(Math.random()*4) + 1  %>.png')">
+                <div class="basic">
+                    <div class="title">
+                        <%= title %>
+                    </div>
+                    <div class="others">
+                        <p>
+                            <%= teacher %>
+                        </p>
+                    </div>
             </div>
             <div class="btns space">
                 <div class="btn like space" id="course_like">
@@ -603,13 +610,23 @@
                 <form>
                     <div class="row<% if (authFail[0]){ %> auth_fail<% } %>">
                         <div class="label">用户名:</div>
-                        <input type="text"class="input username" id="username"/>
-                        <div class="message"><%= message[0] %></div>
+                        <input type="text"class="input username" id="username" value="<%= username %>" />
+                        <div class="message">
+                            <%= message[0] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
                     <div class="row<% if (authFail[1]){ %> auth_fail<% } %>">
                         <div class="label">密码:</div>
                         <input type="password" class="input password" id="password"/>
-                        <div class="message"><%= message[1] %></div>
+                        <div class="message ">
+                            <%= message[1] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
                      <div class="btns space login_btns">
                         <div class="forget va_item">忘记密码？&nbsp;</div>
@@ -627,7 +644,7 @@
                     </div>
                     <div class="row">
                         <div class="label">密码:</div>
-                        <input type="password" class="input password padd2" id="password"placeholder="挑一个不少于6位的密码"/>
+                        <input type="password" class="input password padd2" id="password" placeholder="挑一个不少于6位的密码"/>
                     </div>
                     <div class="row">
                         <div class="label">确认密码:</div>
@@ -677,7 +694,7 @@
      </script>
      <script type="text/template" id="error_view_template">
         <div class="container">
-            <img src="http://static.muxistudio.com/bunny_sorry.png" alt="bunny">
+            <div class="img"></div>
             <div class="text">你似乎来到了错误的服务区</div>
             <div class="btn">刷新</div>
         </div> 

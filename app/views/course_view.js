@@ -1,15 +1,15 @@
 var Backbone = require("Backbone");
 var _ = require("underscore");
 
-//load model
+// load model
 var Course = require("../models/course.js");
-//load views
+// load views
 var comments_view = require("./comments_view.js");
 var loading_view = require("./loading_view.js");
 var course_info_view = require("./course_info_view.js");
 var back_to_top_view = require("../components/back_to_top.js");
 
-//load cookie
+// load cookie
 var cookie = require("../util/cookie.js");
 
 var course_view = Backbone.View.extend({
@@ -57,12 +57,12 @@ var course_view = Backbone.View.extend({
   render: function() {
     var that = this;
     this.$el.html(this.template());
-    //render loading view & back to top button
+    // render loading view & back to top button
     this.loading_view = new loading_view();
     this.back_to_top_view = new back_to_top_view();
     this.$el.append(this.loading_view.render().el);
     this.$el.append(this.back_to_top_view.render().el);
-    //render this view
+    // render this view
     return this;
   }
 })

@@ -26,6 +26,10 @@ var course_info_view = Backbone.View.extend({
     }).done(function() {
       that.render();
       that.trigger("loaded");
+    }).fail(function() {
+      that.options.router.navigate("error", {
+        trigger: true
+      });
     });
   },
   events: {

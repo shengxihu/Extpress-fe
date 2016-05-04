@@ -126,7 +126,7 @@ var SiteRouter = Backbone.Router.extend({
     });
     this.switchView(view);
     this.navModel.set({
-      currentPage: "注册",
+      currentPage: "注册木犀通行证",
       hasPrev: false
     });
   },
