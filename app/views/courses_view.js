@@ -18,7 +18,9 @@ var courses_view = Backbone.View.extend({
 
     var that = this;
     this.options = options;
-    this.$el.html(this.template({params:this.options.params}));
+    this.$el.html(this.template({
+      params: this.options.params
+    }));
     var courses = new Courses(null, {
       params: this.options.params
     });
@@ -26,13 +28,19 @@ var courses_view = Backbone.View.extend({
     var page = this.options.params.page - 0;
     if (page > 1) {
       this.addLoading();
-      this.collection.switchMode('client', {fetch:false});
+      this.collection.switchMode('client', {
+        fetch: false
+      });
       this.collection.fetch().done(function() {
         that.refresh(true);
-        that.collection.switchMode('infinite', {fetch:false});
+        that.collection.switchMode('infinite', {
+          fetch: false
+        });
         that.collection.links[page] = '/api/v1.0/courses/?' + $.param(that.options.params);
         that.collection.queryParams.num = null;
-        that.collection.getPage(page, {fetch:true}).done(function(){
+        that.collection.getPage(page, {
+          fetch: true
+        }).done(function() {
           if (!that.collection.hasNextPage()) {
             that.$('.hint').html('(￣▽￣") 已经是全部的结果啦');
           }
@@ -54,20 +62,20 @@ var courses_view = Backbone.View.extend({
     'click .c_link': 'onCourseClick',
     'click .filter': 'onFilterClick'
   },
-  onFilterClick: function(){
+  onFilterClick: function() {
     this.$('.filter_list').toggle();
     var val = $("input[name='category']:checked").val();
-    if (val){
+    if (val) {
       var params = this.options.params;
       params.page = 1;
       params.main_cat = val;
       var queryString = $.param(params);
       var url = 'courses?' + queryString;
       this.options.router.navigate(url, {
-          trigger: true
+        trigger: true
       });
     }
-  },  
+  },
   onCourseClick: function(e) {
     this.options.router.navigate("course/" + $(e.target).data("id"), {
       trigger: true
@@ -75,7 +83,9 @@ var courses_view = Backbone.View.extend({
   },
   onScroll: function() {
     if ((window.pageYOffset + this.$body.height()) >= (this.$viewport.height() - 200)) {
-      if(!this.loadingNext){this.onNextPage();}
+      if (!this.loadingNext) {
+        this.onNextPage();
+      }
     }
   },
   addLoading: function() {
@@ -122,23 +132,23 @@ var courses_view = Backbone.View.extend({
     var queryString = $.param(params);
     var url = 'courses?' + queryString;
     this.options.router.navigate(url, {
-        trigger: true
+      trigger: true
     });
   },
   remove: function() {
     window.removeEventListener("scroll", this.onScrollBind)
     Backbone.View.prototype.remove.call(this);
   },
-  render: function(full) {  
+  render: function(full) {
     var that = this;
-    if (full){
+    if (full) {
       this.collection.fullCollection.forEach(function(course) {
-      var coursesItemView = new courses_item_view({
-        model: course
-      });
-      this.$(".list").append(coursesItemView.render().el);
+        var coursesItemView = new courses_item_view({
+          model: course
+        });
+        this.$(".list").append(coursesItemView.render().el);
       }, that);
-    }else{
+    } else {
       this.collection.forEach(function(course) {
         var coursesItemView = new courses_item_view({
           model: course

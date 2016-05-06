@@ -868,6 +868,10 @@ svg g {
 .l_r_view .auth_fail .message {
   display: block; }
 
+.l_r_view .auth_fail .input {
+  border-bottom: 1px solid #ff7979;
+  /*px*/ }
+
 .l_r_view .hint_text {
   width: 272px;
   margin: 0 auto;

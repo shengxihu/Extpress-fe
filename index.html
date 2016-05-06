@@ -621,7 +621,7 @@
                     <div class="row<% if (authFail[1]){ %> auth_fail<% } %>">
                         <div class="label">密码:</div>
                         <input type="password" class="input password" id="password"/>
-                        <div class="message ">
+                        <div class="message">
                             <%= message[1] %>
                             <svg class="warnning_icon" viewBox="0 0 17 15">
                                 <use xlink:href="#warnning"></use>
@@ -638,34 +638,58 @@
       <script type="text/template" id="register_view_template">
             <div class="container">
                 <form class="register_form">
-                    <div class="row">
+                    <div class="row<% if (authFail[0]){ %> auth_fail<% } %>">
                         <div class="label">用户名:</div>
-                        <input type="text"class="input username padd3" id="username" placeholder="挑一个8个字符以内的用户名"/>
+                        <input type="text"class="input username padd3" id="username" placeholder="挑一个8个字符以内的用户名" value="<%= username %>"/>
+                        <div class="message">
+                            <%= message[0] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row<% if (authFail[1]){ %> auth_fail<% } %>">
                         <div class="label">密码:</div>
-                        <input type="password" class="input password padd2" id="password" placeholder="挑一个不少于6位的密码"/>
+                        <input type="password" class="input password padd2" id="password" placeholder="挑一个不少于6位的密码" value="<%= password %>"/>
+                        <div class="message">
+                            <%= message[1] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row<% if (authFail[2]){ %> auth_fail<% } %>">
                         <div class="label">确认密码:</div>
                         <input type="password" class="input password padd4" 
-                        id="password_c" placeholder="请再输入一次密码"/>
+                        id="password_c" placeholder="请再输入一次密码" value="<%= passwordC %>"/>
+                        <div class="message">
+                            <%= message[2] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row<% if (authFail[3]){ %> auth_fail<% } %>">
                         <div class="label">邮箱:</div>
-                        <input type="email" class="input email padd2" id="email" placeholder="用于找回密码"/>
+                        <input type="email" class="input email padd2" id="email" placeholder="用于找回密码" value="<%= email %>"/>
+                        <div class="message">
+                            <%= message[3] %>
+                            <svg class="warnning_icon" viewBox="0 0 17 15">
+                                <use xlink:href="#warnning"></use>
+                            </svg>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="label">QQ:</div>
-                        <input type="text" class="input qq padd2" id="qq" placeholder="选填"/>
+                        <input type="text" class="input qq padd2" id="qq" placeholder="选填" value="<%= qq %>"/>
                     </div>
                     <div class="row">
                         <div class="label">联系电话:</div>
-                        <input type="tel" class="input phone padd4" id="phone"placeholder="选填"/>
+                        <input type="tel" class="input phone padd4" id="phone"placeholder="选填" value="<%= phone %>"/>
                     </div>
                     <div class="row">
                         <div class="label">专业:</div>
-                        <input type="text" class="input major padd2" id="major" placeholder="选填"/>
+                        <input type="text" class="input major padd2" id="major" placeholder="选填" value="<%= major %>"/>
                     </div>
                     <div class="hint_text">
                         ∑(っ °Д °;)っ</br>请放心评价课程时不会显示你的私人信息</br>填写选填信息我们可以给你更加精确的推荐</br>并且可以参与评课活动，获得评课奖励

@@ -49,6 +49,7 @@ var nav_view = Backbone.View.extend({
     },
     onBackClicked:function(){
 		window.history.back();
+
     },
     render: function() {
         this.$el.html(this.template( this.model.toJSON() ));

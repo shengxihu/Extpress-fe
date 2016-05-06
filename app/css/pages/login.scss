@@ -74,6 +74,9 @@
 	.auth_fail .message{
 			display:block;
 		}
+	.auth_fail .input{
+		  border-bottom: 1px solid #ff7979;/*px*/
+	}
 	.hint_text{
 		width:272px;
 		margin:0 auto;
