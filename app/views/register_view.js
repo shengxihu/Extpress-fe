@@ -32,8 +32,16 @@ var register_view = Backbone.View.extend({
       this.authFail(0, "请填写用户名");
       return false;
     }
+    if ($("form .username").val().length > 8) {
+      this.authFail(0, "用户名必须小于8个字符");
+      return false;
+    }
     if (!$("form .password").val()) {
       this.authFail(1, "请填写密码");
+      return false;
+    }
+    if ($("form .password").val().length < 6) {
+      this.authFail(1, "密码不能短于6个字符");
       return false;
     }
     if (!$("form #password_c").val()) {
