@@ -3,6 +3,7 @@ var _ = require("underscore");
 
 // load model
 var Register = require("../models/auth_register.js");
+var checkUsername = require("../models/check_username.js");
 
 var register_view = Backbone.View.extend({
   className: "register_view l_r_view",
@@ -21,6 +22,7 @@ var register_view = Backbone.View.extend({
       authFail: [false, false, false, false],
       message: ["", "", "", ""]
     });
+    this.checkUsername = new checkUsername({});
     this.listenTo(this.model, "authFail", this.render);
   },
   events: {
@@ -28,6 +30,7 @@ var register_view = Backbone.View.extend({
     "click .cancel": "onCancelClick"
   },
   validateForm: function() {
+  	var that = this;
     if (!$("form .username").val()) {
       this.authFail(0, "请填写用户名");
       return false;
@@ -36,6 +39,13 @@ var register_view = Backbone.View.extend({
       this.authFail(0, "用户名必须小于8个字符");
       return false;
     }
+    this.checkUsername
+      .save({
+        username: _.escape($("form .username").val())
+      })
+      .done(function(res) {
+        console.log(res.user);
+      })
     if (!$("form .password").val()) {
       this.authFail(1, "请填写密码");
       return false;
