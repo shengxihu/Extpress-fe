@@ -10,6 +10,7 @@ var register_view = Backbone.View.extend({
   template: _.template($("#register_view_template").html()),
   initialize: function(options) {
     this.options = options;
+    this.authCount = 0;
     this.model = new Register({
       username: "",
       password: "",
@@ -20,7 +21,9 @@ var register_view = Backbone.View.extend({
       major: "",
       roleid: 1,
       authFail: [false, false, false, false],
-      message: ["", "", "", ""]
+      message: ["", "", "", ""],
+      validating: false,
+      authFinish: false
     });
     this.checkUsername = new checkUsername({});
     this.listenTo(this.model, "authFail", this.render);
@@ -30,42 +33,56 @@ var register_view = Backbone.View.extend({
     "click .cancel": "onCancelClick"
   },
   validateForm: function() {
-  	var that = this;
+    this.authCount = 0;
+    var that = this;
     if (!$("form .username").val()) {
       this.authFail(0, "请填写用户名");
       return false;
     }
+    this.authCount += 1;
     if ($("form .username").val().length > 8) {
       this.authFail(0, "用户名必须小于8个字符");
       return false;
     }
+    this.authCount += 1;
     this.checkUsername
       .save({
         username: _.escape($("form .username").val())
       })
       .done(function(res) {
-        console.log(res.user);
-      })
+        if (res.user === "true") {
+          that.authFail(0, "用户名已被占用");
+        } else {
+          that.authCount += 1;
+          that.checkAndSubmit();
+        }
+      });
     if (!$("form .password").val()) {
       this.authFail(1, "请填写密码");
       return false;
     }
+    this.authCount += 1;
     if ($("form .password").val().length < 6) {
       this.authFail(1, "密码不能短于6个字符");
       return false;
     }
+    this.authCount += 1;
     if (!$("form #password_c").val()) {
       this.authFail(2, "请填写确认密码");
       return false;
     }
+    this.authCount += 1;
     if ($("form #password_c").val() !== $("form .password").val()) {
       this.authFail(2, "确认密码与密码不同");
       return false;
     }
+    this.authCount += 1;
     if (!$("form .email").val()) {
       this.authFail(3, "请填写邮箱");
       return false;
     }
+    this.authCount += 1;
+    this.checkAndSubmit();
     return true;
   },
   authFail: function(index, message) {
@@ -108,12 +125,25 @@ var register_view = Backbone.View.extend({
     });
   },
   onSubmitClick: function() {
-    if (this.validateForm()) {
-      this.submitForm();
+    if (this.model.get("validating") === true) {
+      return;
+    }
+    this.model.set({
+      validating: true
+    });
+    if (!this.validateForm()) {
+      this.model.set({
+        validating: false
+      });
     }
   },
   onCancelClick: function() {
     window.history.back();
+  },
+  checkAndSubmit: function() {
+    if (this.authCount === 8) {
+      this.submitForm();
+    }
   },
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
