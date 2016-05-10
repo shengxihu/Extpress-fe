@@ -379,8 +379,8 @@
                 <div class="hot">
                     <p class="title">大家都在搜</p>
                     <div class="items space">
-                        <% _.each(["任选课","毛概","跟着电影学传媒","任选课","毛概","思修","近代史","毛概","跟着电影学传媒"], function(i) { %>
-                            <span data-link="/search_result/<%= i %>" class="item"><%= i %></span>
+                        <% _.each(hot_search, function(i) { %>
+                            <span data-link="/search_result?page=1&type=search&keywords=<%= i.key_word %>" class="item"><%= i.key_word %></span>
                         <% }); %>
                     </div>
                 </div>

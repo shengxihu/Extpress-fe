@@ -4,6 +4,7 @@ var _ = require("underscore");
 // load model
 var Register = require("../models/auth_register.js");
 var checkUsername = require("../models/check_username.js");
+var checkEmail = require("../models/check_email.js");
 
 var register_view = Backbone.View.extend({
   className: "register_view l_r_view",
@@ -26,6 +27,7 @@ var register_view = Backbone.View.extend({
       authFinish: false
     });
     this.checkUsername = new checkUsername({});
+    this.checkEmail = new checkEmail({});
     this.listenTo(this.model, "authFail", this.render);
   },
   events: {
@@ -51,7 +53,7 @@ var register_view = Backbone.View.extend({
       })
       .done(function(res) {
         if (res.user === "true") {
-          that.authFail(0, "用户名已被占用");
+          that.authFail(0, "用户名已被注册");
         } else {
           that.authCount += 1;
           that.checkAndSubmit();
@@ -81,6 +83,18 @@ var register_view = Backbone.View.extend({
       this.authFail(3, "请填写邮箱");
       return false;
     }
+    this.checkEmail
+      .save({
+        email: _.escape($("form .email").val())
+      })
+      .done(function(res) {
+        if (res.user === "true") {
+          that.authFail(3, "邮箱已被注册");
+        } else {
+          that.authCount += 1;
+          that.checkAndSubmit();
+        }
+      });
     this.authCount += 1;
     this.checkAndSubmit();
     return true;
@@ -102,6 +116,9 @@ var register_view = Backbone.View.extend({
       message: messageArr
     });
     this.model.trigger("authFail");
+    this.model.set({
+      validating: false
+    });
   },
   submitForm: function() {
     var token = "Basic " + $("#grantToken").html();
@@ -131,17 +148,13 @@ var register_view = Backbone.View.extend({
     this.model.set({
       validating: true
     });
-    if (!this.validateForm()) {
-      this.model.set({
-        validating: false
-      });
-    }
+    this.validateForm();
   },
   onCancelClick: function() {
     window.history.back();
   },
   checkAndSubmit: function() {
-    if (this.authCount === 8) {
+    if (this.authCount === 9) {
       this.submitForm();
     }
   },

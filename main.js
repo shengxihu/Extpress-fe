@@ -4,36 +4,36 @@
  * the entry of the whole app
  */
 
-
-//load css
+// load css
 require("./static/x_m/main.min.css");
-//load deps
+// load deps
 var Backbone = require("Backbone");
 var util = require("./app/util/util");
 var cookie = require("./app/util/cookie");
 
-//load view
+// load view
 var nav_view = require("./app/views/nav_view");
 var search_view = require("./app/views/search_view");
 
-//load routers
+// load routers
 var SiteRouter = require("./app/routers/site_router");
 
-//load model
+// load model
 var nav_model = require("./app/models/nav");
-var user_model = require('./app/models/user.js');
+var user_model = require("./app/models/user.js");
 
-//initialize nav model
+// initialize nav model
 var navModel = new nav_model({
   currentPage: " ",
   hasPrev: false,
-  scrollPos: []
+  scrollPos: [],
+  hot_search: []
 });
 var userModel = new user_model({
   isLogin: false
 });
 
-//check login
+// check login
 var token = cookie.checkCookie("token");
 if (token) {
   userModel.set({
@@ -42,20 +42,20 @@ if (token) {
   });
 }
 
-//initialize router
+// initialize router
 var siteRouter = new SiteRouter({
   container: $("#pageview"),
   nav_model: navModel,
   user_model: userModel
 });
 
-//initialize search view
+// initialize search view
 var searchView = new search_view({
   router: siteRouter
 });
 $(".viewport").append(searchView.render().el);
 
-//initialize nav view
+// initialize nav view
 var navView = new nav_view({
   model: navModel,
   router: siteRouter,
@@ -63,7 +63,7 @@ var navView = new nav_view({
 });
 $("#nav").append(navView.render().el);
 
-//initialize history pushstate
+// initialize history pushstate
 Backbone.history.start({
   pushState: !0
 });
@@ -77,7 +77,7 @@ if (window.location.pathname.length > 1) {
 }
 
 function scroll() {
-  var scrollArr = navModel.get('scrollPos');
+  var scrollArr = navModel.get("scrollPos");
   scrollArr.pop();
   window.scrollTo(0, scrollArr.splice([scrollArr.length - 1], 2)[0]);
 }
