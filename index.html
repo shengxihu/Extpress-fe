@@ -425,8 +425,12 @@
         </div>
         <div class="tags space"> 
             <span class="tags_item"><%= main_category %></span>
+            <% if(sub_category !== "无分类") { %>
             <span class="tags_item"><%= sub_category %></span>
+            <% } %>
+            <% if(credit_category !== "无分类") { %>
             <span class="tags_item"><%= credit_category %></span>
+            <% } %>
             <% if(hot_tags.length > 0) { %>
                 <% _.each(hot_tags.split(" "), function(i) { %>
                 <span class="tags_item"><%= i %></span>
@@ -442,6 +446,14 @@
     </script>
     <script type="text/template" id="comments_template">
         <div class="comments_title">所有评论</div>
+        <div class="comments">
+            <div class="comments_view">
+                <div class="prev_comments"></div>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="hot_comments_template">
+        <div class="comments_title">热门评论</div>
         <div class="comments">
             <div class="comments_view">
                 <div class="prev_comments"></div>

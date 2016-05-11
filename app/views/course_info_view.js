@@ -62,10 +62,10 @@ var course_info_view = Backbone.View.extend({
     });
   },
   onLikeCourseClick: function(e) {
-    if (this.model.get('liked')) {
+    if (this.model.get("liked")) {
       return;
     } else if (cookie.getCookie("token")) {
-      this.$('#course_like').addClass('animating');
+      this.$("#course_like").addClass("animating");
       var m = new CourseLike({
         c_id: this.model.get("id")
       });
@@ -81,8 +81,8 @@ var course_info_view = Backbone.View.extend({
     }
   },
   updateLike: function(m) {
-    this.$('#course_like .btn_text').html(m.get("likes"));
-    this.$('#course_like').addClass('animated');
+    this.$("#course_like .btn_text").html(m.get("likes"));
+    this.$("#course_like").addClass("animated");
     this.model.set({
       liked: true
     });
