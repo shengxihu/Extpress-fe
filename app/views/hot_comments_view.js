@@ -19,15 +19,17 @@ var hot_comments_view = Backbone.View.extend({
     });
     this.collection.fetch({
       headers: cookie.getToken()
-    }).done(function() {
-      that.render();
+    }).done(function(data) {
+      if (data.length > 0) {
+        that.$el.html(that.template());
+        that.render();
+      }
       that.trigger("loaded");
     }).fail(function() {
       that.options.router.navigate("error", {
         trigger: true
       });
     });
-    this.$el.html(this.template());
   },
   render: function() {
     var that = this;
