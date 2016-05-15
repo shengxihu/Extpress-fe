@@ -24,36 +24,36 @@ var courses_view = Backbone.View.extend({
     var courses = new Courses(null, {
       params: this.options.params
     });
+    console.log(this.options.params);
     this.collection = courses;
     var page = this.options.params.page - 0;
     if (page > 1) {
       this.addLoading();
-      this.collection.switchMode('client', {
+      this.collection.switchMode("client", {
         fetch: false
       });
       this.collection.fetch().done(function() {
         that.refresh(true);
-        that.collection.switchMode('infinite', {
+        that.collection.switchMode("infinite", {
           fetch: false
         });
-        that.collection.links[page] = '/api/v1.0/courses/?' + $.param(that.options.params);
+        that.collection.links[page] = "/api/v1.0/courses/?" + $.param(that.options.params);
         that.collection.queryParams.num = null;
         that.collection.getPage(page, {
           fetch: true
         }).done(function() {
           if (!that.collection.hasNextPage()) {
-            that.$('.hint').html('(￣▽￣") 已经是全部的结果啦');
+            that.$(".hint").html('(￣▽￣") 已经是全部的结果啦');
           }
         })
       });
     } else {
       this.getFirstPageDone();
     }
-
     // cache
     this.$body = $('body');
     this.$viewport = $('.viewport');
-    this.onScrollBind = this.onScroll.bind(this)
+    this.onScrollBind = this.onScroll.bind(this);
     window.addEventListener("scroll", this.onScrollBind);
   },
   events: {

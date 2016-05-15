@@ -37,6 +37,7 @@ var SiteRouter = Backbone.Router.extend({
     }
     this.$container.append(view.render().el)
     this.currentView = view;
+    console.log("view switch!")
   },
   main: function() {
     var view = new main_view({
@@ -87,6 +88,7 @@ var SiteRouter = Backbone.Router.extend({
     });
   },
   courses: function(queryString) {
+    console.log("new courses view init");
     var params = this.parseQueryString(queryString);
     var view = new courses_view({
       router: this,

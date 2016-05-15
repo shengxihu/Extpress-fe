@@ -14,7 +14,9 @@ var Courses = Backbone.PageableCollection.extend({
       this.queryParams.num = this.state.currentPage * this.state.pageSize;
     }else{
       this.queryParams.keywords = this.params.keywords
+      this.queryParams.num = null
     }
+    console.log(this.queryParams);
   },
   url: function(){
     return "/api/v1.0/" +  this.params.type + "/"
