@@ -34,7 +34,7 @@ var search_view = Backbone.View.extend({
         page: 1,
         type: "search"
       };
-      params.keywords = this.$(".search_input").val();
+      params.keywords = encodeURI(this.$(".search_input").val());
       var url = "search_result?" + $.param(params);
       this.options.router.navigate(url, {
         trigger: true
