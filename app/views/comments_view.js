@@ -47,6 +47,7 @@ var comments_view = Backbone.View.extend({
     "click .more_comments": "onMoreCommentsClick"
   },
   onMoreCommentsClick: function(e) {
+    console.log(this.collection)
     var that = this;
     this.$(".more_comments").html("载入中···");
     console.log(this.collection)

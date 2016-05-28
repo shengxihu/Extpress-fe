@@ -24,7 +24,6 @@ var courses_view = Backbone.View.extend({
     var courses = new Courses(null, {
       params: this.options.params
     });
-    console.log(this.options.params);
     this.collection = courses;
     var page = this.options.params.page - 0;
     if (page > 1) {
