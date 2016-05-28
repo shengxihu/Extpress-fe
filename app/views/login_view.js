@@ -77,7 +77,7 @@ var login_view = Backbone.View.extend({
         });
         h.save({}, {
           headers: {
-            Authorization: "Basic " + $("#grantToken").html()
+            Authorization: "Basic " + $("#token").html()
           }
         }).done(function(flag) {
           if (flag.user === "true") {

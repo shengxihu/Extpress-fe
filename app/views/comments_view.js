@@ -49,6 +49,7 @@ var comments_view = Backbone.View.extend({
   onMoreCommentsClick: function(e) {
     var that = this;
     this.$(".more_comments").html("载入中···");
+    console.log(this.collection)
     this.collection.getNextPage({
       headers: cookie.getToken()
     }).done(function() {
