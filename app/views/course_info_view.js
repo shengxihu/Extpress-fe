@@ -96,7 +96,7 @@ var course_info_view = Backbone.View.extend({
     });
     var token = cookie.getToken();
     send.set({
-      body: _.escape(this.$("#body").val().replace("\n", "<br>")),
+      body: _.escape(this.$("#body").val()).replace(/\n/g, "<br>"),
       tags: this.$("#tags").val()
     });
     Backbone.sync("create", send, {
