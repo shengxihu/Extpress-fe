@@ -89,7 +89,8 @@ var login_view = Backbone.View.extend({
             var m = new Register({
               username: res.username,
               password: btoa("muxi304"),
-              email: res.email
+              email: res.email,
+              roleid: 3
             });
             m.save({}, {
               headers: {

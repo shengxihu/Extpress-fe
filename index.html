@@ -18,6 +18,15 @@
     <meta charset="UTF-8">
     <script src="/static/x_m/flexible.js"></script>
     <title>学而</title>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?48c34e69d0550c8ab1154db481526bbd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -380,7 +389,9 @@
                     <p class="title">大家都在搜</p>
                     <div class="items space">
                         <% _.each(hot_search, function(i) { %>
-                            <span data-link="/search_result?page=1&type=search&keywords=<%= i.key_word %>" class="item"><%= i.key_word %></span>
+                            <span data-link="/search_result?page=1&type=search&keywords=<%= i %>" class="item">
+                                <%= i %>
+                            </span>
                         <% }); %>
                     </div>
                 </div>
@@ -736,7 +747,6 @@
         </div> 
      </script>
     <script src="/static/x_m/bundle.js?v=2333"></script>
-    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1259329915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1259329915' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 
 </html>
