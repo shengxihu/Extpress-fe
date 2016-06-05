@@ -8,53 +8,53 @@ const PATHS = {
 };
 
 module.exports = {
-    entry: ['./main.js'],
-    output: {
-        path: PATHS.dest,
-        filename: 'bundle.js',
-        chunkFilename: "[chunkhash].bundle.js",
-        publicPath: '/static/x_m/'
+  entry: ['./main.js'],
+  output: {
+    path: PATHS.dest,
+    filename: 'bundle.js',
+    chunkFilename: "[chunkhash].bundle.js",
+    publicPath: '/static/x_m/'
+  },
+  module: {
+    loaders: [{
+      test: /zepto/,
+      loader: 'exports?Zepto'
+    }, {
+      test: /\.css$/,
+      loader: "style!css"
+    }, {
+      test: /\.jsx$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        cacheDirectory: true,
+        presets: ['es2015', 'react']
+      }
+    }]
+  },
+  resolve: {
+    root: path.resolve('./lib'),
+    alias: {
+      jquery: "zepto",
+      zepto: "zepto.min.js",
+      Backbone: path.resolve('./node_modules/backbone'),
+      backbone: path.resolve('./node_modules/backbone')
     },
-    module: {
-        loaders: [{
-            test: /zepto/,
-            loader: 'exports?Zepto'
-        }, {
-            test: /\.css$/,
-            loader: "style!css"
-        }, {
-            test: /\.jsx$/,
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                cacheDirectory: true,
-                presets: ['es2015', 'react']
-            }
-        }]
-    },
-    resolve: {
-        root: path.resolve('./lib'),
-        alias: {
-            jquery: "zepto",
-            zepto: "zepto.min.js",
-            Backbone: path.resolve('./node_modules/backbone'),
-            backbone: path.resolve('./node_modules/backbone')
-        },
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            "_": "underscore"
-        })
-    ],
-    devServer: {
-        proxy: {
-            '/api/*': {
-                target: 'http://121.41.6.148:5050',
-                secure: false,
-                pathRewrite: {
-                    '^/api' : ''
-                }
-            }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      "_": "underscore"
+    })
+  ],
+  devServer: {
+    proxy: {
+      '/api/*': {
+        target: 'http://121.41.6.148:5050',
+        secure: false,
+        pathRewrite: {
+          '^/api': ''
         }
+      }
     }
+  }
 }

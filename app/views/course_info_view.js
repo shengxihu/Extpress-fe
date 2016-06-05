@@ -19,7 +19,8 @@ var course_info_view = Backbone.View.extend({
     var that = this;
     this.options = options;
     this.model = new CourseInfo({
-      id: this.options.id
+      id: this.options.id,
+      sending: false
     });
     this.model.fetch({
       headers: cookie.getToken()
@@ -88,8 +89,14 @@ var course_info_view = Backbone.View.extend({
     });
   },
   onAddComments: function(e) {
+    if (this.model.get("sending") == true) {
+      return;
+    }
     var that = this;
     e.preventDefault();
+    this.model.set({
+      sending: true
+    });
     this.$(".comment_submit").html("发送中");
     var send = new CommentSend({
       cid: this.options.id
@@ -101,7 +108,7 @@ var course_info_view = Backbone.View.extend({
     });
     Backbone.sync("create", send, {
       headers: token
-    }).done(function(data) {
+    }).always(function(data) {
       that.options.userModel.set({
         newCommentId: data.id
       });
