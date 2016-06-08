@@ -39,6 +39,7 @@
 }
 .tip_btns{
 	text-align: center;
+	margin-bottom: 15px;
 }
 .tip_btn{
 	@include button_main(154px, 40px, $main_orange);
@@ -57,4 +58,10 @@
 }
 .tip_btn--icon use svg g.tip_stroke{
 	stroke:$main_orange;
+}
+.tip_view p, .tip_view ul, .tip_view li{
+	margin:15px;
+}
+.tip_view li {
+	list-style: disc inside;
 }

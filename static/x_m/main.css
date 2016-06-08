@@ -966,7 +966,8 @@ svg g {
   /*px*/ }
 
 .tip_btns {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 15px; }
 
 .tip_btn {
   display: inline-block;
@@ -1000,6 +1001,12 @@ svg g {
 
 .tip_btn--icon use svg g.tip_stroke {
   stroke: #EEAB5D; }
+
+.tip_view p, .tip_view ul, .tip_view li {
+  margin: 15px; }
+
+.tip_view li {
+  list-style: disc inside; }
 
 /**
  * error.scss
