@@ -23,6 +23,7 @@ var login_view = Backbone.View.extend({
       password: ""
     });
     this.listenTo(this.model, "authFail", this.render);
+    console.log()
   },
   events: {
     "click .btn": "onBtnClick"
@@ -123,9 +124,16 @@ var login_view = Backbone.View.extend({
         isLogin: true
       });
       cookie.setCookie("token", res.token, 14);
-      that.options.router.navigate("", {
-        trigger: true
-      });
+      if (that.options.params.backurl) {
+        that.options.router.navigate(that.options.params.backurl, {
+          trigger: true
+        });
+      } else {
+        that.options.router.navigate("", {
+          trigger: true
+        });
+      }
+
     });
   },
   render: function() {

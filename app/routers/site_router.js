@@ -17,7 +17,7 @@ var Tip = require("../models/tip.js");
 var SiteRouter = Backbone.Router.extend({
   routes: {
     "": "main",
-    "login": "login",
+    "login(?*queryString)": "login",
     "search_result?*queryString": "search_result",
     "course/:id(/)": "course",
     "tip/:id(/)": "tip",
@@ -109,10 +109,12 @@ var SiteRouter = Backbone.Router.extend({
       hasPrev: true
     });
   },
-  login: function() {
+  login: function(queryString) {
+    var params = this.parseQueryString(queryString);
     var view = new login_view({
       router: this,
-      userModel: this.userModel
+      userModel: this.userModel,
+      params: params
     });
     this.switchView(view);
     this.navModel.set({

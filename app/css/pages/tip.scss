@@ -60,8 +60,31 @@
 	stroke:$main_orange;
 }
 .tip_view p, .tip_view ul, .tip_view li{
-	margin:15px;
+	margin:15px 0px;
 }
 .tip_view li {
 	list-style: disc inside;
+}
+.tip_view blockquote:before {
+    position: absolute;
+    left: -.5em;/*px*/
+    content: '“';
+}
+.tip_view blockquote:after {
+    content: '”';
+    margin-left: -.05em;/*px*/
+}
+.tip_view blockquote {
+    position: relative;
+    font-size: 14px;/*px*/
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: .08em;/*px*/
+    border-left: 6px solid #ddd;
+    padding: 5px 0 5px 10px;/*px*/
+    margin: 15px 0 15px 15px;/*px*/
+}
+.tip_content img{
+	width:100%;
+	height:auto;
 }

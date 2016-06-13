@@ -15,7 +15,8 @@ var dialog_view = Backbone.View.extend({
         this.remove();
     },
     onLoginBtnClick:function(e){
-        this.options.router.navigate('login',{trigger: true});
+        console.log(this.options.router)
+        this.options.router.navigate('login?' + 'backurl=' + Backbone.history.getFragment(), {trigger: true});
     },
     render: function() {
     	this.$el.html(this.template());
