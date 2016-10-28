@@ -1,14 +1,3 @@
-# Xueer_Moblie
-the Web App of Xueer
+##Xueer Moblie 2.0
 
-###install 
-
-`npm install`
-
-###bulid
-
-`npm run build`
-
-###run
-
-`npm run watch`
+Proudly prowered by Vuejs
