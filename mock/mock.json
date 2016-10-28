@@ -1,0 +1,13 @@
+{
+	"routes": [{
+		"name" : "home",
+		"endpoint": "/",
+		"template": "home",
+		"async": false
+	}],
+	"data":{
+		"home" : {
+			"content" : "Hello 胡圣喜!"
+		}
+	}
+}
