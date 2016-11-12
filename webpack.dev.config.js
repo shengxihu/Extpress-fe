@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const px2rem = require('postcss-px2rem');
+const csso = require('postcss-csso');
 
 module.exports = {
 	entry: {
@@ -48,7 +49,15 @@ module.exports = {
 	},
 	vue: {
 		postcss: function() {
-		    return [px2rem({remUnit: 36})];
+			let arr = [
+				px2rem({remUnit: 36}), 
+				csso({ restructure: false })
+			];
+		    return arr;
+		},
+		cssModules: {
+		    localIdentName: '[path][name]-[local]-[hash:base64:5]',
+		    camelCase: true
 		}
 	},
 	devtool: '#eval-source-map',

@@ -1,5 +1,5 @@
 <template>
-	<div class="index">
+	<div :class="$style.index">
 		<navBar></navBar>
 		<cont></cont>
 	</div>
@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style lang='sass' scoped>
+<style lang='sass' module>
 .home {
 	font-family: 'STHeiti';
 	height: 100%;

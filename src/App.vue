@@ -1,5 +1,5 @@
 <template>
-  	<div class="app" id="app">
+  	<div :class="$style.app" id="app">
   		<index></index>
   	</div>
 </template>
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style lang='sass'>
+<style lang='sass' module>
 .app {
 	height: 100%;
 }

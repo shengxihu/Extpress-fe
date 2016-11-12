@@ -5,8 +5,9 @@ const autoprefixer = require('autoprefixer');
 const Dashboard = require('webpack-dashboard');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const postcss = require('postcss');
-const px2rem = require('postcss-px2rem');
 const dashboard = new Dashboard();
+const px2rem = require('postcss-px2rem');
+const csso = require('postcss-csso');
 
 module.exports = {
 	entry: path.resolve(__dirname,'./src/main.js'),
@@ -44,14 +45,18 @@ module.exports = {
 	    ]
 	},
 	vue: {
-		postcss: function() {
-		    return [px2rem({remUnit: 36})];
-		},
 		loaders: {
 			sass: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!postcss-loader!sass-loader'),
+		},
+		postcss: function() {
+			let arr = [
+				px2rem({remUnit: 36}),
+				autoprefixer({ browsers: ['last 4 versions'] }), 
+				csso({ restructure: false })
+			];
+		    return arr;
 		}
 	},
-	postcss: [ autoprefixer({ browsers: ['last 4 versions'] }) ],
   	resolve: {
 	    extensions: ['', '.js', '.scss','.vue'],
 	},
@@ -59,16 +64,6 @@ module.exports = {
 		new ExtractTextPlugin('style.css', {
 	      	allChunks: true,
 	    }),
-	    /*
-	    new webpack.optimize.UglifyJsPlugin({
-	      	output:{
-		      	comments: false
-		    },
-	      	compress: {
-	        	warnings: false
-	      	}
-	    }),
-	    */
 	    new webpack.optimize.OccurenceOrderPlugin(),
 	    new webpack.NoErrorsPlugin(),
 	    new DashboardPlugin(dashboard.setData)
