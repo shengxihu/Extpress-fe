@@ -4,6 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const Dashboard = require('webpack-dashboard');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const postcss = require('postcss');
+const px2rem = require('postcss-px2rem');
 const dashboard = new Dashboard();
 
 module.exports = {
@@ -24,6 +26,10 @@ module.exports = {
 				loader: 'babel',
 				exclude: /node_modules/
 			},
+		    {
+		        test: /\.scss$/,
+		        loader: "style-loader!css-loader!postcss-loader!sass-loader"
+		    },
 			{ 
 				test: /\.(html|tpl)$/, 
 				loader: 'html-loader' 
@@ -38,11 +44,14 @@ module.exports = {
 	    ]
 	},
 	vue: {
-		loaders: {
-			sass: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader'),
+		postcss: function() {
+		    return [px2rem({remUnit: 36})];
 		},
+		loaders: {
+			sass: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!postcss-loader!sass-loader'),
+		}
 	},
-	postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+	postcss: [ autoprefixer({ browsers: ['last 4 versions'] }) ],
   	resolve: {
 	    extensions: ['', '.js', '.scss','.vue'],
 	},
@@ -50,11 +59,16 @@ module.exports = {
 		new ExtractTextPlugin('style.css', {
 	      	allChunks: true,
 	    }),
+	    /*
 	    new webpack.optimize.UglifyJsPlugin({
+	      	output:{
+		      	comments: false
+		    },
 	      	compress: {
 	        	warnings: false
 	      	}
 	    }),
+	    */
 	    new webpack.optimize.OccurenceOrderPlugin(),
 	    new webpack.NoErrorsPlugin(),
 	    new DashboardPlugin(dashboard.setData)

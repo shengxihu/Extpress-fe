@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
+const px2rem = require('postcss-px2rem');
 
 module.exports = {
 	entry: {
@@ -9,7 +11,7 @@ module.exports = {
 	},
 	output: {
 		path: '/',
-		publicPath: 'http://localhost:3000/static/',
+		publicPath: 'http://localhost:3000/static',
 		filename: '[name]'
 	},
 	devServer: {
@@ -27,6 +29,10 @@ module.exports = {
 				loader: 'babel',
 				exclude: /node_modules/
 			},
+		    {
+		        test: /\.scss$/,
+		        loader: "style-loader!css-loader!postcss-loader!sass-loader"
+		    },
 			{ 
 				test: /\.(html|tpl)$/, 
 				loader: 'html-loader' 
@@ -39,6 +45,11 @@ module.exports = {
 				}
 			}
 	    ]
+	},
+	vue: {
+		postcss: function() {
+		    return [px2rem({remUnit: 36})];
+		}
 	},
 	devtool: '#eval-source-map',
   	resolve: {
