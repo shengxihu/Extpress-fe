@@ -1,10 +1,17 @@
 {
-	"routes": [{
-		"name" : "home",
-		"endpoint": "/",
-		"template": "home",
-		"async": false
-	}],
+	"routes": [
+		{
+			"name" : "home",
+			"endpoint": "/",
+			"template": "home",
+			"async": false
+		},
+		{
+			"name": "api.courses",
+			"endpoint": "/api/v1.0/courses",
+			"async": true
+		}
+	],
 	"data":{
 		"home" : {
 			"content" : "Hello 胡圣喜!"
