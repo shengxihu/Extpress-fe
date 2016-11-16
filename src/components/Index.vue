@@ -6,10 +6,10 @@
 				<router-link :class="$style.active" to="/index">首页</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link to="/recommend">推荐课程</router-link>
+				<router-link to="/recommend">菜单一</router-link>
 			</div>
 			<div :class="$style.item">
-				<router-link to="/index">所有课程</router-link>
+				<router-link to="/index">菜单二</router-link>
 			</div>
 		</div>
 		<div>

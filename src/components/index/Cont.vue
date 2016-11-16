@@ -6,7 +6,7 @@
 			</div>
 			<div :class="$style.overview">
 				<p :class="$style.intro">
-					评价最高的课程合集，最热门的课程评价
+					这里是一段介绍性文字
 				</p>
 				<div :class="$style.like">
 					<div :class="$style.view"></div>

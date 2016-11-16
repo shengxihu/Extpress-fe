@@ -1,11 +1,10 @@
 <template>
 	<div :class="$style.recommend">
 		<div class="item">
-			<div class="category">公</div>
 			<div class="course">
-				<h2>毛泽东思想和中国特色社会主义</h2>
+				<h2>标题</h2>
 				<div>
-					<span>王小明</span>
+					<span>备注</span>
 					<div class="info">
 						<div class="comment">
 							<span class="icon"></span>
