@@ -1,62 +1,60 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const Dashboard = require('webpack-dashboard');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-const dashboard = new Dashboard();
+var path = require('path');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: path.resolve(__dirname,'./src/main.js'),
-	output: {
-		path: path.join(__dirname, '/static'),
-		publicPath: '/static/',
-		filename: 'bundle.js'
-	},
-	module: {
-	    loaders: [
-			{
-				test: /\.vue$/,
-				loader: 'vue'
-			},
-			{
-				test: /\.js$/,
-				loader: 'babel',
-				exclude: /node_modules/
-			},
-			{ 
-				test: /\.(html|tpl)$/, 
-				loader: 'html-loader' 
-			},
-			{
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'file?limit=8192',
-				query: {
-					name: '[name].[ext]?[hash]'
-				}
-			}
-	    ]
-	},
-	vue: {
-		loaders: {
-			sass: ExtractTextPlugin.extract('vue-style-loader', 'css-loader!sass-loader!postcss-loader'),
-		},
-	},
-	postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
-  	resolve: {
-	    extensions: ['', '.js', '.scss','.vue'],
-	},
-	plugins: [
-		new ExtractTextPlugin('style.css', {
-	      	allChunks: true,
-	    }),
-	    new webpack.optimize.UglifyJsPlugin({
-	      	compress: {
-	        	warnings: false
-	      	}
-	    }),
-	    new webpack.optimize.OccurenceOrderPlugin(),
-	    new webpack.NoErrorsPlugin(),
-	    new DashboardPlugin(dashboard.setData)
-  	]
+    // 入口
+    entry: {
+        main: './src/routers'
+    },
+    // 输出
+    output: {
+        path: path.join(__dirname, './dist'),
+        filename: '[name].js',
+        chunkFilename: '[name].chunk.js',
+        publicPath: 'dist/'
+    },
+    // 加载器
+    module: {
+        loaders: [
+            { test: /\.vue$/, loader: 'vue' },
+            { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+            { test: /\.css$/, loader: 'style!css!autoprefixer' },
+            { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
+            { test: /\.less$/, loader: 'style!css!less' },
+            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192' },
+            { test: /\.(html|tpl)$/, loader: 'html-loader' },
+            { test: /vux.src.*?js$/, loader: 'babel' }
+        ]
+    },
+    vue: {
+        loaders: {
+            css: ExtractTextPlugin.extract(
+                "style-loader",
+                "css-loader?sourceMap", {
+                    publicPath: "../dist/"
+                }
+            )
+        }
+    },
+    // 转es5
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
+    },
+    resolve: {
+        // require时省略的扩展名，如：require('module') 不需要module.js
+        extensions: ['', '.js', '.vue'],
+
+        // 别名，可以直接使用别名来代表设定的路径以及其他
+        alias: {
+            filter: path.join(__dirname, './src/filters'),
+            components: path.join(__dirname, './src/components'),
+            'vux-components': 'vux/src/components/'
+        }
+    },
+    plugins: [
+        new ExtractTextPlugin("[name].css", { allChunks: true, resolve: ['modules'] }),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+    ]
 };
