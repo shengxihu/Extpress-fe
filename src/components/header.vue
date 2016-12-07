@@ -8,8 +8,7 @@
     <div v-if="showHeader">
         <a @click="back" class="back" v-if="showBack">返回</a>
         <a v-link="{ name: 'index' }">首页</a>
-        <a v-link="{ name: 'order' }">订单列表</a>
-        <a v-link="{ name: 'user' }">个人中心</a>
+        <a v-link="{ name: 'sign' }">个人中心</a>
         <header>{{title}}</header>        
     </div>
 

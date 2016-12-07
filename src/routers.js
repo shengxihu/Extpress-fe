@@ -23,18 +23,11 @@ router.map({
             require(['./views/index.vue'], resolve);
         }
     },
-    '/order': {
-        name: 'order',
-        title: '订单页面',
+    '/sign': {
+        name: 'sign',
+        title: 'Sign',
         component: function(resolve) {
-            require(['./views/order.vue'], resolve);
-        }
-    },
-    '/user': {
-        name: 'user',
-        title: '个人中心',
-        component: function(resolve) {
-            require(['./views/user.vue'], resolve);
+            require(['./views/sign.vue'], resolve);
         }
     }
 });
