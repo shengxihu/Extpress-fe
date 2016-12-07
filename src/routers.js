@@ -16,20 +16,27 @@ var router = new VueRouter({
 });
 
 router.map({
-    '/index': {
-        name: 'index',
-        title: '这是首页',
-        component: function(resolve) {
-            require(['./views/index.vue'], resolve);
-        }
-    },
     '/sign': {
         name: 'sign',
         title: 'Sign',
         component: function(resolve) {
             require(['./views/sign.vue'], resolve);
         }
-    }
+    },
+    '/mail': {
+        name: 'mail',
+        title: 'Mail',
+        component: function(resolve) {
+            require(['./views/mail.vue'], resolve);
+        }
+    },
+    '/express': {
+        name: 'express',
+        title: 'Express',
+        component: function(resolve) {
+            require(['./views/express.vue'], resolve);
+        }
+    },
 });
 
 //访问记录
@@ -61,6 +68,6 @@ router.afterEach(function() {
 });
 
 router.redirect({
-    '*': "/index"
+    '*': "/sign"
 });
 router.start(App, '#app');
