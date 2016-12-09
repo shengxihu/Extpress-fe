@@ -1,6 +1,6 @@
 <template>
 	<div class="timeline-demo">
-        <!--<timeline>
+        <timeline>
             <timeline-item>
                 <h4 class="recent">【广东】 广州市 已发出</h4>
                 <p class="recent">2016-04-17 12:00:00</p>
@@ -13,7 +13,7 @@
                 <h4> 商家正在通知快递公司揽件</h4>
                 <p>2016-04-15 9:00:00</p>
             </timeline-item>
-        </timeline>-->
+        </timeline>
 	</div>
 </template>
 <script>

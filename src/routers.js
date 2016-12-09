@@ -37,6 +37,27 @@ router.map({
             require(['./views/express.vue'], resolve);
         }
     },
+    '/order': {
+        name: 'order',
+        title: 'Order',
+        component: function(resolve) {
+            require(['./views/order.vue'], resolve);
+        }
+    },
+    '/index': {
+        name: 'index',
+        title: 'Index',
+        component: function(resolve) {
+            require(['./views/index.vue'], resolve);
+        }
+    },
+    '/item': {
+        name: 'item',
+        title: 'Item',
+        component: function(resolve) {
+            require(['./views/item.vue'], resolve);
+        }
+    },
 });
 
 //访问记录
@@ -68,6 +89,6 @@ router.afterEach(function() {
 });
 
 router.redirect({
-    '*': "/sign"
+    '/': "/item"
 });
 router.start(App, '#app');

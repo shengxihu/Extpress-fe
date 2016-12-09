@@ -1,11 +1,14 @@
 <style scoped>
 @import '~vux/dist/vux.css';
+.bt {
+  margin-bottom: 122px;
+}
 </style>
 
 <template>
-  <div>
+  <div class="mail">
     <group>
-      <address title="始发地址" :value.sync="value_f" :list="addressData"></address>
+      <address title="寄件地址" :value.sync="value_f" :list="addressData"></address>
       <cell title="邮编" :value="value_f"></cell>
       <x-input title="详细地址"></x-input>
       <x-input title="物品信息"></x-input>
@@ -16,9 +19,9 @@
       <x-input title="详细地址"></x-input>
       <x-input title="收件人姓名"></x-input>
       <x-input title="收件人手机号"></x-input>
+      <br/>
+      <x-button class="bt" type="primary" @click="changeData">提交</x-button>
     </group>
-    <br/>
-    <x-button type="primary" @click="changeData">提交</x-button>
   </div>
 </template>
 

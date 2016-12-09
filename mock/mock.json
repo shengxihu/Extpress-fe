@@ -7,14 +7,29 @@
 			"async": false
 		},
 		{
-			"name": "api.courses",
-			"endpoint": "/api/v1.0/courses",
+			"name": "api",
+			"endpoint": "/api/",
+			"async": true
+		},
+		{
+			"name" : "api.feed",
+			"endpoint": "/api/v1.0/feed",
+			"queryKey": {
+				"category":"kind",
+				"pagination":"page",
+				"sort":"sort"
+			},		
 			"async": true
 		}
 	],
 	"data":{
-		"home" : {
-			"content" : "Hello 胡圣喜!"
+		"returnComment":{	
+			"status":"成功啦"
+		},
+		"returnContent":{
+			"status":"post 发送成功！"
+		},
+		"api.feed" : {
 		}
 	}
 }

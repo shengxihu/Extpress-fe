@@ -18,6 +18,7 @@
     "array-map": "^0.0.0",
     "china-area-data": "^1.0.0",
     "vue": "^1.0.25",
+    "vue-qrcode": "^0.0.2",
     "vue-router": "^0.7.13",
     "whatwg-fetch": "^2.0.1"
   },
