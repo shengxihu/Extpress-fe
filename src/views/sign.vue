@@ -64,7 +64,7 @@
                 const url = '/api/v1.0/feed/'
                 //let url = 'http://apis.haoservice.com/idcard/VerifyIdcard?cardNo=' + this.id_num + '&realName=' + this.name + '&key=115027c46da0470ab5270128d60828de'
                 this.$http.get(url).then((response) => {
-                    console.log(response)
+                    
                 }, (response) => {
                     // error callback 
                 });

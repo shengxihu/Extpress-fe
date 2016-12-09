@@ -18,35 +18,35 @@ var router = new VueRouter({
 router.map({
     '/sign': {
         name: 'sign',
-        title: 'Sign',
+        title: '主页',
         component: function(resolve) {
             require(['./views/sign.vue'], resolve);
         }
     },
     '/mail': {
         name: 'mail',
-        title: 'Mail',
+        title: '寄件',
         component: function(resolve) {
             require(['./views/mail.vue'], resolve);
         }
     },
     '/express': {
         name: 'express',
-        title: 'Express',
+        title: '物流',
         component: function(resolve) {
             require(['./views/express.vue'], resolve);
         }
     },
     '/order': {
         name: 'order',
-        title: 'Order',
+        title: '订单',
         component: function(resolve) {
             require(['./views/order.vue'], resolve);
         }
     },
     '/index': {
         name: 'index',
-        title: 'Index',
+        title: '首页',
         component: function(resolve) {
             require(['./views/index.vue'], resolve);
         }

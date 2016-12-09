@@ -4,24 +4,26 @@
 
 <template>
     <div class='headbar'>
-       <x-header>{{ title }}</x-header>
+       <x-header v-if="this.$route.name == 'index'" :left-options="{showBack: false}">首页</x-header>
+       <x-header v-if="this.$route.name == 'mail'" :left-options="{showBack: true}">寄件</x-header>
+       <x-header v-if="this.$route.name == 'express'" :left-options="{showBack: true}">物流</x-header>
+       <x-header v-if="this.$route.name == 'sign'" :left-options="{showBack: true}">主页</x-header>
     </div>
 </template>
 <script>
+    import * as actions from '../vuex/actions'
     import { XHeader } from 'vux-components'
     module.exports = {
         data:function(){
             return {
-                title: '主页'
+                title: this.$route.title
             }
         },
-        ready:function(){
+        ready() {
+            console.log(this)
         },
         components:{
             XHeader
-        },
-        methods:{
-            
         }
     }
 </script>

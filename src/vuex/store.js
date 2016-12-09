@@ -7,15 +7,18 @@ Vue.use(Vuex)
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 应用启动时，count 置为0
-  count: 0
+  count: 0,
+  flag: true
 }
 
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
 const mutations = {
-  // mutation 的第一个参数是当前的 state
-  // 你可以在函数里修改 state
-  INCREMENT (state, amount) {
-    state.count = state.count + amount
+  flagN(state) {
+    state.count +=100
+    state.flag = false
+  },
+  flagY(state) {
+    state.flag = true
   }
 }
 

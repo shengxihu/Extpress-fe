@@ -22,32 +22,23 @@ import { Timeline, TimelineItem } from 'vux-components'
 export default {
   components: {
     Timeline,
-    TimelineItem,
-  },
-  data () {
-    return {
-      count: 3
-    }
+    TimelineItem
   }
 }
 </script>
 
 <style lang="less">
-	.timeline-demo {
-
-		p {
-			color: #888;
-			font-size: 0.8rem;
+.timeline-demo {
+	  p {
+			  color: #888;
+			  font-size: 0.8rem;
 		}
-
 		h4 {
-			color: #666;
-			font-weight: normal;
+			  color: #666;
+			  font-weight: normal;
 		}
-
 		.recent {
-			color: rgb(4, 190, 2)
+			  color: rgb(4, 190, 2)
 		}
-
-	}
+}
 </style>
