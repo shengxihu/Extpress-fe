@@ -58,6 +58,13 @@ router.map({
             require(['./views/item.vue'], resolve);
         }
     },
+    '/auth': {
+        name: 'auth',
+        title: '个人信息',
+        component: function(resolve) {
+            require(['./views/auth.vue'], resolve);
+        }
+    },
 });
 
 //访问记录
@@ -89,6 +96,6 @@ router.afterEach(function() {
 });
 
 router.redirect({
-    '/': "/item"
+    '/': "/index"
 });
 router.start(App, '#app');

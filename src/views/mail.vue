@@ -53,7 +53,9 @@ export default {
   },
   methods: {
     changeData () {
-      
+        setTimeout(function(){
+           window.location='http://localhost:3000/#!/order'
+        },2000)
     }
   }
 }

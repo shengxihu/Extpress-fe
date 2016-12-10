@@ -1,6 +1,12 @@
 <template>
 	<div class="timeline-demo">
         <timeline>
+            <div class="order_num">
+                <span class="num_title">订单号:</span>
+                <span class="num">abc12345678</span>
+            </div>
+            <switch class="sith" title="显示二维码" :value.sync="value"></switch>
+            <qrcode v-if="value" class="qr_box" val="https://www.baidu.com/" fg-color="green"></qrcode>
             <timeline-item>
                 <h4 class="recent">【广东】 广州市 已发出</h4>
                 <p class="recent">2016-04-17 12:00:00</p>
@@ -17,28 +23,41 @@
 	</div>
 </template>
 <script>
-import { Timeline, TimelineItem } from 'vux-components'
+import Qrcode from 'vue-qrcode'
+import { Timeline, TimelineItem, Switch } from 'vux-components'
 
 export default {
-  components: {
-    Timeline,
-    TimelineItem
-  }
+    data() {
+        return {
+            value: false
+        }
+    },
+    components: {
+        Timeline,
+        TimelineItem,
+        Switch,
+        Qrcode 
+    }
 }
 </script>
 
-<style lang="less">
-.timeline-demo {
-	  p {
-			  color: #888;
-			  font-size: 0.8rem;
-		}
-		h4 {
-			  color: #666;
-			  font-weight: normal;
-		}
-		.recent {
-			  color: rgb(4, 190, 2)
-		}
+<style lang="less" scoped>
+.sith { 
+    padding: 6px 0 !important;
+}
+.weui_cell:before {
+    height: 0 !important;
+    width: 0 !important;
+}
+p {
+        color: #888;
+        font-size: 0.8rem;
+}
+h4 {
+        color: #666;
+        font-weight: normal;
+}
+.recent {
+        color: rgb(4, 190, 2)
 }
 </style>

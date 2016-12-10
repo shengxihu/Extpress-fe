@@ -15,7 +15,6 @@
     </div>
 </template>
 <script>
-    import { Divider,ButtonTab, ButtonTabItem, Tabbar, TabbarItem } from 'vux-components'
     import Footbar from '../components/footbar.vue'
     import Headbar from '../components/headbar.vue'
     module.exports = {
@@ -26,11 +25,6 @@
         ready:function(){
         },
         components:{
-            Tabbar,
-            TabbarItem,
-            ButtonTab,
-            ButtonTabItem,
-            Divider,
             Footbar,
             Headbar
         },
