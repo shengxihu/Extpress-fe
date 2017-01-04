@@ -24,12 +24,13 @@
             <x-button @click="signIn" class='sign_up_bt' type="primary">注册</x-button>
         </group>
         <toast :show.sync="show" :time='st'>验证成功</toast>
-        <toast :show.sync="show" type="warn" :time='st'>身份信息不符</toast>
-        <loading :show="show" :text="text1" :time='st'></loading>
+        <toast :show="!is_ok" type="warn" :time='st'>身份信息不符</toast>
+        <loading :show="is_load" :text="text1" :time='st'></loading>
     </div>
 </template>
 
 <script>
+    import { isRegistedN, isRegistedY, setData } from '../vuex/actions'
     import Group from 'vux-components/group'
     import Toast from 'vux-components/toast'
     import Switch from 'vux-components/switch'
@@ -41,6 +42,8 @@
             return {
                 is_sign_up: false,
                 is_sign_in: true,
+                is_load: false,
+                is_ok: true,
                 form_sign_in: {
                     name: '',
                     id_num: '',
@@ -58,7 +61,17 @@
                 st: 5000
             }
         },
-        ready:function(){
+        vuex: {
+            getters: { 
+                is_res: function (state) {
+                    return state.is_res
+                } 
+            },
+            actions: {
+                isRegistedN,
+                isRegistedY,
+                setData,
+            },
         },
         components:{
             Group,
@@ -70,28 +83,34 @@
         },
         methods:{
             signIn(){
-                this.show = true
-                setTimeout(function(){
-                    window.location='http://localhost:3000/#!/auth'
-                },2000)
-                // const url = '/api/v1.0/feed/'
-                // //let url = 'http://apis.haoservice.com/idcard/VerifyIdcard?cardNo=' + this.id_num + '&realName=' + this.name + '&key=115027c46da0470ab5270128d60828de'
-                // this.$http.get(url).then((response) => {
-                    
-                // }, (response) => {
-                //     // error callback 
-                // });
+                var self = this
+                self.is_load = true
+                var url = 'http://www.meitianzhifu.com/version2/phpweb.php' + '?cardNo=' + self.form_sign_in.id_num + '&realName=' + self.form_sign_in.name + '&key=115027c46da0470ab5270128d60828de'
+                this.$http.get(url).then((response) => {
+                    var da = JSON.parse(response.data)
+                    console.log(da)
+                   if( da.result.isok == true) {
+                       console.log(response)
+                       self.is_load = false
+                       self.show = true
+                       self.isRegistedY()
+                       self.setData(self.form_sign_in)
+                       self.$router.go({name:'auth'})
+                   } else {
+                       self.is_load = false
+                       self.is_ok = false
+                       setTimeout(() => {
+                           self.is_ok = true
+                       },800)
+                   }
+                }, (response) => {
+                    console.log(response)
+                    // error callback
+                })
             },
             signUp(){
                 this.show = true
                 console.log(this.form_sign_up)
-                // const url = '/api/v1.0/feed/'
-                // //let url = 'http://apis.haoservice.com/idcard/VerifyIdcard?cardNo=' + this.id_num + '&realName=' + this.name + '&key=115027c46da0470ab5270128d60828de'
-                // this.$http.get(url).then((response) => {
-                    
-                // }, (response) => {
-                //     // error callback 
-                // });
             }
         }
     }

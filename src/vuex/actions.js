@@ -1,2 +1,5 @@
 export const flagN = ({ dispatch }) => dispatch('flagN')
 export const flagY = ({ dispatch }) => dispatch('flagY')
+export const isRegistedY = ({ dispatch }) => dispatch('isRegistedY')
+export const isRegistedN = ({ dispatch }) => dispatch('isRegistedN')
+export const setData = ({ dispatch }, data) => dispatch('setData', data)

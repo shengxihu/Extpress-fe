@@ -15,7 +15,21 @@
             <span class="num_title">订单号:</span>
             <span class="num">abc12345678</span>
         </div>
-        <qrcode class="qr_box" val="https://www.baidu.com/" fg-color="green"></qrcode>
+        <qrcode class="qr_box" val="http://www.meitianzhifu.com/version2/#!/express" fg-color="green"></qrcode>
+      </div>
+      <div class="item">
+        <div class="order_num">
+            <span class="num_title">订单号:</span>
+            <span class="num">abc12345678</span>
+        </div>
+        <qrcode class="qr_box" val="http://www.meitianzhifu.com/version2/#!/express" fg-color="green"></qrcode>
+      </div>
+      <div class="item">
+        <div class="order_num">
+            <span class="num_title">订单号:</span>
+            <span class="num">abc12345678</span>
+        </div>
+        <qrcode class="qr_box" val="http://www.meitianzhifu.com/version2/#!/express" fg-color="green"></qrcode>
       </div>
   </div>
 </template>

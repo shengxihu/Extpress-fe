@@ -8,10 +8,10 @@
 <template>
     <div class='auth'>
         <group :class="{ 'hide':is_sign_up }">
-            <x-input placeholder="no1025" :readonly="flag" title="用户名"></x-input>
-            <x-input placeholder="刘德印" :readonly="flag" title="姓名"></x-input>
-            <x-input placeholder="13037163295" :readonly="flag" title="手机号码"></x-input>
-            <x-input placeholder="21086220519" :readonly="flag" title="身份证号码"></x-input>
+            <x-input :value="form_sign_in.username" :readonly="flag" title="用户名"></x-input>
+            <x-input :value="form_sign_in.name" :readonly="flag" title="姓名"></x-input>
+            <x-input :value="form_sign_in.phone" :readonly="flag" title="手机号码"></x-input>
+            <x-input :value="form_sign_in.id_num" :readonly="flag" title="身份证号码"></x-input>
             <a class="sign_box weui_tabbar_item" v-link="{ name: 'sign' }">
                 <x-button @click="Modify" class='sign_up_bt' type="primary">更改</x-button>
             </a>
@@ -41,7 +41,15 @@
                 st: 5000
             }
         },
-        ready:function(){
+        vuex: {
+            getters: { 
+                is_res: function (state) {
+                    return state.is_res
+                },
+                form_sign_in: function (state) {
+                    return state.form_sign_in
+                }, 
+            }
         },
         components:{
             Group,
@@ -56,14 +64,6 @@
             Modify(){
                 this.show = true
                 this.flag = false
-                console.log(this.form_sign_in)
-                // const url = '/api/v1.0/feed/'
-                // //let url = 'http://apis.haoservice.com/idcard/VerifyIdcard?cardNo=' + this.id_num + '&realName=' + this.name + '&key=115027c46da0470ab5270128d60828de'
-                // this.$http.get(url).then((response) => {
-                    
-                // }, (response) => {
-                //     // error callback 
-                // });
             }
         }
     }

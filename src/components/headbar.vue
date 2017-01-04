@@ -21,9 +21,6 @@
                 title: this.$route.title
             }
         },
-        ready() {
-            console.log(this)
-        },
         components:{
             XHeader
         }

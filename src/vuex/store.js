@@ -8,7 +8,9 @@ Vue.use(Vuex)
 const state = {
   // 应用启动时，count 置为0
   count: 0,
-  flag: true
+  flag: true,
+  is_res: false,
+  form_sign_in: {test:'test'},
 }
 
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
@@ -19,6 +21,15 @@ const mutations = {
   },
   flagY(state) {
     state.flag = true
+  },
+  isRegistedY(state) {
+    state.is_res = true
+  },
+  isRegistedN(state) {
+    state.is_res = false
+  },
+  setData(state,data) {
+    state.form_sign_in = data
   }
 }
 

@@ -20,6 +20,7 @@
       <x-input title="收件人姓名"></x-input>
       <x-input title="收件人手机号"></x-input>
       <br/>
+      <toast :show="flag"  type="warn" :time='st'>未注册,请返回注册！</toast>
       <x-button class="bt" type="primary" @click="changeData">提交</x-button>
     </group>
   </div>
@@ -33,8 +34,8 @@ import XButton from 'vux-components/x-button'
 import Cell from 'vux-components/Cell'
 import XInput from 'vux-components/x-input'
 import XTextarea from 'vux-components/x-textarea'
+import Toast from 'vux-components/toast'
 
-console.log(AddressChinaData)
 export default {
   components: {
     Group,
@@ -42,19 +43,38 @@ export default {
     XButton,
     Cell,
     XInput,
-    XTextarea
+    XTextarea,
+    Toast
   },
   data () {
     return {
       value_f: [],
       value_t: [],
       addressData: AddressChinaData,
+      flag: false
+    }
+  },
+  vuex: {
+      getters: { 
+          is_res: function (state) {
+              return state.is_res
+          },
+      }
+  },
+  ready(){
+    var self = this
+    if(!this.is_res) {
+      self.flag = true
+      setTimeout(function(){
+          self.$router.go({name:'sign'})
+      },1000)
     }
   },
   methods: {
     changeData () {
+        var self = this
         setTimeout(function(){
-           window.location='http://localhost:3000/#!/order'
+            self.$router.go({name:'order'})
         },2000)
     }
   }

@@ -74,7 +74,6 @@ router.beforeEach(function(transition) {
 
     if (routeList.length > 1 && transition.to.name == routeList[routeList.length - 2]['name']) {
         routeList.splice(routeList.length - 1, 1);
-        //console.log(routeList);
     } else {
         routeList.push({
             name: transition.to.name,
